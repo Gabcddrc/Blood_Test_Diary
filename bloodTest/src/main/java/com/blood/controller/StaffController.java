@@ -1,4 +1,4 @@
-package com.blood.web;
+package com.blood.controller;
 
 import com.blood.pojo.Staff;
 import com.blood.service.StaffService;
