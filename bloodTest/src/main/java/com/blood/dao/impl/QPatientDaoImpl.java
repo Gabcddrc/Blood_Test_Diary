@@ -23,7 +23,7 @@ public class patientDaoImpl implements QueryPatientDao {
 
 	@Override
 	public List<Patient> findExpired() {
-		String sql = "SELECT email from Patients where overTime>14" // Depends on the unit (days or weeks)
+		String sql = "SELECT email from Patients where overTime==True" // Depends on the unit (days or weeks)
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper(Patient.class));
 	}
 
