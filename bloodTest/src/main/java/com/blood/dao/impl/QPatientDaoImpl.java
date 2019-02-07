@@ -17,12 +17,29 @@ import java.util.List;
 
 
 public class patientDaoImpl implements QueryPatientDao {
-	
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
-	
+
+	@Autowired
+	private JdbcTemplate jdbcTemplate;
+
 	@Override
-	public List<Patient> findExpired(){
+	public List<Patient> findExpired() {
 		String sql = "SELECT email from Patients where overTime>14" // Depends on the unit (days or weeks)
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper(Patient.class));
 	}
+
+	@Override
+	public Patient update(Patient patient){
+		//Code goes here
+	}
+
+	@Override
+	public Patient delete(Paitent patient) {
+		//Code goes here
+	}
+
+	@Override
+	public Patient add(Patient patient){
+		//Code goes here
+	}
+
+}
