@@ -29,7 +29,9 @@ public interface QueryPatientDao{
 	Patient add(Patient patient)
 	 
 	/**
-	 *  
+	 * Find all patients records
 	 */
+	
+	List<Patient> findAllPatients();
 	
 }

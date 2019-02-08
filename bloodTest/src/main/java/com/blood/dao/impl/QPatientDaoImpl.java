@@ -14,8 +14,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-
-
+//This Class might refactor to Service
+//ALL SQL FUNCTIONS NEED TO BE UPDATED WHEN DB IS BUILT
 public class patientDaoImpl implements QueryPatientDao {
 
 	@Autowired
@@ -23,23 +23,62 @@ public class patientDaoImpl implements QueryPatientDao {
 
 	@Override
 	public List<Patient> findExpired() {
-		String sql = "SELECT email from Patients where overTime==True" // Depends on the unit (days or weeks)
+		String sql = "SELECT email from Patients where overTime>14" // Depends on the unit (days or weeks)
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper(Patient.class));
 	}
 
 	@Override
 	public Patient update(Patient patient){
-		//Code goes here
+		//This function need to be considered again as what to update is unknown
+		String sql = "UPDATE Patient SET " +
+				"Email = ? , Overtime = ?"+
+				"Firstname = ?, Lastname = ?"
+				"where id = ?";
+		Object[] args = {patient.getEmail(), patient.getOverTime(),
+					patient.getFirstName(), patient.getLastName()};
+		int[] types = {Types.VARCHAR, Types.BOOLEAN, Types.VARCHAR, Types.VARCHAR}
+		int rows = jdbcTemplate.update(sql,args,types);
+		return (rows==1); //True when the patient is updated successfully
 	}
 
 	@Override
-	public Patient delete(Paitent patient) {
-		//Code goes here
+	public boolean delete(Paitent patient) {
+		String sql = "DELETE FROM Patient where Id=?";
+		Object[] args = { patient.getId() };
+		int[] types = {Types.VARCHAR};
+		int rows = jdbcTemplate.update(sql,args,types);
+		return (rows==1); //True if the patient is deleted successfully
 	}
 
 	@Override
-	public Patient add(Patient patient){
+	public void add(Patient patient){
 		//Code goes here
+
+		String sql = "insert into Patient(ID,Email,Overtime,FirstName,LastName) values(?,?,?,?,?)";
+		jdbcTemplate.update(sql,new Object[]{
+				patient.getID(),
+				patient.getEmail(),
+				patient.getOverTime(),
+				patient.getFirstName(),
+				patient.getLastName()}, new int[]{Types.VARCHAR,Types.VARCHAR,
+					Types.BOOLEAN,Types.VARCHAR,Types.VARCHAR});
+
+	}
+
+	@Override
+	public List<Patient> finddAllPatients(){
+		List<Map<String,Object>> list=jdbcTemplate.queryForList("select * from Patients");
+		List<CusBaseInfo> patientLists =new ArrayList<>();
+		for (Map<String.Object> map:list){
+			Patient patient = new Patient();
+			patient.setId(map.get("Id").toString());
+			patient.setEmail(map.get("Email").toString());
+			patient.setOverTime(Boolean.parseBoolean(map.get("Overtime"))); //As OT is a bool
+			patient.setFirstName(map.get("Firstname").toString());
+			patient.setLastName(map.get("Lastname").toString());
+			patientLists.add(patient);
+		}
+		return patientLists;
 	}
 
 }
