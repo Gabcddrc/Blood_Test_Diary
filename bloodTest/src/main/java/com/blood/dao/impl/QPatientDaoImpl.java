@@ -16,15 +16,27 @@ import java.util.List;
 
 //This Class might refactor to Service
 //ALL SQL FUNCTIONS NEED TO BE UPDATED WHEN DB IS BUILT
+//Can be refactor due to duplicated codes
 public class patientDaoImpl implements QueryPatientDao {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
 	@Override
+
 	public List<Patient> findExpired() {
-		String sql = "SELECT email from Patients where overTime>14" // Depends on the unit (days or weeks)
-		return jdbcTemplate.query(sql, new BeanPropertyRowMapper(Patient.class));
+		List<Map<String,Object>> list=jdbcTemplate.queryForList("select * from Patients where Overtime=True");
+		List<CusBaseInfo> patientLists =new ArrayList<>();
+		for (Map<String.Object> map:list){
+			Patient patient = new Patient();
+			patient.setId(map.get("Id").toString());
+			patient.setEmail(map.get("Email").toString());
+			patient.setOverTime(Boolean.parseBoolean(map.get("Overtime"))); //As OT is a bool
+			patient.setFirstName(map.get("Firstname").toString());
+			patient.setLastName(map.get("Lastname").toString());
+			patientLists.add(patient);
+		}
+		return patientLists;
 	}
 
 	@Override
@@ -52,7 +64,7 @@ public class patientDaoImpl implements QueryPatientDao {
 
 	@Override
 	public void add(Patient patient){
-		//Code goes here
+
 
 		String sql = "insert into Patient(ID,Email,Overtime,FirstName,LastName) values(?,?,?,?,?)";
 		jdbcTemplate.update(sql,new Object[]{
@@ -81,4 +93,20 @@ public class patientDaoImpl implements QueryPatientDao {
 		return patientLists;
 	}
 
+
+	@Override
+	public List<Patient> findByWord(String keyWord){
+		List<Map<String,Object>> list=jdbcTemplate.queryForList("select * from Patients where Firstname like %"+keyWord+"%");
+		List<CusBaseInfo> patientLists =new ArrayList<>();
+		for (Map<String.Object> map:list){
+			Patient patient = new Patient();
+			patient.setId(map.get("Id").toString());
+			patient.setEmail(map.get("Email").toString());
+			patient.setOverTime(Boolean.parseBoolean(map.get("Overtime"))); //As OT is a bool
+			patient.setFirstName(map.get("Firstname").toString());
+			patient.setLastName(map.get("Lastname").toString());
+			patientLists.add(patient);
+		}
+		return patientLists;
+	}
 }

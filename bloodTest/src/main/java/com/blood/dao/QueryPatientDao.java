@@ -34,4 +34,9 @@ public interface QueryPatientDao{
 	
 	List<Patient> findAllPatients();
 	
+	/**
+	 * Search By Key Word of the Name
+	 */
+	 
+	List<Patient> findByWord(String keyWord);
 }
