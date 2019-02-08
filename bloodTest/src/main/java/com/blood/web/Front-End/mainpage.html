@@ -14,7 +14,7 @@
     <nav class="blue">
       <div class="container">
         <div class="nav-wrapper">
-          <a href="#" class="brand-logo">NHS</a>
+                    <a><b><font size="6" face="helvetica" color="white">NHS</font></b></a>
           <a href="#" data-target="mobile-nav" class="sidenav-trigger">
             <i class="material-icons">menu</i>
           </a>
@@ -33,6 +33,7 @@
       </div>
     </nav>
   </div>
+
   <ul class="sidenav" id="mobile-nav">
     <li>
       <a href="#home">Home</a>
@@ -67,18 +68,8 @@
   </section>
 
   <!-- Login Section -->
-  <section id="login" class="section section-login blue darken-1 white-text center scrollspy">
-    <div class="container">
-      <div class="row">
-      </div>
-      <div class="row">
-      </div>
-      <div class="row">
-      </div>
-    </div>
-  </section>
 
-<section class="section section-icons grey lighten-4 center">
+<section id ="login" class="section section-login grey lighten-4 center scrollspy">
 <div class="container">
   <div class="card">
       <div class="col s6 offset-s6">
@@ -158,9 +149,9 @@
     const slider = document.querySelector('.slider');
     M.Slider.init(slider, {
       indicators: false,
-      height: 500,
-      transition: 500,
-      interval: 6000
+      height: 600,
+      transition: 400,
+      interval: 5000
     });
 
     const mb = document.querySelectorAll('.materialboxed');
