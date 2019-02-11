@@ -148,4 +148,14 @@ public class Patient {
     public void setCommets(String commets) {
         this.commets = commets;
     }
+
+    public Boolean getOverTime() {
+        return overTime;
+    }
+
+    public void setOverTime(Boolean overTime) {
+        this.overTime = overTime;
+    }
+
+    private Boolean overTime;
 }

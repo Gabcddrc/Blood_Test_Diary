@@ -33,8 +33,8 @@ public class MailService {
             if (patients.size() != 0) {
                 MimeMessage message = mailSender.createMimeMessage();
                 Context context = new Context();
-                context.setVariable("firstName",patient.getFirstName());
-                context.setVariable("lastName",patient.getLastName());
+                context.setVariable("firstName",patient.getForename());
+                context.setVariable("lastName",patient.getSuername());
                 String emailContent = templateEngine.process("notificationTemplate", context);
                 try {
                     String email = patient.getEmail();
@@ -57,8 +57,8 @@ public class MailService {
     public boolean sendResult(Patient patient,String filePath) {
                 MimeMessage message = mailSender.createMimeMessage();
                 Context context = new Context();
-                context.setVariable("firstName",patient.getFirstName());
-                context.setVariable("lastName",patient.getLastName());
+                context.setVariable("firstName",patient.getForename());
+                context.setVariable("lastName",patient.getSuername());
                 String emailContent = templateEngine.process("resultTemplate", context);
                 try {
                     String email = patient.getEmail();
