@@ -115,7 +115,7 @@ DEFAULT CHARACTER SET = latin1;
 -- Table `bloodtestdiary`.`staff`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `bloodtestdiary`.`staff` (
-  `idstaff` INT NOT NULL AUTO_INCREMENT,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `forename` VARCHAR(100) NULL DEFAULT NULL,
   `surname` VARCHAR(100) NULL DEFAULT NULL,
   `DOB` DATE NULL DEFAULT NULL,

@@ -12,6 +12,7 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -27,8 +28,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class Staff {
 
     @Id
-    @Column(name = "idstaff")
-    @GeneratedValue
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idstaff;
     @Column(name = "forename")
     private String forename;
