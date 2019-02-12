@@ -24,38 +24,47 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  */
 @Entity
 @Table(name = "staff")
-@JsonIgnoreProperties({"handler", "hibernateLazyInitializer"})
+@JsonIgnoreProperties({ "handler", "hibernateLazyInitializer" })
 public class Staff {
 
     @Id
-    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idstaff;
+    @Column(name = "id")
+    private int id;
+
     @Column(name = "forename")
     private String forename;
+
     @Column(name = "surname")
     private String surname;
+
     @Column(name = "DOb")
     private String DOB;
+
     @Column(name = "phone")
     private String phone;
+
     @Column(name = "email")
     private String email;
+
     @Column(name = "username")
     private String username;
+
     @Column(name = "password")
     private String password;
+
     @Column(name = "address")
     private String address;
+    
     @Column(name = "notes")
     private String notes;
 
-    public int getIdstaff() {
-        return idstaff;
+    public int getId() {
+        return id;
     }
 
-    public void setIdstaff(int idstaff) {
-        this.idstaff = idstaff;
+    public void setIdstaff(int id) {
+        this.id = id;
     }
 
     public String getForename() {

@@ -29,7 +29,7 @@ public class Patient {
     @Id
     @Column(name = "idpatient")
     @GeneratedValue
-    private int idpatient;
+    private int id;
     @Column(name = "forename")
     private String forename;
     @Column(name = "surname")
@@ -53,12 +53,12 @@ public class Patient {
     @Column(name = "commets")
     private String commets;
 
-    public int getIdpatient() {
-        return idpatient;
+    public int getId() {
+        return id;
     }
 
-    public void setIdpatient(int idpatient) {
-        this.idpatient = idpatient;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getForename() {
