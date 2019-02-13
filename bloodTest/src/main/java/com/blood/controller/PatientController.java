@@ -1,4 +1,4 @@
-package com.blood.web;
+package com.blood.controller;
 
 import com.blood.pojo.Patient;
 import com.blood.service.MailService;

@@ -1,4 +1,4 @@
-package com.blood.auth;
+package com.blood.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -33,10 +33,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
                     .and()
                 .formLogin()
                     .loginPage("/login")
+                    .defaultSuccessUrl("/")
                     .permitAll()
                 .   and()
                 .logout()
-                    .logoutSuccessUrl("/")
                     .permitAll();
         
     }
