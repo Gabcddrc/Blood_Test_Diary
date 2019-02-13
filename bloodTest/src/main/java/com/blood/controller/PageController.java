@@ -13,8 +13,8 @@ public class PageController {
     public String home(){
         return "/home";
     }
-    @GetMapping(value="/sample")
+    @GetMapping(value="/AddPatient")
     public String sample(){
-        return "/sample";
+        return "/AddPatient";
     }
 }
