@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 //Can be ignored if QPatientDaoImpl is refactored to service and just call it
+//NOTE: This code have not finished yet!
 
 @RestController
 @RequestMapping(value = "/patient")
@@ -38,7 +39,7 @@ public class PatientDBController{
      * Get All expired patients
      */
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    @ApiOperation(value"Get All Expired Patients Info",note = "Get All Expired Patients Info")
+    @ApiOperation(value="Get All Expired Patients Info",note = "Get All Expired Patients Info")
     public List<Patient> findExpired() {
         return queryPatientDao.findExpired();
     }
