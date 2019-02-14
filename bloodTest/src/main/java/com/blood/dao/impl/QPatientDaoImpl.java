@@ -17,13 +17,20 @@ import java.util.List;
 //This Class might refactor to Service
 //ALL SQL FUNCTIONS NEED TO BE UPDATED WHEN DB IS BUILT
 //Can be refactored due to duplicated codes
-public class patientDaoImpl implements QueryPatientDao {
+
+/**
+ * Note: A potential design is that the web page passed the parameter and just call
+ * the method here, the methods here will return the data to be displayed on the Page
+ *
+ * TO DO: Refactor the SQL commands to fulfill the DB
+ */
+
+public class PatientDaoImpl implements QueryPatientDao {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
 	@Override
-
 	public List<Patient> findExpired() {
 		List<Map<String,Object>> list=jdbcTemplate.queryForList("select * from Patients where Overtime=True");
 		List<CusBaseInfo> patientLists =new ArrayList<>();
@@ -64,8 +71,6 @@ public class patientDaoImpl implements QueryPatientDao {
 
 	@Override
 	public void add(Patient patient){
-
-
 		String sql = "insert into Patient(ID,Email,Overtime,FirstName,LastName) values(?,?,?,?,?)";
 		jdbcTemplate.update(sql,new Object[]{
 				patient.getID(),
@@ -78,7 +83,7 @@ public class patientDaoImpl implements QueryPatientDao {
 	}
 
 	@Override
-	public List<Patient> finddAllPatients(){
+	public List<Patient> findAllPatients(){
 		List<Map<String,Object>> list=jdbcTemplate.queryForList("select * from Patients");
 		List<CusBaseInfo> patientLists =new ArrayList<>();
 		for (Map<String.Object> map:list){
