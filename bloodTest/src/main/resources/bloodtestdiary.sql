@@ -125,7 +125,7 @@ CREATE TABLE IF NOT EXISTS `bloodtestdiary`.`staff` (
   `password` VARCHAR(100) NULL DEFAULT NULL,
   `address` VARCHAR(200) NULL DEFAULT NULL,
   `notes` VARCHAR(200) NULL DEFAULT NULL,
-  PRIMARY KEY (`idstaff`))
+  PRIMARY KEY (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
 
