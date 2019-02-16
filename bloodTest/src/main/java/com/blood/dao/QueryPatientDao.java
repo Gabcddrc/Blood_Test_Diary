@@ -5,6 +5,10 @@ import com.blood.pojo.Patient;
 import java.util.List;
 
 
+/**
+ * @Author Yilei Liang
+ */
+
 public interface QueryPatientDao{
 	
 	/**
@@ -35,8 +39,15 @@ public interface QueryPatientDao{
 	List<Patient> findAllPatients();
 	
 	/**
-	 * Search By Key Word of the Name
+	 * Search By Key Word of the Forename
 	 */
 	 
-	List<Patient> findByWord(String keyWord);
+	List<Patient> findByForename(String keyWord);
+
+
+	/**
+	 * Search By Key Word of the Surname
+	 */
+
+	List<Patient> findBySurname(String keyWord);
 }
