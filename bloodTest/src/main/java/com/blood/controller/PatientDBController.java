@@ -57,7 +57,7 @@ public class PatientDBController{
     }
 
 
-    @RequestMapping(value = "/deletePatient", method = RequestMethod.Delete)
+    @RequestMapping(value = "/deletePatient", method = RequestMethod.POST)
     public void delete(Patient patient){
         queryPatientDao.delete(patient);
     }
