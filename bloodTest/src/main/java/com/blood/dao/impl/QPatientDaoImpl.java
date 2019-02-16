@@ -37,7 +37,7 @@ public class QPatientDaoImpl implements QueryPatientDao {
 	@Override
 	public List<Patient> findExpired() {
 		List<Map<String,Object>> list=jdbcTemplate.queryForList("select * from Patients where overTime=True");
-		List<CusBaseInfo> patientLists =new ArrayList<>();
+		List<Patient> patientLists =new ArrayList<>();
 		for (Map<String.Object> map:list){
 			Patient patient = new Patient();
 			patient.setId(map.get("idpatient").toString());
