@@ -38,10 +38,31 @@ public class PatientDBController{
     /**
      * Get All expired patients
      */
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/getByExpired", method = RequestMethod.GET)
     @ApiOperation(value="Get All Expired Patients Info",note = "Get All Expired Patients Info")
     public List<Patient> findExpired() {
         return queryPatientDao.findExpired();
+    }
+
+    @RequestMapping(value= "/getByWord", method = RequestMethod.GET)
+    public List<Patient> findByWord (@RequestParam("Word") String word){
+        return queryPatientDao.findByWord(word);
+    }
+
+    @RequestMapping(value = "/addPatient", method = RequestMethod.POST)
+    public void add(Patient patient){
+        queryPatientDao.add(patient);
+    }
+
+
+    @RequestMapping(value = "/deletePatient", method = RequestMethod.Delete)
+    public void delete(Patient patient){
+        queryPatientDao.delete(patient);
+    }
+
+    @RequestMapping(value = "/updatePatient", method = RequestMethod.POST)
+    public void update(Patient patient){
+        queryPatientDao.update(patient);
     }
 
 
