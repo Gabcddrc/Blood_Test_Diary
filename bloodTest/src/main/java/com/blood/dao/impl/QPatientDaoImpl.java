@@ -25,7 +25,7 @@ import java.util.List;
  * TO DO: Refactor the SQL commands to fulfill the DB
  */
 
-public class PatientDaoImpl implements QueryPatientDao {
+public class QPatientDaoImpl implements QueryPatientDao {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
