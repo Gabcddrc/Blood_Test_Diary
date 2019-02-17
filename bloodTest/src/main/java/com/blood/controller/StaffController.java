@@ -19,37 +19,10 @@ public class StaffController {
     @Autowired
     StaffService staffService;
 
-    StaffValidator staffValidator;
-
-
     @GetMapping("getUser")
     public Staff get(HttpSession session) throws Exception {
         Staff staff =(Staff)  session.getAttribute("staff");
         return staff;
     }
 
-    @GetMapping(value="/login")
-    public String getLogin() {
-        return "login";
-    }
-
-    @RequestMapping(value = "/registration", method = RequestMethod.GET)
-    public String registration(Model model) {
-        model.addAttribute("staffForm", new Staff());
-
-        return "registration";
-    }
-
-    @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public String registration(@ModelAttribute("staffForm") Staff staffForm, BindingResult bindingResult, Model model) {
-        staffValidator.validate(staffForm, bindingResult);
-
-        if (bindingResult.hasErrors()) {
-            return "registration";
-        }
-
-        staffService.saveStaff(staffForm);
-
-        return "redirect:/home";
-    }
 }
