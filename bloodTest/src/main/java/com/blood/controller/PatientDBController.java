@@ -2,6 +2,7 @@ package com.blood.web;
 
 import com.blood.pojo.Patient;
 import com.blood.dao.impl.QPatientDaoImpl;
+import com.blood.service.ImportService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
@@ -27,6 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class PatientDBController{
     @Autowired
     private QueryPatientDao queryPatientDao;
+    private ImportService importService;
 
     /**
      * Get All patients' infos
@@ -68,5 +70,12 @@ public class PatientDBController{
     }
 
 
+    /**
+     * Import the spreadsheet to DB
+     */
+    @RequestMapping(value = "/importSpreadsheet", method = RequestMethod.POST)
+    public void import(String fileLocation){
+        importService.load(fileLocation);
+    }
 
 }
