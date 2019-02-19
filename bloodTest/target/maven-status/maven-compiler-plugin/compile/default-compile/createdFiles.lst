@@ -16,6 +16,7 @@ com/blood/config/WebMvcConfigurer.class
 com/blood/service/StaffService.class
 com/blood/controller/AccountController.class
 com/blood/service/MailService.class
+com/blood/validator/StaffValidator.class
 com/blood/controller/PageController.class
 com/blood/pojo/Label.class
 com/blood/dao/PatientDAO.class

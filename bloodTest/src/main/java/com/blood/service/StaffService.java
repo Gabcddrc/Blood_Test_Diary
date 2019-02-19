@@ -14,8 +14,27 @@ public class StaffService {
 
     private BCryptPasswordEncoder encoder;
 
+    /*
+    Encode password
+    */
     public void saveStaff(Staff staff){
         staff.setPassword(encoder.encode(staff.getPassword()));
+        staffDAO.save(staff);
+    }
+
+    /*
+        change password
+    */
+    public void changePassword(Staff staff, String password){
+        staff.setPassword(encoder.encode(password));
+        staffDAO.save(staff);
+    }
+
+    /*
+        change username
+    */
+    public void changeUsername(Staff staff, String username){
+        staff.setUsername(username);;
         staffDAO.save(staff);
     }
 
