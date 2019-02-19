@@ -22,8 +22,11 @@ public class AccountController {
 
     StaffValidator staffValidator;
     
-    @GetMapping(value="/login")
-    public String getLogin() {
+    @RequestMapping(value="/login")
+    public String getLogin(Model model, String error) {
+        if (error != null)
+        {model.addAttribute("error", "Your username and password is invalid.");}
+
         return "login";
     }
 
