@@ -13,12 +13,19 @@ public class PageController {
     public String home(){
         return "/home";
     }
+
+    @GetMapping(value="/registers")
+    public String registers(){
+        return "/registers";
+    }
+
     @GetMapping(value="/AddPatient")
     public String addPattien(){
         return "/AddPatient";
     }
-    @GetMapping(value="/register")
-    public String register(){
-        return "/register";
+
+    @GetMapping(value="/email")
+    public String email(){
+        return "/email";
     }
 }
