@@ -1,11 +1,14 @@
 package com.blood.controller;
 
 import com.blood.pojo.Hospital;
-import com.blood.dao.service.HospitalDBService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
+import com.blood.service.HospitalDBService;
+
+import java.util.List;
+
+//import io.swagger.annotations.Api;
+//import io.swagger.annotations.ApiImplicitParam;
+//import io.swagger.annotations.ApiOperation;
+//import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,7 +30,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @RequestMapping(value = "/hospital")
-@Api(value = "Hospital DB Controller", description = "Hospital DB Controller")
+//@Api(value = "Hospital DB Controller", description = "Hospital DB Controller") 
 public class HospitalDBController{
     @Autowired
     private HospitalDBService hospitalDBService;
@@ -37,7 +40,7 @@ public class HospitalDBController{
      */
     @RequestMapping(value ="/all",  method = RequestMethod.GET)
     public List<Hospital> getAllHospitals(){
-        return hospitalDBService. getAllHospital();
+        return hospitalDBService.getAllHospital();
     }
 
     /**

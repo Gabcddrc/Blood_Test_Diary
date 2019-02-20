@@ -33,7 +33,7 @@ public class Patient {
     @Column(name = "forename")
     private String forename;
     @Column(name = "surname")
-    private String suername;
+    private String surname;
     @Column(name = "DOB")
     private String DOB;
     @Column(name = "email")
@@ -69,12 +69,12 @@ public class Patient {
         this.forename = forename;
     }
 
-    public String getSuername() {
-        return suername;
+    public String getSurname() {
+        return surname;
     }
 
-    public void setSuername(String suername) {
-        this.suername = suername;
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
     public String getDOB() {

@@ -43,7 +43,7 @@ public class Hospital {
         return idhospital;
     }
 
-    public void setIdhospital(int idhospital) {
+    public void setId(int idhospital) {
         this.idhospital = idhospital;
     }
 

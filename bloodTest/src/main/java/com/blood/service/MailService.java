@@ -34,7 +34,7 @@ public class MailService {
                 MimeMessage message = mailSender.createMimeMessage();
                 Context context = new Context();
                 context.setVariable("firstName",patient.getForename());
-                context.setVariable("lastName",patient.getSuername());
+                context.setVariable("lastName",patient.getSurname());
                 String emailContent = templateEngine.process("notificationTemplate", context);
                 try {
                     String email = patient.getEmail();
@@ -54,11 +54,12 @@ public class MailService {
         }
         return true;
     }
-    public boolean sendResult(Patient patient,String filePath) {
-                MimeMessage message = mailSender.createMimeMessage();
-                Context context = new Context();
-                context.setVariable("firstName",patient.getForename());
-                context.setVariable("lastName",patient.getSuername());
+
+    public boolean sendResult(Patient patient, String filePath) {
+        MimeMessage message = mailSender.createMimeMessage();
+        Context context = new Context();
+        context.setVariable("firstName", patient.getForename());
+        context.setVariable("lastName", patient.getSurname());
                 String emailContent = templateEngine.process("resultTemplate", context);
                 try {
                     String email = patient.getEmail();
