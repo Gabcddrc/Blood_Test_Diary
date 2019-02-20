@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,22 +31,27 @@ public class AccountController {
         return "login";
     }
 
-    @RequestMapping(value = "/registration", method = RequestMethod.GET)
-    public String registration(Model model) {
-        model.addAttribute("staffForm", new Staff());
+   @RequestMapping(value = "/register", method = RequestMethod.GET)
+    public String registerForm(Model model) {
+       model.addAttribute("staff", new Staff());
 
-        return "registration";
-    }
+       return "registers";
+   }
 
-    @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public String registration(@ModelAttribute("staffForm") Staff staffForm, BindingResult bindingResult, Model model) {
-        staffValidator.validate(staffForm, bindingResult);
-
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public String saveRegister(@ModelAttribute("staff") Staff staff, BindingResult bindingResult, Model model) {
+        //staffValidator.validate(staff, bindingResult);
+        Staff newStaff = new Staff(staff.getUsername(),staff.getForename(),staff.getSurname(), staff.getEmail(),
+          staff.getPassword());
+        System.out.print(staff.getUsername());
         if (bindingResult.hasErrors()) {
-            return "registration";
+            return "registers";
         }
-
-        staffService.saveStaff(staffForm);
+        try{
+        staffService.createStaff(newStaff);}
+        catch(Exception e){
+            return "registers";
+        }
 
         return "redirect:/home";
     }

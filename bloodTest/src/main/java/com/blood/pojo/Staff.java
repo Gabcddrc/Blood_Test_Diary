@@ -60,6 +60,19 @@ public class Staff {
     @Column(name = "notes")
     private String notes;
 
+
+    public Staff() {
+    }
+
+    public Staff(String username, String forename, String surname, String email, String password){
+        super();
+        this.username = username;
+        this.forename = forename;
+        this.surname = surname;
+        this.email = email;
+        this.password = password;
+    }
+   
     public int getId() {
         return id;
     }
@@ -139,18 +152,5 @@ public class Staff {
     public void setNotes(String notes) {
         this.notes = notes;
     }
-
-    
-    private String confirmPassword;
-
-    @Transient
-    public String getConfirmPassword() {
-        return confirmPassword;
-    }
-
-    public void setConfirmPassword(String confirmPassword) {
-        this.confirmPassword = confirmPassword;
-    }
-
 
 }
