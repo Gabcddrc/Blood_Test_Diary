@@ -1,16 +1,21 @@
-package com.blood.web;
+package com.blood.controller;
 
 import com.blood.pojo.Patient;
+
+import java.util.List;
+
+import com.blood.dao.QueryPatientDao;
 import com.blood.dao.impl.QPatientDaoImpl;
 import com.blood.service.ImportService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
+//import io.swagger.annotations.Api;
+//import io.swagger.annotations.ApiImplicitParam;
+//import io.swagger.annotations.ApiOperation;
+//import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 /**
  * @Author Yilei Liang
@@ -24,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value = "/patient")
-@Api(value = "Patient DB Controller", description = "Patient DB Controller")
+//@Api(value = "Patient DB Controller", description = "Patient DB Controller")
 public class PatientDBController{
     @Autowired
     private QueryPatientDao queryPatientDao;
@@ -34,7 +39,7 @@ public class PatientDBController{
      * Get All patients' infos
      */
     @RequestMapping(value = "/all", method = RequestMethod.GET)
-    @ApiOperation(value="Get All Patients' Info",notes = "Get All Patients Info")
+    //@ApiOperation(value="Get All Patients' Info",notes = "Get All Patients Info")
     public List<Patient> findAllPatients(){
         return queryPatientDao.findAllPatients();
     }
@@ -43,7 +48,7 @@ public class PatientDBController{
      * Get All expired patients
      */
     @RequestMapping(value = "/getByExpired", method = RequestMethod.GET)
-    @ApiOperation(value="Get All Expired Patients Info",note = "Get All Expired Patients Info")
+    //@ApiOperation(value="Get All Expired Patients Info",note = "Get All Expired Patients Info")
     public List<Patient> findExpired() {
         return queryPatientDao.findExpired();
     }
@@ -74,7 +79,7 @@ public class PatientDBController{
      * Import the spreadsheet to DB
      */
     @RequestMapping(value = "/importSpreadsheet", method = RequestMethod.POST)
-    public void import(String fileLocation){
+    public void importSpreadsheet(String fileLocation){
         importService.load(fileLocation);
     }
 

@@ -24,14 +24,15 @@
  */
 package com.blood.service;
 
-import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+//import org.apache.poi.ss.usermodel.*;
+//import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Iterator;
 import com.blood.dao.QueryPatientDao;
+import com.blood.pojo.Patient;
 public class ImportService{
     private QueryPatientDao queryPatientDao;
 
@@ -41,7 +42,7 @@ public class ImportService{
             Workbook workbook = new XSSWorkbook(file);
             for (Sheet sheet : workbook) {
                 Iterator<Row> rowIterator = datatypeSheet.iterator();
-                Row curRow = iterator.next() //Skip the first row
+                Row curRow = iterator.next(); //Skip the first row
                 while (iterator.hasNext()){
                     curRow = iterator.next();
                     Iterator<Cell> cellIterator = currentRow.iterator();

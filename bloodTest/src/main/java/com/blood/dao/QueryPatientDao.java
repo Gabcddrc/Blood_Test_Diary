@@ -30,7 +30,7 @@ public interface QueryPatientDao{
 	/**
 	 * Add new patient
 	 */
-	Patient add(Patient patient)
+	void add(Patient patient);
 	 
 	/**
 	 * Find all patients records
