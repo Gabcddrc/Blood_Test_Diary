@@ -153,4 +153,8 @@ public class Staff {
         this.notes = notes;
     }
 
+	public Object getConfirmPassword() {
+		return null;
+	}
+
 }
