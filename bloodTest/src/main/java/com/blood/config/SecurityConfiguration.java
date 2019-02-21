@@ -10,7 +10,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import com.blood.service.StaffService;;
+import com.blood.service.StaffService;
+import com.blood.service.StaffDetailService;
 
 @Configuration
 @EnableWebSecurity
@@ -51,10 +52,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
-        //auth.UserDetailsService(staffDetail).passwordEncoder(bCryptPasswordEncoder());
+        auth.userDetailsService(staffDetail).passwordEncoder(bCryptPasswordEncoder());
 
-        auth.inMemoryAuthentication()
-                .passwordEncoder(bCryptPasswordEncoder())
-                .withUser("user").password("$2a$10$Cvz59HMOzQz/aljdY6dRbuhKPbtuYeJbhKiseQBtelhJOnUoj7vP.").roles("USER"); //password
+        //  auth.inMemoryAuthentication()
+        //          .passwordEncoder(bCryptPasswordEncoder())
+        //          .withUser("user").password("$2a$10$Cvz59HMOzQz/aljdY6dRbuhKPbtuYeJbhKiseQBtelhJOnUoj7vP.").roles("USER"); //password
     }
 }

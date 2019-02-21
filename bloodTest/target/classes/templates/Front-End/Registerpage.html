@@ -5,93 +5,104 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
     <link rel="stylesheet" href="css/main.css">
-    <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl"
+        crossorigin="anonymous"></script>
     <title>Blood Test Diary</title>
 </head>
 
 <body>
 
-<!-- Menu Bar -->
-<div class="navbar-fixed">
-    <nav class="blue">
-        <div class="container">
-            <div class="nav-wrapper">
-                <a><b><font size="6" face="helvetica" color="white">NHS</font></b></a>
-                <a href="#" data-target="mobile-nav" class="sidenav-trigger">
-                    <i class="material-icons">menu</i>
-                </a>
-                <ul class="right hide-on-med-and-down">
-                    <li>
-                        <a href="#home">Home</a>
-                    </li>
-                    <li>
-                        <a href="#login">Login</a>
-                    </li>
-                    <li>
-                        <a href="#Request">Register</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-</div>
-
-<section class ="section grey lighten-2">
-    <section>
-        <div class="container">
-            <div class="row">
-                <div class="card-panel grey lighten-3">
-                    <h5>Register</h5>
-                    <div class="input-field">
-                        <input type="text" placeholder="Username">
-                    </div>
-                    <div class="input-field">
-                        <input type="password" placeholder="Password">
-                    </div>
-                    <div class="password">
-                        <input type="password" placeholder="Confirm Password">
-                    </div>
-                    <div class="input-field">
-                        <input type="text" placeholder="Email">
-                    </div>
-                    <div class="input-field">
-                        <input type="text" placeholder="Phone">
-                    </div>
-                    <div class="input-field">
-                        <textarea class="materialize-textarea" placeholder="Name"></textarea>
-                    </div>
-                    <input type="submit" value="Register" class=" waves-light btn blue waves-effect">
+    <!-- Menu Bar -->
+    <div class="navbar-fixed">
+        <nav class="blue">
+            <div class="container">
+                <div class="nav-wrapper">
+                    <a><b>
+                            <font size="6" face="helvetica" color="white">NHS</font>
+                        </b></a>
+                    <a href="#" data-target="mobile-nav" class="sidenav-trigger">
+                        <i class="material-icons">menu</i>
+                    </a>
+                    <ul class="right hide-on-med-and-down">
+                        <li>
+                            <a href="#home">Home</a>
+                        </li>
+                        <li>
+                            <a href="#login">Login</a>
+                        </li>
+                        <li>
+                            <a href="#Request">Register</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
-        </div>
-    </section>
-</section>
+        </nav>
+    </div>
 
-
-<!-- Footer -->
-<footer class="section blue darken-2 white-text center">
-    <section class="section section-follow blue darken-2 white-text center">
-        <div class="container">
-            <div class="row">
-                <div class="col s12">
-                    <h4>Follow NHS</h4>
-                    <a href="https://www.facebook.com/NHS24/" class="white-text">
-                        <i class="fab fa-facebook fa-4x"></i>
-                    </a>
-                    <a href="https://twitter.com/NHSEngland?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" class="white-text">
-                        <i class="fab fa-twitter fa-4x"></i>
-                    </a>
-                    <a href="https://www.instagram.com/nhsenglandldn/?hl=en" class="white-text">
-                        <i class="fab fa-instagram fa-4x"></i>
-                    </a>
+    <section class="section grey lighten-2">
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="card-panel grey lighten-3">
+                        <h5>Register</h5>
+                        <div th:if="${error != null}" th:utext="${error}" class="error">...</div>
+                        <form th:action="@{/register}" th:object="${staff}" method="POST">
+                            <div class="input-field">
+                                <<input type="text" th:field="*{username}" placeholder="username" />
+                                <span th:if="${#fields.hasErrors('username')}" th:errors="*{userName}">..</span>
+                            </div>
+                            <div class="input-field">
+                                <input type="password" th:field="*{password}"  placeholder="Password"/>
+                                <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}">..</span>
+                            </div>
+                            <div class="input-field">
+                                <input type="text" th:field="*{email}" placeholder="Email"/>
+                            </div>
+                            <div class="input-field">
+                                <input type="text" placeholder="Phone">
+                            </div>
+                            <div class="input-field">
+                                <input type="text" th:field="*{forename}" placeholder="forename"/>
+                                <span th:if="${#fields.hasErrors('forename')}" th:errors="*{forename}">..</span>
+                            </div>
+                            <div class="input-field">
+                                <input  type="text" th:field="*{surname}" placeholder="surname"/>
+                                <span th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}">..</span>
+                            </div>
+                            <input type="submit" value="Register" class=" waves-light btn blue waves-effect">
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
     </section>
-</footer>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <!-- Footer -->
+    <footer class="section blue darken-2 white-text center">
+        <section class="section section-follow blue darken-2 white-text center">
+            <div class="container">
+                <div class="row">
+                    <div class="col s12">
+                        <h4>Follow NHS</h4>
+                        <a href="https://www.facebook.com/NHS24/" class="white-text">
+                            <i class="fab fa-facebook fa-4x"></i>
+                        </a>
+                        <a href="https://twitter.com/NHSEngland?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor"
+                            class="white-text">
+                            <i class="fab fa-twitter fa-4x"></i>
+                        </a>
+                        <a href="https://www.instagram.com/nhsenglandldn/?hl=en" class="white-text">
+                            <i class="fab fa-instagram fa-4x"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </footer>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
 
 </body>
 
