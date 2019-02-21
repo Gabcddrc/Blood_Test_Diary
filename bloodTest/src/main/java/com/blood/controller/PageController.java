@@ -28,4 +28,9 @@ public class PageController {
     public String email(){
         return "/email";
     }
+
+    @GetMapping(value="/hospitals")
+    public String hospitals(){
+        return "/hospitals";
+    }
 }
