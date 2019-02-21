@@ -1,75 +1,109 @@
-
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-   <style>
-      th, td {
-         padding: 5px;
-         }
-         td span  {
-         font-size:90%;
-         font-style: italic;
-         color: red;
-         }
-         .error {
-         color: red;
-         font-style: italic;
-         }
-   </style>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl"
+        crossorigin="anonymous"></script>
+    <title>Blood Test Diary</title>
 </head>
 
 <body>
-   <!-- Include _menu.html -->
 
-   <h2>Register</h2>
+    <!-- Menu Bar -->
+    <div class="navbar-fixed">
+        <nav class="blue">
+            <div class="container">
+                <div class="nav-wrapper">
+                    <a><b>
+                            <font size="6" face="helvetica" color="white">NHS</font>
+                        </b></a>
+                    <a href="#" data-target="mobile-nav" class="sidenav-trigger">
+                        <i class="material-icons">menu</i>
+                    </a>
+                    <ul class="right hide-on-med-and-down">
+                        <li>
+                            <a href="#home">Home</a>
+                        </li>
+                        <li>
+                            <a href="#login">Login</a>
+                        </li>
+                        <li>
+                            <a href="#Request">Register</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
 
-   <div th:if="${error != null}" th:utext="${error}" class="error">...</div>
+    <section class="section grey lighten-2">
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="card-panel grey lighten-3">
+                        <h5>Register</h5>
+                        <div th:if="${error != null}" th:utext="${error}" class="error">...</div>
+                        <form th:action="@{/register}" th:object="${staff}" method="POST">
+                            <div class="input-field">
+                                <<input type="text" th:field="*{username}" placeholder="username" />
+                                <span th:if="${#fields.hasErrors('username')}" th:errors="*{userName}">..</span>
+                            </div>
+                            <div class="input-field">
+                                <input type="password" th:field="*{password}"  placeholder="Password"/>
+                                <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}">..</span>
+                            </div>
+                            <div class="input-field">
+                                <input type="text" th:field="*{email}" placeholder="Email"/>
+                            </div>
+                            <div class="input-field">
+                                <input type="text" placeholder="Phone">
+                            </div>
+                            <div class="input-field">
+                                <input type="text" th:field="*{forename}" placeholder="forename"/>
+                                <span th:if="${#fields.hasErrors('forename')}" th:errors="*{forename}">..</span>
+                            </div>
+                            <div class="input-field">
+                                <input  type="text" th:field="*{surname}" placeholder="surname"/>
+                                <span th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}">..</span>
+                            </div>
+                            <input type="submit" value="Register" class=" waves-light btn blue waves-effect">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
 
-   <form th:action="@{/register}" th:object="${staff}" method="POST">
-      <table>
-         <tr>
-            <td>User Name</td>
-            <td><input type="text" th:field="*{username}" /></td>
-            <td>
-               <span th:if="${#fields.hasErrors('username')}" th:errors="*{userName}">..</span>
-            </td>
-         </tr>
-         <tr>
-            <td>Password</td>
-            <td><input type="password" th:field="*{password}" /> </td>
-            <td>
-               <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}">..</span>
-            </td>
-         </tr>
-         <tr>
-            <td>Email</td>
-            <td><input type="text" th:field="*{email}" /> </td>
-         </tr>
-         <tr>
-            <td>First Name</td>
-            <td><input type="text" th:field="*{forename}" /> </td>
-            <td>
-               <span th:if="${#fields.hasErrors('forename')}" th:errors="*{forename}">..</span>
-            </td>
-         </tr>
-         <tr>
-            <td>Last Name</td>
-            <td><input type="text" th:field="*{surname}" /> </td>
-            <td>
-               <span th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}">..</span>
-            </td>
-         </tr>
-         <tr>
-            <td>&nbsp;</td>
-            <td>
-               <input type="submit" value="Submit" />
-               <a th:href="@{/}">Cancel</a>
-            </td>
-            <td>&nbsp;</td>
-         </tr>
-      </table>
-   </form>
+
+    <!-- Footer -->
+    <footer class="section blue darken-2 white-text center">
+        <section class="section section-follow blue darken-2 white-text center">
+            <div class="container">
+                <div class="row">
+                    <div class="col s12">
+                        <h4>Follow NHS</h4>
+                        <a href="https://www.facebook.com/NHS24/" class="white-text">
+                            <i class="fab fa-facebook fa-4x"></i>
+                        </a>
+                        <a href="https://twitter.com/NHSEngland?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor"
+                            class="white-text">
+                            <i class="fab fa-twitter fa-4x"></i>
+                        </a>
+                        <a href="https://www.instagram.com/nhsenglandldn/?hl=en" class="white-text">
+                            <i class="fab fa-instagram fa-4x"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </footer>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
 
 </body>
+
 </html>

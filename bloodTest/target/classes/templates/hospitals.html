@@ -28,36 +28,8 @@
 <body id="hospitals" class="scrollspy">
 
     <!-- NAV BAR to be modiefied instegrated with the componenet-->
-    <nav class="nav-extended z-depth-2 blue">
-        <div class="nav-wrapper" style="top: 0px;">
-            <ul>
-                <a class="brand-logo"><i class="material-icons right">local_hospital</i> NHS Blood Test Diary</a>
-            </ul>
-            
+    <div th:replace="component/navbar.html"></div>
 
-            <ul class="right hide-on-med-and-down">
-                <li><a><i class="material-icons left">perm_identity</i> USERNAME </a></li>
-                <li><a></a></li>
-                <li>
-                    <form action="LogoutController">
-                        <button class="btn blue darken-3 waves-effect waves-light" type="submit" name="action"
-                            value="Logout">
-                            Logout
-                        </button>
-                    </form>
-                </li>
-                <li><a></a></li>
-            </ul>
-        </div>
-
-
-        <div class="nav-content">
-
-        </div>
-    </nav>
-
-
-</body>
 
 <!--SEARCH BAR-->
 <div class="container">
