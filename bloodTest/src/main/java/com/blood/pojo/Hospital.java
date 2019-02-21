@@ -39,6 +39,17 @@ public class Hospital {
     @Column(name = "phone")
     private String phone;
 
+    public Hospital(){
+    }
+
+    public Hospital(String name,String address,String email,String phone){
+        super();
+        this.name = name;
+        this.address = address;
+        this.email = email;
+        this.phone = phone;
+    }
+
     public int getIdhospital() {
         return idhospital;
     }
