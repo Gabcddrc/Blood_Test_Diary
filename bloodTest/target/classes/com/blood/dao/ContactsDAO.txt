@@ -1,6 +1,6 @@
 package com.blood.dao;
 
-import com.blood.pojo.Label;
+import com.blood.pojo.Contacts;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -11,8 +11,8 @@ import org.springframework.stereotype.Repository;
  */
 
 @Repository
-public interface LabelDAO extends JpaRepository<Label, Long>{
-    Label findByName(String labelName);
-    Label findById(int id);
-    Label findByColor(String color);
+public interface ContactsDAO extends JpaRepository<Contacts, Long>{
+    Contacts findById(int id);
+    Contacts findByIdpatient(int idPatient);
+
 }

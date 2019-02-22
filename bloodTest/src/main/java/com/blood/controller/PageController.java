@@ -33,4 +33,9 @@ public class PageController {
     public String hospitals(){
         return "/hospitals";
     }
+
+    @GetMapping(value="/patients")
+    public String patients(){
+        return "/patients";
+    }
 }
