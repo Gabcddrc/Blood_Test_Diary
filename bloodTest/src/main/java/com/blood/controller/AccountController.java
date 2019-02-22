@@ -50,7 +50,6 @@ public class AccountController {
         // staffValidator.validate(staff, bindingResult);
         Staff newStaff = new Staff(staff.getUsername(), staff.getForename(), staff.getSurname(), staff.getEmail(),
                 encryption(staff.getPassword()));
-        System.out.print(staff.getUsername());
         if (bindingResult.hasErrors()) {
             return "registers";
         }

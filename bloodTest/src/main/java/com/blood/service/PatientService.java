@@ -25,4 +25,13 @@ public class PatientService {
         }
         return patients1;
     }
+
+    /*
+    retrive all patient
+    */
+    public List<Patient> getAllPatients(){
+        List <Patient> patients = new ArrayList<>();
+        this.patientDAO.findAll().forEach(patients::add);
+        return patients;
+    }
 }
