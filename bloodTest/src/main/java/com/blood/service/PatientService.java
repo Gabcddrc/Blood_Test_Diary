@@ -25,4 +25,55 @@ public class PatientService {
         }
         return patients1;
     }
+
+    public void updatePatient(Patient patient, int id, String forename, String surname, String DOB,
+        String email, char sex, String address, String diagnosis, String trasplant, String local_hospital,
+                              String surgery, String commets, Boolean overTime){
+        patient.setId(id);
+        patient.setForename(forename);
+        patient.setSurname(surname);
+        patient.setDOB(DOB);
+        patient.setEmail(email);
+        patient.setSex(sex);
+        patient.setAddress(address);
+        patient.setDiagnosis(diagnosis);
+        patient.setTrasplant(trasplant);
+        patient.setLocal_hospital(local_hospital);
+        patient.setSurgery(surgery);
+        patient.setCommets(commets);
+        patient.setOverTime(overTime);
+        patientDAO.save(patient);
+        //TODO:REST
+    }
+
+    public void deletePatient(Patient patient){
+        patientDAO.delete(patient);
+    }
+
+    public List<Patient> findAll(){
+        return patientDAO.findAll();
+    }
+
+    public void List<Patient> findBySurname(String keyWord){
+        List<Patient> patients = patientDAO.findAll();
+        List<Patient> res = new ArrayList<Patient>();
+        for (Patient patient:patients){
+            if (patient.getSurname().equals(keyWord)){
+                res.add(patient);
+            }
+        }
+
+    }
+
+    public void List<Patient> findByForename(String keyWord){
+        List<Patient> patients = patientDAO.findAll();
+        List<Patient> res = new ArrayList<Patient>();
+        for (Patient patient:patients){
+            if (patient.getForename().equals(keyWord)){
+                res.add(patient);
+            }
+        }
+
+    }
+
 }
