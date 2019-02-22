@@ -34,7 +34,6 @@ public class StaffService {
      */
     public void changeUsername(Staff staff, String username) {
         staff.setUsername(username);
-        ;
         staffDAO.save(staff);
     }
 
