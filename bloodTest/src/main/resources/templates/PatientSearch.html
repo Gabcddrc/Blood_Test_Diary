@@ -40,6 +40,7 @@
   <table class="highlight">
        <thead>
          <tr>
+             <th>Mark</th>
              <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Name</th>
              <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Surname</th>
              <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Sex</th>
@@ -51,10 +52,12 @@
              <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Local Hospital</th>
              <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Surgery</th>
              <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Comments</th>
+             <th>Flag</th>
          </tr>
        </thead>
        <tbody>
          <tr>
+           <td><form action="#"><label><input type="checkbox"/><span></span></label></form></td>
            <td>Alvin</td>
            <td>Calvin</td>
            <td>M</td>
@@ -66,13 +69,18 @@
            <td>N</td>
            <td>Kensington</td>
            <td>NA</td>
+           <td><span class="badge red">urgent</span></td>
          </tr>
-
        </tbody>
      </table>
    </div>
  </div>
 </div>
+
+<a class="waves-effect waves-light btn-large red">Mark Critical</a>
+<a class="waves-effect waves-light btn-large orange">Mark Urgent</a>
+<a class="waves-effect waves-light btn-large green">Mark Monitor</a>
+
 </section>
 
   <!-- Footer -->
