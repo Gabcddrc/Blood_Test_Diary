@@ -52,6 +52,8 @@ public class Patient {
     private String surgery;
     @Column(name = "commets")
     private String commets;
+    @Column(name = "badge")
+    private String badge;
 
     public int getId() {
         return id;
@@ -147,6 +149,14 @@ public class Patient {
 
     public void setCommets(String commets) {
         this.commets = commets;
+    }
+
+    public String getBadge() {
+        return commets;
+    }
+
+    public void setBadge(String badge) {
+        this.badge = badge;
     }
 
     public Boolean getOverTime() {
