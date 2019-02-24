@@ -1,6 +1,10 @@
 package com.blood.controller;
 
+import com.blood.service.StaffService;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
@@ -33,9 +37,9 @@ public class PageController {
     public String hospitals(){
         return "/hospitals";
     }
-
-    @GetMapping(value="/patients")
-    public String patients(){
-        return "/patients";
+    @GetMapping(value="/AddHospitals")
+    public String addhospitals(){
+        return "/AddHospitals";
     }
+
 }

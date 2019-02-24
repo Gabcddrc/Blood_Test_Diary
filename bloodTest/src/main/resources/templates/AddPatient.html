@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
   <!-- Mobile SideNav Icon DropDown -->
@@ -37,7 +37,7 @@
        <div class="col s12 s7">
          <div class="card">
            <div class="card-image">
-             <img src="images/pen.jpg">
+             <img th:src="@{images/pen.jpg}"/>
              <span class="card-title">Fill In Patient Info</span>
            </div>
            <div class="card-content">

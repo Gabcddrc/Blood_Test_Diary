@@ -5,6 +5,8 @@ import com.blood.pojo.Staff;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import java.util.List;
+import java.util.ArrayList;
 
 @Service
 public class StaffService {
@@ -46,9 +48,16 @@ public class StaffService {
     }
 
     public Staff createStaff(Staff staff){
-        //  Staff newStaff = new Staff(staff.getUsername(),staff.getForename(),staff.getSurname(), staff.getEmail(),
-        //   encoder.encode(staff.getPassword()), encoder.encode(staff.getConfirmPassword()));
          staffDAO.save(staff);
          return staff;
      }
+    
+     /*
+     data display template
+     */
+    public List<Staff> getAllStaff(){
+        List<Staff> staffs = new ArrayList<>();
+        this.staffDAO.findAll().forEach(staffs::add);
+        return staffs;
+    }
 }

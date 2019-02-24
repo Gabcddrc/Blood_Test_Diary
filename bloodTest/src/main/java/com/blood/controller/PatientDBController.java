@@ -8,6 +8,8 @@ import  com.blood.service.PatientService;
 //import com.blood.service.ImportService;
 import org.springframework.ui.Model;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,7 +30,7 @@ public class PatientDBController{
     @Autowired
     private PatientService patientService;
 
-    private ImportService importService;
+    //private ImportService importService;
 
 
 
@@ -41,7 +43,7 @@ public class PatientDBController{
 
     @RequestMapping(value = "/deletePatient", method = RequestMethod.POST)
     public void delete(@ModelAttribute("patient") Patient patient){
-        patientService.delete(patient);
+        patientService.deletePatient(patient);
     }
 
     @RequestMapping(value = "/addPatient", method = RequestMethod.POST)

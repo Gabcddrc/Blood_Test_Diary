@@ -30,7 +30,6 @@ CREATE TABLE IF NOT EXISTS `bloodtestdiary`.`patients` (
   `local_hospital` VARCHAR(200) NULL DEFAULT NULL,
   `surgery` VARCHAR(200) NULL DEFAULT NULL,
   `comments` LONGTEXT NULL DEFAULT NULL,
-  `badge` VARCHAR(100) NULL DEFAULT NULL,
   PRIMARY KEY (`idpatient`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;

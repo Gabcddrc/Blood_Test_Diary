@@ -44,16 +44,27 @@ public class Patient {
     private String address;
     @Column(name = "diagnosis")
     private String diagnosis;
-    @Column(name = "trasplant")
+    @Column(name = "transplant")
     private String trasplant;
     @Column(name = "local_hospital")
     private String local_hospital;
     @Column(name = "surgery")
     private String surgery;
-    @Column(name = "commets")
+    @Column(name = "comments")
     private String commets;
-    @Column(name = "badge")
+    //@Column(name = "badge")
     private String badge;
+
+    public Patient() {
+        super();
+    }
+
+    public Patient(String forename, String surname, String email) {
+        super();
+        this.forename = forename;
+        this.surname = surname;
+        this.email = email;
+    }
 
     public int getId() {
         return id;
