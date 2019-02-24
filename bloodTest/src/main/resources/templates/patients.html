@@ -56,19 +56,19 @@
          </tr>
        </thead>
        <tbody>
-         <tr>
+         <tr th:each="patient:${patients}">
            <td><form action="#"><label><input type="checkbox"/><span></span></label></form></td>
-           <td>Alvin</td>
-           <td>Calvin</td>
-           <td>M</td>
-           <td>12-12-2000</td>
+           <td th:text="${patient.forename}"></td>
+           <td th:text="${patient.surname}"></td>
+           <td th:text="${patient.sex}"></td>
+           <td th:text="${patient.DOB}"></td>
            <td>12-12-2018</td>
            <td>Y</td>
-           <td>Diabetes</td>
-           <td>NA</td>
-           <td>N</td>
-           <td>Kensington</td>
-           <td>NA</td>
+           <td th:text="${patient.diagnosis}"></td>
+           <td th:text="${patient.transplant}"></td>
+           <td th:text="${patient.local_hospital}"></td>
+           <td th:text="${patient.surgery}"></td>
+           <td th:text="${patient.comments}"></td>
            <td><span class="badge red">urgent</span></td>
          </tr>
        </tbody>

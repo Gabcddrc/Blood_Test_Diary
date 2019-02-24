@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class PageController {
     @GetMapping(value="/")
     public String index(){
-        return "redirect:home";
+        return "redirect:patients";
     }
     @GetMapping(value="/home")
     public String home(){

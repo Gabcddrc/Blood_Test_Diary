@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
-@RequestMapping("/patients")
 public class PatientController {
     private PatientService patientService;
     @Autowired
@@ -42,11 +41,5 @@ public class PatientController {
             return 0;
         }
     }
-
-    public String getAllPatients(Model model) {
-        model.addAttribute("patients", this.patientService.getAllPatients());
-        return "patients";
-    }
-    
 
 }

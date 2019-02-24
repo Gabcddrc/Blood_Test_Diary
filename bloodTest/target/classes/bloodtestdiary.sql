@@ -168,6 +168,7 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `bloodtestdiary`;
+INSERT INTO `bloodtestdiary`.`patients` (`forename`, `surname`, `sex`, `DOB`, `diagnosis`, `transplant`, `local_hospital`, `surgery`, `comments`) VALUES ('joe', 'joe', 'M', '2019-12-12', 'AA', 'bb', 'hospital', 'John', 'working demo');
 INSERT INTO `bloodtestdiary`.`staff` (`username`, `password`) VALUES ('user', '$2a$10$Cvz59HMOzQz/aljdY6dRbuhKPbtuYeJbhKiseQBtelhJOnUoj7vP.');
 INSERT INTO `bloodtestdiary`.`label` (`idlabel`, `name`, `color`, `description`) VALUES (1, 'Black', 'black', 'Routine Bloods');
 INSERT INTO `bloodtestdiary`.`label` (`idlabel`, `name`, `color`, `description`) VALUES (2, 'Red', 'red', 'Urgent Bloods');

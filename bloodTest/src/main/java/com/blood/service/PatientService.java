@@ -18,11 +18,11 @@ public class PatientService {
     public List<Patient> listNotificationPatients(){
         List<Patient> patients = patientDAO.findAll();
         List<Patient> patients1 = new ArrayList<Patient>();
-        for (Patient patient:patients){
-            if(patient.getOverTime()==true){
-                patients1.add(patient);
-            }
-        }
+        // for (Patient patient:patients){
+        //     if(patient.getOverTime()==true){
+        //         patients1.add(patient);
+        //     }
+        // }
         return patients1;
     }
 
@@ -38,8 +38,8 @@ public class PatientService {
 
 
     public void updatePatient(Patient patient, int id, String forename, String surname, String DOB,
-        String email, char sex, String address, String diagnosis, String trasplant, String local_hospital,
-                              String surgery, String commets, Boolean overTime){
+        String email, char sex, String address, String diagnosis, String transplant, String local_hospital,
+                              String surgery, String comments, Boolean overTime){
         patient.setId(id);
         patient.setForename(forename);
         patient.setSurname(surname);
@@ -48,11 +48,11 @@ public class PatientService {
         patient.setSex(sex);
         patient.setAddress(address);
         patient.setDiagnosis(diagnosis);
-        patient.setTrasplant(trasplant);
+        patient.setTransplant(transplant);
         patient.setLocal_hospital(local_hospital);
         patient.setSurgery(surgery);
-        patient.setCommets(commets);
-        patient.setOverTime(overTime);
+        patient.setComments(comments);
+        //patient.setOverTime(overTime);
         patientDAO.save(patient);
         //TODO:REST
     }

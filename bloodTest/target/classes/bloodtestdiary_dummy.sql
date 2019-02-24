@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `bloodtestdiary`.`patients` (
   `sex` CHAR(1) NULL DEFAULT NULL,
   `address` VARCHAR(1000) NULL DEFAULT NULL,
   `diagnosis` LONGTEXT NULL DEFAULT NULL,
-  `trasplant` LONGTEXT NULL DEFAULT NULL,
+  `transplant` LONGTEXT NULL DEFAULT NULL,
   `local_hospital` VARCHAR(200) NULL DEFAULT NULL,
   `surgery` VARCHAR(200) NULL DEFAULT NULL,
   `comments` LONGTEXT NULL DEFAULT NULL,
@@ -167,8 +167,8 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `bloodtestdiary`;
-INSERT INTO `bloodtestdiary`.`patients` (`idpatient`, `forename`, `surname`, `DOB`, `email`, `sex`, `address`, `diagnosis`, `trasplant`, `local_hospital`, `surgery`, `comments`) VALUES (2, 'James', 'Bon', '1988-12-02', 'james.bond@gmail.com', 'M', 'Bush house,London', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `bloodtestdiary`.`patients` (`idpatient`, `forename`, `surname`, `DOB`, `email`, `sex`, `address`, `diagnosis`, `trasplant`, `local_hospital`, `surgery`, `comments`) VALUES (1, 'Hermione', 'Granger', '1999-05-03', 'hermione@grmail.com', 'F', 'Hogwarts', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `bloodtestdiary`.`patients` (`idpatient`, `forename`, `surname`, `DOB`, `email`, `sex`, `address`, `diagnosis`, `transplant`, `local_hospital`, `surgery`, `comments`) VALUES (2, 'James', 'Bon', '1988-12-02', 'james.bond@gmail.com', 'M', 'Bush house,London', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `bloodtestdiary`.`patients` (`idpatient`, `forename`, `surname`, `DOB`, `email`, `sex`, `address`, `diagnosis`, `transplant`, `local_hospital`, `surgery`, `comments`) VALUES (1, 'Hermione', 'Granger', '1999-05-03', 'hermione@grmail.com', 'F', 'Hogwarts', NULL, NULL, NULL, NULL, NULL);
 
 COMMIT;
 
