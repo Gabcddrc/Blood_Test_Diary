@@ -26,6 +26,16 @@ public class PatientService {
         return patients1;
     }
 
+    /*
+    retrive all patient
+    */
+    public List<Patient> getAllPatients(){
+        List <Patient> patients = new ArrayList<>();
+        this.patientDAO.findAll().forEach(patients::add);
+        return patients;
+    }
+
+
     public void updatePatient(Patient patient, int id, String forename, String surname, String DOB,
         String email, char sex, String address, String diagnosis, String trasplant, String local_hospital,
                               String surgery, String commets, Boolean overTime){
@@ -77,5 +87,4 @@ public class PatientService {
 
     }
     return res;
-
 }
