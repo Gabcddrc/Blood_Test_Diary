@@ -8,17 +8,26 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
-@RestController
+@Controller
+@RequestMapping("/patients")
 public class PatientController {
-    @Autowired
     private PatientService patientService;
     @Autowired
     private MailService mailService;
+
+    @Autowired
+    public PatientController(PatientService patientService) {
+        super();
+        this.patientService = patientService;
+        
+    }
+
     @PostMapping("SendNotification")
     public void send() throws Exception {
         mailService.sendNotification(patientService.listNotificationPatients());
@@ -34,9 +43,8 @@ public class PatientController {
         }
     }
 
-    @GetMapping
-    public String getMethodName(Model model) {
-        model.addAttribute("patients", this.patientService);
+    public String getAllPatients(Model model) {
+        model.addAttribute("patients", this.patientService.getAllPatients());
         return "patients";
     }
     
