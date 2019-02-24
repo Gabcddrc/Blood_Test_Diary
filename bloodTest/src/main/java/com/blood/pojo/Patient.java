@@ -45,15 +45,15 @@ public class Patient {
     @Column(name = "diagnosis")
     private String diagnosis;
     @Column(name = "transplant")
-    private String trasplant;
+    private String transplant;
     @Column(name = "local_hospital")
     private String local_hospital;
     @Column(name = "surgery")
     private String surgery;
     @Column(name = "comments")
-    private String commets;
+    private String comments;
     //@Column(name = "badge")
-    private String badge;
+    //private String badge;
 
     public Patient() {
         super();
@@ -130,12 +130,12 @@ public class Patient {
         this.diagnosis = diagnosis;
     }
 
-    public String getTrasplant() {
-        return trasplant;
+    public String getTransplant() {
+        return transplant;
     }
 
-    public void setTrasplant(String trasplant) {
-        this.trasplant = trasplant;
+    public void setTransplant(String transplant) {
+        this.transplant = transplant;
     }
 
     public String getLocal_hospital() {
@@ -154,29 +154,29 @@ public class Patient {
         this.surgery = surgery;
     }
 
-    public String getCommets() {
-        return commets;
+    public String getComments() {
+        return comments;
     }
 
-    public void setCommets(String commets) {
-        this.commets = commets;
+    public void setComments(String comments) {
+        this.comments = comments;
     }
 
-    public String getBadge() {
-        return commets;
-    }
+    // public String getBadge() {
+    //     return badge;
+    // }
 
-    public void setBadge(String badge) {
-        this.badge = badge;
-    }
+    // public void setBadge(String badge) {
+    //     this.badge = badge;
+    // }
 
-    public Boolean getOverTime() {
-        return overTime;
-    }
+    // public Boolean getOverTime() {
+    //     return overTime;
+    // }
 
-    public void setOverTime(Boolean overTime) {
-        this.overTime = overTime;
-    }
+    // public void setOverTime(Boolean overTime) {
+    //     this.overTime = overTime;
+    // }
 
-    private Boolean overTime;
+    // private Boolean overTime;
 }
