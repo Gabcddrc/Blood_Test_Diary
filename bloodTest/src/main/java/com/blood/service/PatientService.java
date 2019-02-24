@@ -36,6 +36,7 @@ public class PatientService {
     }
 
 
+
     public void updatePatient(Patient patient, int id, String forename, String surname, String DOB,
         String email, char sex, String address, String diagnosis, String trasplant, String local_hospital,
                               String surgery, String commets, Boolean overTime){
@@ -84,7 +85,8 @@ public class PatientService {
                 res.add(patient);
             }
         }
-
+      return res;
     }
-    return res;
+    
+
 }

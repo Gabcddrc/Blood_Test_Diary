@@ -4,8 +4,14 @@ import com.blood.pojo.Patient;
 import com.blood.service.MailService;
 import com.blood.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
 public class PatientController {
@@ -27,5 +33,12 @@ public class PatientController {
             return 0;
         }
     }
+
+    @GetMapping
+    public String getMethodName(Model model) {
+        model.addAttribute("patients", this.patientService);
+        return "patients";
+    }
+    
 
 }

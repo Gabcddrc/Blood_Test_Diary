@@ -26,30 +26,30 @@ public class HospitalController {
 
     @GetMapping("getHospital")
     public Hospital get(HttpSession session) throws Exception {
-        Hospital staff = (Hospital)  session.getAttribute("hospital");
-        return staff;
+        Hospital hospital = (Hospital)  session.getAttribute("hospital");
+        return hospital;
     }
 
-    @RequestMapping(value = "/hospitalRegister", method = RequestMethod.GET)
-    public String registerForm(Model model) {
-       model.addAttribute("hospital", new Hospital());
-       return "registers";  //to be modified
-   }
+//     @RequestMapping(value = "/hospitalRegister", method = RequestMethod.GET)
+//     public String registerForm(Model model) {
+//        model.addAttribute("hospital", new Hospital());
+//        return "registers";  //to be modified
+//    }
 
-    @RequestMapping(value = "/hospitalRegister", method = RequestMethod.POST)
-    public String saveRegister(@ModelAttribute("hospital") Hospital hospital, BindingResult bindingResult, Model model) {
-        Hospital newHospital = new  Hospital(hospital.getName(),hospital.getAddress(),hospital.getEmail(), hospital.getPhone());
-        if (bindingResult.hasErrors()) {
-            return "registers";     //to be modified
-        }
-        try{
-            hospitalService.createHospital(newHospital);
-        }
-        catch(Exception e){
-            return "registers"; //to be modified
-        }
+//     @RequestMapping(value = "/hospitalRegister", method = RequestMethod.POST)
+//     public String saveRegister(@ModelAttribute("hospital") Hospital hospital, BindingResult bindingResult, Model model) {
+//         Hospital newHospital = new  Hospital(hospital.getName(),hospital.getAddress(),hospital.getEmail(), hospital.getPhone());
+//         if (bindingResult.hasErrors()) {
+//             return "registers";     //to be modified
+//         }
+//         try{
+//             hospitalService.createHospital(newHospital);
+//         }
+//         catch(Exception e){
+//             return "registers"; //to be modified
+//         }
 
-        return "redirect:/home";
-    }
+//         return "redirect:/home";
+//     }
 
 }

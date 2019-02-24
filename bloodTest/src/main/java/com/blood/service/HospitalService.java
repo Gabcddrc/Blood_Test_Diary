@@ -19,8 +19,8 @@ public class HospitalService {
         hospitalDAO.save(hospital);
     }
 
-    public Hospital getById(int id) {
-        return hospitalDAO.findById(id);
+    public Hospital getByIdhospital(int idhospital) {
+        return hospitalDAO.findByIdhospital(idhospital);
     }
 
     public Hospital getByName(String name) {

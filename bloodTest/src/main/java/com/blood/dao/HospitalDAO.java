@@ -12,8 +12,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface HospitalDAO extends JpaRepository<Hospital, Long>{
-    Hospital findByName(String hospitalName);
-    Hospital findById(int id);
+    Hospital findByName(String name);
+    Hospital findByIdhospital(int idhospital);
     Hospital findByPhone(String phone);
     Hospital findByAddress(String address);
     Hospital findByEmail(String email);
