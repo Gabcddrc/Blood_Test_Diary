@@ -54,7 +54,7 @@ public class PatientService {
         return patientDAO.findAll();
     }
 
-    public void List<Patient> findBySurname(String keyWord){
+    public List<Patient> findBySurname(String keyWord){
         List<Patient> patients = patientDAO.findAll();
         List<Patient> res = new ArrayList<Patient>();
         for (Patient patient:patients){
@@ -62,10 +62,11 @@ public class PatientService {
                 res.add(patient);
             }
         }
+        return res;
 
     }
 
-    public void List<Patient> findByForename(String keyWord){
+    public List<Patient> findByForename(String keyWord){
         List<Patient> patients = patientDAO.findAll();
         List<Patient> res = new ArrayList<Patient>();
         for (Patient patient:patients){
@@ -75,5 +76,6 @@ public class PatientService {
         }
 
     }
+    return res;
 
 }
