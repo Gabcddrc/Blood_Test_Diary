@@ -3,6 +3,7 @@
 
 <head>
   <!-- Mobile SideNav Icon DropDown -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
   <link rel="stylesheet" href="css/main.css">
@@ -32,65 +33,56 @@
   <!-- Patient Table -->
 <section class="section section-login light-blue lighten-5 center">
   <div class="row">
+    <div class="col s6">
+    <input placeholder="Search By" id="first_name" type="text" class="validate">
+    </div>
     <div class="col s12">
  <div class="card blue lighten-3">
   <table class="highlight">
        <thead>
          <tr>
-             <th>Name</th>
-             <th>Date of Blood Exam</th>
-             <th>Completed</th>
+             <th>Mark</th>
+             <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Name</th>
+             <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Surname</th>
+             <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Sex</th>
+             <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Date Of Birth</th>
+             <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Date of Blood Exam</th>
+             <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Completed</th>
+             <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Diagnosis</th>
+             <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Transplant</th>
+             <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Local Hospital</th>
+             <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Surgery</th>
+             <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Comments</th>
+             <th>Flag</th>
          </tr>
        </thead>
        <tbody>
          <tr>
+           <td><form action="#" id="c1"><label><input type="checkbox"><span></span></label></form></td>
            <td>Alvin</td>
+           <td>Calvin</td>
+           <td>M</td>
+           <td>12-12-2000</td>
            <td>12-12-2018</td>
-           <td>Yes</td>
-         </tr>
-         <tr>
-           <td>Alan</td>
-           <td>12-12-2018</td>
-           <td>Yes</td>
-         </tr>
-         <tr>
-           <td>Jonathan</td>
-           <td>12-12-2018</td>
-           <td>Yes</td>
-         </tr>
-         <tr>
-           <td>Jonathan</td>
-           <td>12-12-2018</td>
-           <td>Yes</td>
-         </tr>
-         <tr>
-           <td>Jonathan</td>
-           <td>12-12-2018</td>
-           <td>Yes</td>
-         </tr>
-         <tr>
-           <td>Jonathan</td>
-           <td>12-12-2018</td>
-           <td>Yes</td>
-         </tr>
-         <tr>
-           <td>Jonathan</td>
-           <td>12-12-2018</td>
-           <td>Yes</td>
-         </tr>
-         <tr>
-           <td>Jonathan</td>
-           <td>12-12-2018</td>
-           <td>Yes</td>
+           <td>Y</td>
+           <td>Diabetes</td>
+           <td>NA</td>
+           <td>N</td>
+           <td>Kensington</td>
+           <td>NA</td>
+           <td><span class="badge red" id="b1"></span></td>
          </tr>
        </tbody>
      </table>
    </div>
  </div>
 </div>
+
+<a class="waves-effect waves-light btn-large red" id="red">Mark Critical</a>
+<a class="waves-effect waves-light btn-large orange" id="orange">Mark Urgent</a>
+<a class="waves-effect waves-light btn-large green" id="green">Mark Monitor</a>
+
 </section>
-
-
 
   <!-- Footer -->
   <footer class="section blue darken-2 white-text center">
@@ -120,6 +112,27 @@
   const sideNav = document.querySelector('.sidenav');
   M.Sidenav.init(sideNav, {});
   </script>
+
+  <script>
+  $(document).ready(function(){
+    $("#c1").click(function(){
+      $("#green").click(function(){
+     document.getElementById("b1").className = "badge green";
+    });
+    });
+  });
+  </script>
+
+  <script>
+  $(document).ready(function(){
+    $("#c1").click(function(){
+      $("#red").click(function(){
+     document.getElementById("b1").className = "badge red";
+    });
+    });
+  });
+  </script>
+
 
 </body>
 
