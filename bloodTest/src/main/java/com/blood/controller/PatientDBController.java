@@ -59,9 +59,11 @@ public class PatientDBController{
     /**
      * Import the spreadsheet to DB
      */
+    /**
     @RequestMapping(value = "/importSpreadsheet", method = RequestMethod.POST)
     public void importSpreadsheet(String fileLocation){
         importService.load(fileLocation);
     }
-
+    */
+    
 }
