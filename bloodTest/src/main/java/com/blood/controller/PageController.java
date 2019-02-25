@@ -13,10 +13,11 @@ public class PageController {
     public String index(){
         return "redirect:patients";
     }
-    @GetMapping(value="/home")
+   
+    /*@GetMapping(value="/home")
     public String home(){
         return "/home";
-    }
+    }*/
 
     @GetMapping(value="/registers")
     public String registers(){
