@@ -30,6 +30,12 @@ public class HospitalController {
         return hospital;
     }
 
+    @GetMapping("/hospitals")
+    public String getAllHospitals(Model model){
+        model.addAttribute("hospitals", this.hospitalService.getAllHospital());
+        return "hospitals";
+    }
+
 //     @RequestMapping(value = "/hospitalRegister", method = RequestMethod.GET)
 //     public String registerForm(Model model) {
 //        model.addAttribute("hospital", new Hospital());

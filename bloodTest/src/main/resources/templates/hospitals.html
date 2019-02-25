@@ -49,10 +49,12 @@
        </thead>
        <tbody>
          <tr>
-           <td>Kings COllege Hospital</td>
-           <td>Peckham WC19A</td>
-           <td>KCLHOSPITAL@AC.UK</td>
-           <td>095482847483</td>
+            <tr th:each="hospital:${hospitals}">
+                <td th:text="${hospital.name}"></td>
+                <td th:text="${hospital.address}"></td>
+                <td th:text="${hospital.email}"></td>
+                <td th:text="${hospital.phone}"></td>
+            </tr>
          </tr>
 
        </tbody>

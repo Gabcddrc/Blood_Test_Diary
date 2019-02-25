@@ -29,7 +29,7 @@ public class Hospital {
     @Id
     @Column(name = "idhospital")
     @GeneratedValue
-    private int idhospital;
+    private int id;
     @Column(name = "name")
     private String name;
     @Column(name = "address")
@@ -51,11 +51,11 @@ public class Hospital {
     }
 
     public int getIdhospital() {
-        return idhospital;
+        return id;
     }
 
     public void setId(int idhospital) {
-        this.idhospital = idhospital;
+        this.id = idhospital;
     }
 
     public String getName() {
