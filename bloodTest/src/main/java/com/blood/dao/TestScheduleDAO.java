@@ -11,11 +11,11 @@ import org.springframework.stereotype.Repository;
  */
 
 @Repository
-public interface TestScheduleDAO extends JpaRepository<TestSchedule, Long>{
+public interface TestScheduleDAO extends JpaRepository<TestSchedule, Integer>{
     TestSchedule findById(int id);
-    TestSchedule findByOPA(String OPA);
+   // TestSchedule findByOPA(String OPA);
     TestSchedule findByDate(String date);
-    TestSchedule findByCompleted(boolean complete);
-    TestSchedule findByPatient(int idPatient);
-    TestSchedule findByLabel(int idLabel);
+    TestSchedule findByCompleted(boolean completed);
+  //  TestSchedule findByIdPatient(int idpatient);
+  //  TestSchedule findByIdLabel(int idlabel);
 }

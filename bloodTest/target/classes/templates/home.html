@@ -8,8 +8,6 @@
   <link rel="stylesheet" href="css/main.css">
   <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
   <title>Blood Test Diary</title>
-
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 </head>
 
 <body>
@@ -34,38 +32,40 @@
   <!-- Patient Table -->
 <section class="section section-login light-blue lighten-5 center">
   <div class="row">
-    <div class="col s6">
-    <input placeholder="Search Hospital By" id="first_name" type="text" class="validate">
-    </div>
     <div class="col s12">
  <div class="card blue lighten-3">
   <table class="highlight">
        <thead>
          <tr>
-             <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Name</th>
-             <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Address</th>
-             <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Email</th>
-             <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Phone</th>
+             <th>ID</th>
+             <th>OPA</th>
+             <th>DATE</th>
+             <th>COMPLETED</th>
+             <th>COMMENT</th>
+             <th>NOTIFIED</th>
+             <th>idpatient</th>
+             <th>idlabel</th>
+         </tr>
        </thead>
        <tbody>
-         <tr>
-            <tr th:each="hospital:${hospitals}">
-                <td th:text="${hospital.name}"></td>
-                <td th:text="${hospital.address}"></td>
-                <td th:text="${hospital.email}"></td>
-                <td th:text="${hospital.phone}"></td>
-            </tr>
-         </tr>
-
+          <tr th:each="testSchedule:${testSchedules}">
+              <td th:text="${testSchedule.id}"></td>
+              <td th:text="${testSchedule.OPA}"></td>
+              <td th:text="date"></td>
+              <td th:text="${testSchedule.completed}"></td>
+              <td th:text="${testSchedule.commet}"></td>
+              <td th:text="${testSchedule.notified}"></td>
+              <td th:text="${testSchedule.idpatient}"></td>
+              <td th:text="${testSchedule.idlabel}"></td>
+          </tr>
        </tbody>
      </table>
    </div>
  </div>
 </div>
-
-<div id="map" style="width: 400px; height: 300px;"></div>
-
 </section>
+
+
 
   <!-- Footer -->
   <footer class="section blue darken-2 white-text center">
@@ -88,18 +88,6 @@
       </div>
     </section>
   </footer>
-
-  <div id="map"></div>
-    <script>
-      var map;
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -34.397, lng: 150.644},
-          zoom: 8
-        });
-      }
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
 

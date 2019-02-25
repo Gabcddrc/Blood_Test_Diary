@@ -29,7 +29,7 @@ public class TestSchedule {
     @Id
     @Column(name = "idtest_schedule")
     @GeneratedValue
-    private int idtest_schedule;
+    private int id;
     @Column(name = "OPA")
     private String OPA;
     @Column(name = "date")
@@ -45,12 +45,12 @@ public class TestSchedule {
     @Column(name = "idlabel")
     private int idlabel;
 
-    public int getIdtest_schedule() {
-        return idtest_schedule;
+    public int getId() {
+        return id;
     }
 
-    public void setIdtest_schedule(int idtest_schedule) {
-        this.idtest_schedule = idtest_schedule;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getOPA() {

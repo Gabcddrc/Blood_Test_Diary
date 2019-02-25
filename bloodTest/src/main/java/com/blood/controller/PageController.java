@@ -13,10 +13,11 @@ public class PageController {
     public String index(){
         return "redirect:patients";
     }
-    @GetMapping(value="/home")
+   
+    /*@GetMapping(value="/home")
     public String home(){
         return "/home";
-    }
+    }*/
 
     @GetMapping(value="/registers")
     public String registers(){
@@ -33,10 +34,11 @@ public class PageController {
         return "/email";
     }
 
-    @GetMapping(value="/hospitals")
+   /* @GetMapping(value="/hospitals")
     public String hospitals(){
         return "/hospitals";
-    }
+    }*/
+    
     @GetMapping(value="/AddHospital")
     public String addhospitals(){
         return "/AddHospital";
