@@ -21,6 +21,11 @@ public class PatientService {
         patientDAO.save(patient);
     }
 
+    public Patient createPatient(Patient patient){
+        patientDAO.save(patient);
+        return patient;
+   }
+
     public void deletePatient(int id) {
         patientDAO.delete(patientDAO.findById(id));
     }

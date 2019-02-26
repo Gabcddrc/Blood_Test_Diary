@@ -47,7 +47,7 @@ public class PatientDBController{
         patientService.deletePatient(patient);
     }
 
-    @RequestMapping(value = "/addPatient", method = RequestMethod.POST)
+    /*@RequestMapping(value = "/addPatient", method = RequestMethod.POST)
     public String saveAdding(@ModelAttribute("patient") Patient patient, BindingResult bindingResult, Model model){
         try{
             patientService.add(patient);
@@ -56,7 +56,7 @@ public class PatientDBController{
             return "AddPatient";
         }
         return "redirect:/home";
-    }
+    }*/
 
     @GetMapping("/patients")
     public String getAllPatients(Model model){

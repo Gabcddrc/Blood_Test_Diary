@@ -11,8 +11,7 @@
 </head>
 
 <body>
-        <div th:replace="component/navbar.html" ></div>
-<!-- 
+        <div th:replace="component/navbar.html" ></div> 
     <!-- Menu Bar -->
     <!-- <div class="navbar-fixed">
         <nav class="blue">
@@ -49,7 +48,7 @@
                         <div th:if="${error != null}" th:utext="${error}" class="error">...</div>
                         <form th:action="@{/register}" th:object="${staff}" method="POST">
                             <div class="input-field">
-                                <<input type="text" th:field="*{username}" placeholder="username" />
+                                <input type="text" th:field="*{username}" placeholder="username" />
                                 <span th:if="${#fields.hasErrors('username')}" th:errors="*{userName}">..</span>
                             </div>
                             <div class="input-field">

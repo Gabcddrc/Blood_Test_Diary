@@ -50,7 +50,7 @@ public class StaffService {
     public Staff createStaff(Staff staff){
          staffDAO.save(staff);
          return staff;
-     }
+    }
     
      /*
      data display template

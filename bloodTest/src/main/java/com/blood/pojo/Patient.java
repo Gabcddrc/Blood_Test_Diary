@@ -66,6 +66,25 @@ public class Patient {
         this.email = email;
     }
 
+    public Patient(String forename){
+        super();
+        this.forename = forename;
+    }
+
+    public Patient(String forename,String surname, String DOB, char sex, String address,String diagnosis, String transplant,String local_hospital, String surgery, String comments){
+        super();
+        this.forename = forename;
+        this.surname = surname;
+        this.DOB = DOB;
+        this.sex = sex;
+        this.address = address;
+        this.diagnosis = diagnosis;
+        this.transplant = transplant;
+        this.local_hospital = local_hospital;
+        this.surgery = surgery;
+        this.comments = comments;
+     }
+
     public int getId() {
         return id;
     }
