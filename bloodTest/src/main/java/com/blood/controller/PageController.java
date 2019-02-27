@@ -39,9 +39,9 @@ public class PageController {
         return "/hospitals";
     }*/
     
-    @GetMapping(value="/AddHospital")
+   /* @GetMapping(value="/AddHospital")
     public String addhospitals(){
         return "/AddHospital";
-    }
+    }*/
 
 }

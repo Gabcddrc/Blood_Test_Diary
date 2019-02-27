@@ -41,6 +41,7 @@ public class Hospital {
     private String phone;
 
     public Hospital(){
+        super();
     }
 
     public Hospital(String name,String address,String email,String phone){

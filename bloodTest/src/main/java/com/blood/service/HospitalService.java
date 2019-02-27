@@ -62,7 +62,7 @@ public class HospitalService {
         hospitalDAO.save(hospital);
     }
 
-    public Hospital addHospital(Hospital hospital) {
+    public Hospital createHospital(Hospital hospital) {
         hospitalDAO.save(hospital);
         return hospital;
     }

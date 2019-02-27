@@ -36,26 +36,27 @@ public class HospitalController {
         return "hospitals";
     }
 
-//     @RequestMapping(value = "/hospitalRegister", method = RequestMethod.GET)
-//     public String registerForm(Model model) {
-//        model.addAttribute("hospital", new Hospital());
-//        return "registers";  //to be modified
-//    }
+     @RequestMapping(value = "/AddHospital", method = RequestMethod.GET)
+     public String registerForm(Model model) {
+        model.addAttribute("hospital", new Hospital());
+        return "AddHospital";  
+    }
 
-//     @RequestMapping(value = "/hospitalRegister", method = RequestMethod.POST)
-//     public String saveRegister(@ModelAttribute("hospital") Hospital hospital, BindingResult bindingResult, Model model) {
-//         Hospital newHospital = new  Hospital(hospital.getName(),hospital.getAddress(),hospital.getEmail(), hospital.getPhone());
-//         if (bindingResult.hasErrors()) {
-//             return "registers";     //to be modified
-//         }
-//         try{
-//             hospitalService.createHospital(newHospital);
-//         }
-//         catch(Exception e){
-//             return "registers"; //to be modified
-//         }
+     @RequestMapping(value = "/addHospital", method = RequestMethod.POST)
+     public String saveRegister(@ModelAttribute("hospital") Hospital hospital, BindingResult bindingResult, Model model) {
+        // hospitalValidator.validate(patient, bindingResult);
+        Hospital newHospital = new  Hospital(hospital.getName(),hospital.getAddress(),hospital.getEmail(), hospital.getPhone());
+        /* if (bindingResult.hasErrors()) {
+             return "AddHospital";     
+         }*/
+         try{
+             hospitalService.createHospital(newHospital);
+         }
+         catch(Exception e){
+             return "AddHospital"; 
+         }
 
-//         return "redirect:/home";
-//     }
+         return "redirect:/home";
+     }
 
 }
