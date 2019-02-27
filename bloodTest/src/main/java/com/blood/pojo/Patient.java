@@ -12,6 +12,7 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -27,8 +28,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class Patient {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idpatient")
-    @GeneratedValue
     private int id;
     @Column(name = "forename")
     private String forename;
@@ -65,6 +66,25 @@ public class Patient {
         this.surname = surname;
         this.email = email;
     }
+
+    public Patient(String forename){
+        super();
+        this.forename = forename;
+    }
+
+    public Patient(String forename,String surname, String DOB, char sex, String address,String diagnosis, String transplant,String local_hospital, String surgery, String comments){
+        super();
+        this.forename = forename;
+        this.surname = surname;
+        this.DOB = DOB;
+        this.sex = sex;
+        this.address = address;
+        this.diagnosis = diagnosis;
+        this.transplant = transplant;
+        this.local_hospital = local_hospital;
+        this.surgery = surgery;
+        this.comments = comments;
+     }
 
     public int getId() {
         return id;

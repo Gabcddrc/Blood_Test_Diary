@@ -12,6 +12,7 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -27,8 +28,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class TestCarriedOver {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idtest_carried_over")
-    @GeneratedValue
     private int idtest_carried_over;
     @Column(name = "OPA")
     private String OPA;

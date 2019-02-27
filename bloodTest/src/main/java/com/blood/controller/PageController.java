@@ -24,10 +24,10 @@ public class PageController {
         return "/registers";
     }
 
-    @GetMapping(value="/AddPatient")
+    /*@GetMapping(value="/AddPatient")
     public String addPattien(){
         return "/AddPatient";
-    }
+    }*/
 
     @GetMapping(value="/email")
     public String email(){
@@ -39,9 +39,9 @@ public class PageController {
         return "/hospitals";
     }*/
     
-    @GetMapping(value="/AddHospital")
+   /* @GetMapping(value="/AddHospital")
     public String addhospitals(){
         return "/AddHospital";
-    }
+    }*/
 
 }

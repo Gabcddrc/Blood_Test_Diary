@@ -14,16 +14,17 @@ import com.blood.dao.StaffDAO;
 import com.blood.pojo.Staff;;
 
 @Service
-public class StaffDetailService implements UserDetailsService{
+public class StaffDetailService implements UserDetailsService {
     @Autowired
     private StaffDAO staffDAO;
-    
+
     @Override
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Staff staff = staffDAO.findByUsername(username);
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-        return new org.springframework.security.core.userdetails.User(staff.getUsername(), staff.getPassword(), grantedAuthorities);
+        return new org.springframework.security.core.userdetails.User(staff.getUsername(), staff.getPassword(),
+                grantedAuthorities);
     }
 
 }
