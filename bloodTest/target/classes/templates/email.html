@@ -45,155 +45,45 @@
     <section class="section section-search grey lightnen-4 center">
       <div class="container">
         <div class="row">
-          <div class="col s12">
+          <div class="col s12 m6">
             <!--section: Upcoming testing date-->
             <div class="card-panel blue">
               <h5 class="white-text text-lighten-5">Upcoming test</h5>
-              <div class="input-field">
-                <input
-                        type="text"
-                        class="white black-text autocomplete"
-                        id="autocomplete-input"
-                        placeholder="Search patient name or ID"
-                />
-              </div>
               <table class="centered transparent white-text">
                 <thead>
-                <tr>
-                  <th>Patient Number</th>
-                  <th>Name</th>
-                  <th>Testing date</th>
-                  <th>Hospital</th>
-                  <th>Edit Testing</th>
-                  <th>Delete Test</th>
-                </tr>
+                  <tr>
+                    <th>Patient Number</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Testing date</th>
+                  </tr>
                 </thead>
 
                 <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Eclair Main</td>
-                  <td>2019.3.2</td>
-                  <td>KCL</td>
-                  <td><a class="waves-effect waves-light btn " style="background-color:transparent">Edit</a></td>
-                  <td>
-
-
-                    <a
-                            class="waves-effect waves-light btn modal-trigger" style="background-color: red"
-                            href="#patientInfo2">
-                      Delete
-                    </a>
-                    <!-- Modal Structure -->
-                    <div id="patientInfo2" class="modal">
-                      <div class="modal-content blue">
-                        <h4>Delete Test</h4>
-                        <h5 style="padding-central:0px"> Are you sure to <b>delete</b> this test?</h5>
-
-                      </div>
-                      <div class="modal-footer blue">
-                        <a
-                                href="#!"
-                                class="modal-close waves-effect waves-green btn-flat"
-                                style="background-color:transparent; color: white"
-
-                        >No</a
-                        >
-                        <a
-                                href="#!"
-                                class="modal-close waves-effect waves-green btn-flat"
-                                style="color: white; background-color: red"
-                        >Yes</a
-                        >
-
-                  </td>
-
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Alan Jellybean</td>
-                  <td>2019.4.3</td>
-                  <td>KCL</td>
-                  <td><a class="waves-effect waves-light btn" style="background-color:transparent">Edit</a></td>
-                  <td>
-
-
-                    <a
-                            class="waves-effect waves-light btn modal-trigger" style="background-color: red"
-                            href="#patientInfo2">
-                      Delete
-                    </a>
-                    <!-- Modal Structure -->
-                    <div id="patientInfo2" class="modal">
-                      <div class="modal-content blue">
-                        <h4>Delete Test</h4>
-                        <h5 style="padding-central:0px"> Are you sure to <b>delete</b> this test?</h5>
-
-                      </div>
-                      <div class="modal-footer blue">
-                        <a
-                                href="#!"
-                                class="modal-close waves-effect waves-green btn-flat"
-                                style="background-color:transparent; color: white"
-
-                        >No</a
-                        >
-                        <a
-                                href="#!"
-                                class="modal-close waves-effect waves-green btn-flat"
-                                style="color: white; background-color: red"
-                        >Yes</a
-                        >
-
-                  </td>
-
-                </tr>
-                <tr>
-                  <td>4</td>
-                  <td>Jonathan Lollipop</td>
-                  <td>2019.4.3</td>
-                  <td>KCL</td>
-                  <td><a class="waves-effect waves-light btn" style="background-color:transparent">Edit</a></td>
-                  <td>
-
-
-                    <a
-                            class="waves-effect waves-light btn modal-trigger" style="background-color: red"
-                            href="#patientInfo2">
-                      Delete
-                    </a>
-                    <!-- Modal Structure -->
-                    <div id="patientInfo2" class="modal">
-                      <div class="modal-content blue">
-                        <h4>Delete Test</h4>
-                        <h5 style="padding-central:0px"> Are you sure to <b>delete</b> this test?</h5>
-
-                      </div>
-                      <div class="modal-footer blue">
-                        <a
-                                href="#!"
-                                class="modal-close waves-effect waves-green btn-flat"
-                                style="background-color:transparent; color: white"
-
-                        >No</a
-                        >
-                        <a
-                                href="#!"
-                                class="modal-close waves-effect waves-green btn-flat"
-                                style="color: white; background-color: red"
-                        >Yes</a
-                        >
-
-                  </td>
-
-                </tr>
+                  <tr>
+                    <td>1</td>
+                    <td>Eclair</td>
+                    <td>Main</td>
+                    <td>2017.4.3</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>Alan</td>
+                    <td>Jellybean</td>
+                    <td>2019.4.3</td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td>Jonathan</td>
+                    <td>Lollipop</td>
+                    <td>2019.4.3</td>
+                  </tr>
                 </tbody>
               </table>
             </div>
           </div>
           <!--Send Result field-->
-
-          <div class="col s12">
+          <div class="col s12 m6">
             <div class="card-panel blue">
               <h5 class="white-text text-lighten-5">Sending result</h5>
               <div class="input-field">
@@ -239,7 +129,7 @@
                       </div>
                     </div>
                   </td>
-
+                  
                   <td>
                       <a
                       class="waves-effect waves-light btn modal-trigger"
@@ -256,7 +146,7 @@
                           <li>Name: Harry Potter</li>
                           <li>Gender: Male</li>
                           <li>Test Date:
-                              <input type="text" class="datepicker white-text">
+                              <input type="text" class="datepicker white-text"> 
                           </li>
                           <li>
                               <form action="#">
@@ -323,7 +213,7 @@
                 <tr>
                   <td>2</td>
                   <td>
-
+                      
                           <a
                             class="waves-effect waves-light btn modal-trigger"
                             href="#patientInfo2">
@@ -363,7 +253,7 @@
                           <li>Name: Jack Potatle</li>
                           <li>Gender: Female</li>
                           <li>Test Date:
-                              <input type="text" class="datepicker white-text">
+                              <input type="text" class="datepicker white-text"> 
                           </li>
                           <li>
                               <form action="#">
@@ -429,7 +319,7 @@
                 </tr>
                 <tr>
                   <td>3</td>
-                  <td>
+                  <td>   
                       <a
                         class="waves-effect waves-light btn modal-trigger"
                         href="#patientInfo3">
@@ -469,7 +359,7 @@
                           <li>Name: Universal Cheese</li>
                           <li>Gender: Male</li>
                           <li>Test Date:
-                              <input type="text" class="datepicker white-text">
+                              <input type="text" class="datepicker white-text"> 
                           </li>
                           <li>
                               <form action="#">
@@ -536,16 +426,21 @@
               </table>
             </div>
           </div>
-
-        </div>
-        <div class="row">
-          <div class="card-panel blue">
-            <h5 style="color:white">Other emails</h5>
-          </div>
         </div>
       </div>
 
+       <!--Statistics Session-->
+       <div class="row">
+          <div class="col s12 blue white-text">
+            <ul>
+              <li> 100 patients were scheduled to attend blooding test this week</li>
+              <li> 20 patients missed test</li>
+              <li> 30 patients needed to re-schecule the test</li>
+            </ul>
 
+          </div>
+        </div>
+      </div>
 
     </section>
 
