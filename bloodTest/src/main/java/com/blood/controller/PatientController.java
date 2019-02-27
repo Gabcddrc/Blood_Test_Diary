@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class PatientController {
+    @Autowired
     private PatientService patientService;
     @Autowired
     private MailService mailService;
@@ -33,6 +34,7 @@ public class PatientController {
     public void send() throws Exception {
         mailService.sendNotification(patientService.listNotificationPatients());
     }
+
     @PostMapping("SendResult")
     public Object sendResult(Patient patient,String file) throws Exception {
         boolean res = mailService.sendResult(patient,file);
@@ -54,7 +56,9 @@ public class PatientController {
     @RequestMapping(value = "/addPatient", method = RequestMethod.POST)
     public String saveRegister(@ModelAttribute("patient") Patient patient, BindingResult bindingResult, Model model) {
         // patientValidator.validate(patient, bindingResult);
-        Patient newPatient = new Patient(patient.getForename());
+        Patient newPatient = new Patient(patient.getForename(),patient.getSurname(),patient.getDOB(),patient.getSex(),patient.getAddress(),
+                                        patient.getDiagnosis(),patient.getTransplant(),patient.getLocal_hospital(),patient.getSurgery(),patient.getComments());
+
        /* if (bindingResult.hasErrors()) {
             return "AddPatient";
         }*/
