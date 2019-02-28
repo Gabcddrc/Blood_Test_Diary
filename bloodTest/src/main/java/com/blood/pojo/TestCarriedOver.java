@@ -1,8 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * 
+ * A Class containing the carry over information for patient appointments
+ * 
+ * @author Yeshvanth Prabakar, Patryck Whyte, Swapnil Paul, Zhenjie Jiang, Yilei Liang and Tao Lin
+ * @version 2019.02.21
+ * 
  */
+
 package com.blood.pojo;
 
 import org.springframework.context.annotation.Role;
@@ -18,10 +22,6 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-/**
- *
- * @author Swapnil
- */
 @Entity
 @Table(name = "test_carried_over")
 @JsonIgnoreProperties({"handler", "hibernateLazyInitializer"})
@@ -45,6 +45,8 @@ public class TestCarriedOver {
     private int idpatient;
     @Column(name = "idlabel")
     private int idlabel;
+
+    //getters and setters for carrying over blood test information
 
     public int getIdtest_carried_over() {
         return idtest_carried_over;
