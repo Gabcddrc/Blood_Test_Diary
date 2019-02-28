@@ -1,8 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * 
+ * A Class representing contact information for Patients
+ * @author Yeshvanth Prabakar, Patryck Whyte, Swapnil Paul, Zhenjie Jiang, Yilei Liang and Tao Lin
+ * @version 2019.02.21
+ * 
  */
+
 package com.blood.pojo;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -18,10 +21,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-/**
- *
- * @author Swapnil
- */
 @Entity
 @Table(name = "contacts")
 @JsonIgnoreProperties({"handler", "hibernateLazyInitializer"})
@@ -39,6 +38,8 @@ public class Contacts {
     private String type;
     @Column(name = "idpatient")
     private int idpatient;
+
+    //Getters retrieve Contact information for patients
 
     public int getIdcontact() {
         return idcontact;

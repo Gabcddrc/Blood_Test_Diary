@@ -1,7 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * A Class representing the scheduling of blood tests for patients
+ * 
+ * @author Yeshvanth Prabakar, Patryck Whyte, Swapnil Paul, Zhenjie Jiang, Yilei Liang and Tao Lin
+ * @version 2019.02.21
+ * 
  */
 package com.blood.pojo;
 
@@ -18,10 +20,6 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-/**
- *
- * @author Swapnil
- */
 @Entity
 @Table(name = "test_schedule")
 @JsonIgnoreProperties({"handler", "hibernateLazyInitializer"})
@@ -45,6 +43,8 @@ public class TestSchedule {
     private int idpatient;
     @Column(name = "idlabel")
     private int idlabel;
+    
+    //getters to retrieve scheduling information for patients
 
     public int getId() {
         return id;

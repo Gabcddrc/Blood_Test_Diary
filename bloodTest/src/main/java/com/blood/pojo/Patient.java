@@ -1,8 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * 
+ * A Class representing Patient information
+ * @author Yeshvanth Prabakar, Patryck Whyte, Swapnil Paul, Zhenjie Jiang, Yilei Liang and Tao Lin
+ * @version 2019.02.21
+ * 
  */
+
 package com.blood.pojo;
 
 import org.springframework.context.annotation.Role;
@@ -18,14 +21,11 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-/**
- *
- * @author Swapnil
- */
 @Entity
 @Table(name = "patients")
 @JsonIgnoreProperties({"handler", "hibernateLazyInitializer"})
 public class Patient {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -85,6 +85,8 @@ public class Patient {
         this.surgery = surgery;
         this.comments = comments;
      }
+
+     //getters to retreive patient information
 
     public int getId() {
         return id;
