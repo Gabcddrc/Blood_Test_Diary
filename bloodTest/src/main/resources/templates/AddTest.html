@@ -27,7 +27,7 @@
             <div class="card">
               <div class="card-image">
                 <img src="images/pen.jpg">
-                <span class="card-title">Add Hospital</span>
+                <span class="card-title">Add Test</span>
               </div>
               <div class="card-content">
 
@@ -36,29 +36,40 @@
                   <form th:action="@{/addHospital}" th:object="${hospital}" method="POST" class="col s12">
                     <div class="row">
                       <div class="input-field col s12">
-                        <input id="name" type="text" th:field="*{name}" class="validate">
-                        <label for="name">Hospital Name</label>
+                        <input id="OPA" type="text" th:field="*{address}" class="validate">
+                        <label for="OPA">OPA</label>
                       </div>
                     </div>
                     <div class="row">
                       <div class="input-field col s12">
-                        <input id="address" type="text" th:field="*{address}" class="validate">
-                        <label for="address">Address</label>
+                        <input id="DATE" type="text" th:field="*{email}" class="validate">
+                        <label for="DATE">Date</label>
                       </div>
                     </div>
                     <div class="row">
                       <div class="input-field col s12">
-                        <input id="email" type="email" th:field="*{email}" class="validate">
-                        <label for="email">Email</label>
+                        <input id="Completed" type="text" th:field="*{phone}" class="phone_number">
+                        <label for="Completed">Completed</label>
                       </div>
                     </div>
                     <div class="row">
                       <div class="input-field col s12">
-                        <input id="phone_number" type="text" th:field="*{phone}" class="phone_number">
-                        <label for="phone_number">Phone Number</label>
+                        <input id="Comment" type="text" th:field="*{phone}" class="phone_number">
+                        <label for="Comment">Comment</label>
                       </div>
                     </div>
-                    <input type="submit" value="Add Hospital" class=" waves-light btn blue waves-effect">
+                      <div class="row">
+                        <div class="input-field col s12">
+                          <input id="IdPatient" type="text" th:field="*{phone}" class="phone_number">
+                          <label for="IdPatient">IdPatient</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                      <div class="input-field col s12">
+                        <input id="IdLabel" type="text" th:field="*{phone}" class="phone_number">
+                        <label for="IdLabel">IdLabel</label>
+                      </div>
+                    <input type="submit" value="Add Test" class=" waves-light btn blue waves-effect">
                   </form>
                 </div>
               </div>
