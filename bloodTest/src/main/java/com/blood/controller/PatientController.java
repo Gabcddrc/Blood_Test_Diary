@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
@@ -68,6 +69,31 @@ public class PatientController {
             return "AddPatient";
         }
 
+        return "redirect:/home";
+    }
+
+    @RequestMapping(value = "/editPatient/{id}", method = RequestMethod.GET)
+    public String getPatientsById(@PathVariable("id") String id, Model model) {
+        Patient patient = this.patientService.findById(1);
+        model.addAttribute("patient", patient);
+        return "editPatients";
+    }
+
+    @RequestMapping(value = "/editPatient", method = RequestMethod.POST)
+    public String saveEditPatient(@ModelAttribute("patient") Patient patient, BindingResult bindingResult,
+            Model model) {
+        Patient patient2 = new Patient();
+        System.out.println(patient.getForename());
+        patient2.setId(patient.getId());
+        patient2.setForename(patient.getForename());;
+        if (bindingResult.hasErrors()) {
+            return "editPatients";
+        }
+        try {
+            patientService.createPatient(patient2);
+        } catch (Exception e) {
+            return "editPatients";
+        }
         return "redirect:/home";
     }
 

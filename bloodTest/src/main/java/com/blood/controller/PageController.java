@@ -24,6 +24,11 @@ public class PageController {
         return "/registers";
     }
 
+    @GetMapping(value="/editPatients")
+    public String editPatients(){
+        return "/editPatients";
+    }
+
     /*@GetMapping(value="/AddPatient")
     public String addPattien(){
         return "/AddPatient";

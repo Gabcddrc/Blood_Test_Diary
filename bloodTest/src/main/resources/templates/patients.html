@@ -28,12 +28,11 @@
        <thead>
          <tr>
              <th>Mark</th>
+             <th><a class="btn-floating btn waves-effect waves-light blue"></a></th>
              <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Name</th>
              <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Surname</th>
              <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Sex</th>
              <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Date Of Birth</th>
-             <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Date of Blood Exam</th>
-             <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Completed</th>
              <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Diagnosis</th>
              <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Transplant</th>
              <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Local Hospital</th>
@@ -45,12 +44,11 @@
        <tbody>
          <tr th:each="patient:${patients}">
            <td><form action="#"><label><input type="checkbox"/><span></span></label></form></td>
+           <td><a href="/editPatient" th:href="@{editPatient/{id}(id=${patient.id})}" class="btn"> Edit </td>
            <td th:text="${patient.forename}"></td>
            <td th:text="${patient.surname}"></td>
            <td th:text="${patient.sex}"></td>
            <td th:text="${patient.DOB}"></td>
-           <td>12-12-2018</td>
-           <td>Y</td>
            <td th:text="${patient.diagnosis}"></td>
            <td th:text="${patient.transplant}"></td>
            <td th:text="${patient.local_hospital}"></td>

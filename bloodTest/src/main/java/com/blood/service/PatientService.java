@@ -21,10 +21,10 @@ public class PatientService {
         patientDAO.save(patient);
     }
 
-    public Patient createPatient(Patient patient){
+    public Patient createPatient(Patient patient) {
         patientDAO.save(patient);
         return patient;
-   }
+    }
 
     public void deletePatient(int id) {
         patientDAO.delete(patientDAO.findById(id));
@@ -76,6 +76,10 @@ public class PatientService {
 
     public List<Patient> findAll() {
         return patientDAO.findAll();
+    }
+
+    public Patient findById(int id) {
+        return patientDAO.findById(id);
     }
 
     public List<Patient> findBySurname(String keyWord) {
