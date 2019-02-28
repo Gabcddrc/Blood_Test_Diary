@@ -1,7 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * 
+ * Class containing the labels that correspond to patient priority
+ * @author Yeshvanth Prabakar, Patryck Whyte, Swapnil Paul, Zhenjie Jiang, Yilei Liang and Tao Lin
+ * @version 2019.02.21
+ * 
  */
 package com.blood.pojo;
 
@@ -18,10 +20,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-/**
- *
- * @author Swapnil
- */
 @Entity
 @Table(name = "label")
 @JsonIgnoreProperties({"handler", "hibernateLazyInitializer"})
@@ -37,6 +35,8 @@ public class Label {
     private String color;
     @Column(name = "description")
     private String description;
+
+    //getters to return label/flag of patients
 
     public int getIdlabel() {
         return idlabel;
