@@ -74,7 +74,7 @@ public class PatientController {
 
     @RequestMapping(value = "/editPatient/{id}", method = RequestMethod.GET)
     public String getPatientsById(@PathVariable("id") String id, Model model) {
-        Patient patient = this.patientService.findById(1);
+        Patient patient = this.patientService.findById(Integer.parseInt(id));
         model.addAttribute("patient", patient);
         return "editPatients";
     }
@@ -85,7 +85,16 @@ public class PatientController {
         Patient patient2 = new Patient();
         System.out.println(patient.getForename());
         patient2.setId(patient.getId());
-        patient2.setForename(patient.getForename());;
+        patient2.setForename(patient.getForename());
+        patient2.setSurname(patient.getSurname());
+        patient2.setAddress(patient.getAddress());
+        patient2.setComments(patient.getComments());
+        patient2.setDOB(patient.getDOB());
+        patient2.setDiagnosis(patient.getDiagnosis());
+        patient2.setLocal_hospital(patient.getLocal_hospital());
+        patient2.setSex(patient.getSex());
+        patient2.setSurgery(patient.getSurgery());
+        patient2.setTransplant(patient.getTransplant());
         if (bindingResult.hasErrors()) {
             return "editPatients";
         }
