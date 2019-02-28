@@ -78,8 +78,8 @@ public class PatientService {
         return patientDAO.findAll();
     }
 
-    public Patient findById(int i) {
-        return patientDAO.findById(i);
+    public Patient findById(int id) {
+        return patientDAO.findById(id);
     }
 
     public List<Patient> findBySurname(String keyWord) {

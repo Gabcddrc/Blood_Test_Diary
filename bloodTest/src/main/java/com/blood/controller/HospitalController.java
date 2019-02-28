@@ -64,7 +64,7 @@ public class HospitalController {
         return "editHospitals";
     }
 
-    @RequestMapping(value = "/edithospital", method = RequestMethod.POST)
+    @RequestMapping(value = "/editHospital", method = RequestMethod.POST)
     public String saveEdithospital(@ModelAttribute("hospital") Hospital hospital, BindingResult bindingResult,
             Model model) {
         Hospital hospital2 = new Hospital();
