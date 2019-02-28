@@ -41,6 +41,9 @@ public class HospitalService {
     public Hospital getByEmail(String email) {
         return hospitalDAO.findByEmail(email);
     }
+    public Hospital findById(int id) {
+        return hospitalDAO.findById(id);
+    }
 
     public void changeName(Hospital hospital, String name) {
         hospital.setName(name);
