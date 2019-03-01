@@ -1,6 +1,6 @@
 /**
  * 
- * A Class representing contact information for Patients
+ * A Class representing the contact information for Patients
  * @author Yeshvanth Prabakar, Patryck Whyte, Swapnil Paul, Zhenjie Jiang, Yilei Liang and Tao Lin
  * @version 2019.02.21
  * 

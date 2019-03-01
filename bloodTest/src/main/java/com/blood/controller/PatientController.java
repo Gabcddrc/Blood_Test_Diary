@@ -80,8 +80,7 @@ public class PatientController {
     }
 
     @RequestMapping(value = "/editPatient", method = RequestMethod.POST)
-    public String saveEditPatient(@ModelAttribute("patient") Patient patient, BindingResult bindingResult,
-            Model model) {
+    public String saveEditPatient(@ModelAttribute("patient") Patient patient, BindingResult bindingResult,Model model) {
         Patient patient2 = new Patient();
         System.out.println(patient.getForename());
         patient2.setId(patient.getId());
@@ -89,7 +88,7 @@ public class PatientController {
         patient2.setSurname(patient.getSurname());
         patient2.setAddress(patient.getAddress());
         patient2.setComments(patient.getComments());
-        patient2.setDOB(patient.getDOB());
+        //patient2.setDOB(patient.getDOB()); //change this later 
         patient2.setDiagnosis(patient.getDiagnosis());
         patient2.setLocal_hospital(patient.getLocal_hospital());
         patient2.setSex(patient.getSex());

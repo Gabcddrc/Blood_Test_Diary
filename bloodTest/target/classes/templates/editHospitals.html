@@ -2,15 +2,11 @@
 <html>
 
 <head>
-  <!-- Mobile SideNav Icon DropDown -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
-  <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js"
-    integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl"
-    crossorigin="anonymous"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js"integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl"crossorigin="anonymous"></script>
   <title>Blood Test Diary</title>
 </head>
-
 <body>
   <div th:replace="component/navbar.html"></div>
 
@@ -27,7 +23,7 @@
             <div class="card">
               <div class="card-image">
                 <img src="images/pen.jpg">
-                <span class="card-title">Add Hospital</span>
+                <span class="card-title">Fill In Patient Info</span>
               </div>
               <div class="card-content">
 
@@ -58,12 +54,11 @@
                         <label for="phone_number">Phone Number</label>
                       </div>
                     </div>
-                    <input type="submit" value="Add Hospital" class=" waves-light btn blue waves-effect">
+                    <input type="submit" value="Edit Hospital" class=" waves-light btn blue waves-effect">
                   </form>
                 </div>
               </div>
               <div class="card-action">
-                <a href="#">Missing info? Contact</a>
               </div>
             </div>
           </div>
