@@ -51,13 +51,43 @@
                 <td th:text="${testSchedule.idpatient}"></td>
                 <td th:text="${testSchedule.idlabel}"></td>
                 <td>
-                    <!-- Modal Trigger -->
-                    <a href="#modal${testSchedule.idpatient}" class="waves-effect waves-light btn modal-trigger">Modal</a>
-                    <!-- Modal Structure -->
-                    <div id="modal${testSchedule.idpatient}" class="modal modal-fixed-footer">
-                      <div class="modal-content">
+                  <!-- Modal Trigger -->
+                  <a href="#modal${testSchedule.idpatient}"  class="waves-effect waves-light btn modal-trigger" >Modal</a>
+                  <!-- Modal Structure -->
+                  <div id="modal${testSchedule.idpatient}" th:object="${patients}" class="modal modal-fixed-footer">
+                    <div  class="modal-content">
+
+                      <blockquote>
+                        <h4 th:text="*{forename}"></h4>
+                        <h4 th:text="*{surname}"></h4>
+                      </blockquote>
+                      
+                      <div class="row">
+                        <!-- Place -->
+                        <div class="col s12 place mt-4 p-0">
+                          <div class="col s2 m2 l2"><i class="material-icons"> place </i></div>
+                          <div class="col s10 m10 l10">
+                            <p class="m-0"  th:text="*{address}" ></p>
+                          </div>
+                        </div>
+                        <!-- Phone -->
+                        <div class="col s12 phone mt-4 p-0">
+                          <div class="col s2 m2 l2"><i class="material-icons"> call </i></div>
+                          <div class="col s10 m10 l10">
+                            <p class="m-0"  >insert phone number on db</p>
+                          </div>
+                        </div>
+                        <!-- Mail -->
+                        <div class="col s12 mail mt-4 p-0">
+                          <div class="col s2 m2 l2"><i class="material-icons"> mail_outline </i></div>
+                          <div class="col s10 m10 l10">
+                            <p class="m-0" th:text="*{email}"></p>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- 
                         <table>
-                        <tbody>
+                          <tbody>
                           <tr th:each="patient:${patients}">
                             <td><a href="/editPatient" th:href="@{editPatient/{id}(id=${patient.id})}" class="btn"> Edit </td>
                             <td th:text="${patient.forename}"></td>
@@ -73,12 +103,13 @@
                           </tr>
                         </tbody>
                       </table>
-                      </div>
-                      <div class="modal-footer">
-                        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
-                      </div>
+                      -->
                     </div>
-                  </td>
+                    <div class="modal-footer">
+                      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
+                    </div>
+                  </div>
+                </td>
               </tr>
             </tbody>
           </table>
