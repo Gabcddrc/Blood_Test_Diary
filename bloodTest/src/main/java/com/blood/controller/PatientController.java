@@ -90,6 +90,7 @@ public class PatientController {
         patient2.setComments(patient.getComments());
         //patient2.setDOB(patient.getDOB()); //change this later 
         patient2.setEmail(patient.getEmail());
+        patient2.setDOB(patient.getDOB()); //change this later 
         patient2.setDiagnosis(patient.getDiagnosis());
         patient2.setLocal_hospital(patient.getLocal_hospital());
         patient2.setSex(patient.getSex());
