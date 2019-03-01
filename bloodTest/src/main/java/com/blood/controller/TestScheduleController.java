@@ -20,18 +20,20 @@ public class TestScheduleController{
     @Autowired
     private PatientService patientService;
 
-
+    private static Patient patient; 
     
     @GetMapping("/home")
     public String getAllTestSchedule(Model model){
         model.addAttribute("testSchedules", this.tScheduleService.getAllTestSchedule());
-        model.addAttribute("patients", this.patientService.findById(1));
+        System.out.println("NAMEMNANANAN:");
+        model.addAttribute("patients",this.patientService.findById(1));
         return "home";
     }
 
     @GetMapping(value = "/viewPatient/{id}")
     public String getPatientsById(@PathVariable("id") int id, Model model) {
-        Patient patient = this.patientService.findById(id);
+        patient = this.patientService.findById(id);
+        System.out.println("NAMEMNANANAN:" + patient.getForename());
         model.addAttribute("patients", patient);
         return "home";
     }

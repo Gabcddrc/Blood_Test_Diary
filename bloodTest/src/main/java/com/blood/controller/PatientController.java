@@ -88,6 +88,8 @@ public class PatientController {
         patient2.setSurname(patient.getSurname());
         patient2.setAddress(patient.getAddress());
         patient2.setComments(patient.getComments());
+        //patient2.setDOB(patient.getDOB()); //change this later 
+        patient2.setEmail(patient.getEmail());
         patient2.setDOB(patient.getDOB()); //change this later 
         patient2.setDiagnosis(patient.getDiagnosis());
         patient2.setLocal_hospital(patient.getLocal_hospital());
