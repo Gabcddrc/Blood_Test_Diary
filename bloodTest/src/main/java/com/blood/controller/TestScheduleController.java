@@ -25,7 +25,6 @@ public class TestScheduleController{
     @GetMapping("/home")
     public String getAllTestSchedule(Model model){
         model.addAttribute("testSchedules", this.tScheduleService.getAllTestSchedule());
-        System.out.println("NAMEMNANANAN:");
         return "home";
     }
 
