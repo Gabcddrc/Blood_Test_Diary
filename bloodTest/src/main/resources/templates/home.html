@@ -48,18 +48,18 @@
                 <td th:text="${testSchedule.completed}"></td>
                 <td th:text="${testSchedule.commet}"></td>
                 <td th:text="${testSchedule.notified}"></td>
-                <td th:text="${testSchedule.idpatient}"></td>
+                <td th:text="${testSchedule.patient.id}"></td>
                 <td th:text="${testSchedule.idlabel}"></td>
                 <td>
                   <!-- Modal Trigger -->
-                  <a href="#modal${testSchedule.idpatient}"  class="waves-effect waves-light btn modal-trigger" >Modal</a>
+                  <a href="#modal${testSchedule.patient.id}"  class="waves-effect waves-light btn modal-trigger" >Modal</a>
                   <!-- Modal Structure -->
-                  <div id="modal${testSchedule.idpatient}" th:object="${patients}" class="modal modal-fixed-footer">
+                  <div id="modal${testSchedule.patient.id}" class="modal modal-fixed-footer">
                     <div  class="modal-content">
 
                       <blockquote>
-                        <h4 th:text="*{forename}"></h4>
-                        <h4 th:text="*{surname}"></h4>
+                        <h4 th:text="${testSchedule.patient.forename}"></h4>
+                        <h4 th:text="${testSchedule.patient.surname}"></h4>
                       </blockquote>
                       
                       <div class="row">
@@ -81,7 +81,7 @@
                         <div class="col s12 mail mt-4 p-0">
                           <div class="col s2 m2 l2"><i class="material-icons"> mail_outline </i></div>
                           <div class="col s10 m10 l10">
-                            <p class="m-0" th:text="*{email}"></p>
+                            <p class="m-0" th:text="${testSchedule.patient.email}"></p>
                           </div>
                         </div>
                       </div>

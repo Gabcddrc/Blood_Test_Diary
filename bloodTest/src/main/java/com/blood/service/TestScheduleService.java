@@ -52,7 +52,7 @@ public class TestScheduleService {
                 tSchedule.setCompleted(completed);
                 tSchedule.setCommet(commet);
                 tSchedule.setNotified(notified);
-                tSchedule.setIdpatient(idpatient);
+                // tSchedule.setIdpatient(idpatient);
                 tSchedule.setIdlabel(idlabel);
                 testScheduleDAO.save(tSchedule);
         // TODO:REST
