@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Role;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -56,7 +57,7 @@ public class Patient {
     @Column(name = "comments")
     private String comments;
 
-    @OneToOne(mappedBy = "patient")
+    @OneToOne(mappedBy = "patient", cascade = CascadeType.ALL)
     private TestSchedule test;
     // @Column(name = "badge")
     // private String badge;
