@@ -106,4 +106,16 @@ public class PatientController {
         return "redirect:/home";
     }
 
+    @RequestMapping(value = "deletePatient/{id}", method = RequestMethod.GET)
+    public String deletePatient(@PathVariable("id") String id){
+        try{
+            System.out.println(id);
+            patientService.deletePatient(Integer.parseInt(id));
+        } catch (Exception e){
+            return "patients";
+        }
+
+        return "redirect:/patients";
+    }
+
 }
