@@ -17,15 +17,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.blood.service.TestScheduleService;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "patients")
-@JsonIgnoreProperties({"handler", "hibernateLazyInitializer"})
+@JsonIgnoreProperties({ "handler", "hibernateLazyInitializer" })
 public class Patient {
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -53,8 +55,11 @@ public class Patient {
     private String surgery;
     @Column(name = "comments")
     private String comments;
-    //@Column(name = "badge")
-    //private String badge;
+
+    @OneToOne(mappedBy = "patient")
+    private TestSchedule test;
+    // @Column(name = "badge")
+    // private String badge;
 
     public Patient() {
         super();
@@ -67,12 +72,13 @@ public class Patient {
         this.email = email;
     }
 
-    public Patient(String forename){
+    public Patient(String forename) {
         super();
         this.forename = forename;
     }
 
-    public Patient(String forename,String surname, String DOB, char sex, String address,String diagnosis, String transplant,String local_hospital, String surgery, String comments){
+    public Patient(String forename, String surname, String DOB, char sex, String address, String diagnosis,
+            String transplant, String local_hospital, String surgery, String comments) {
         super();
         this.forename = forename;
         this.surname = surname;
@@ -84,9 +90,9 @@ public class Patient {
         this.local_hospital = local_hospital;
         this.surgery = surgery;
         this.comments = comments;
-     }
+    }
 
-     //getters to retreive patient information
+    // getters to retreive patient information
 
     public int getId() {
         return id;
@@ -185,19 +191,19 @@ public class Patient {
     }
 
     // public String getBadge() {
-    //     return badge;
+    // return badge;
     // }
 
     // public void setBadge(String badge) {
-    //     this.badge = badge;
+    // this.badge = badge;
     // }
 
     // public Boolean getOverTime() {
-    //     return overTime;
+    // return overTime;
     // }
 
     // public void setOverTime(Boolean overTime) {
-    //     this.overTime = overTime;
+    // this.overTime = overTime;
     // }
 
     // private Boolean overTime;

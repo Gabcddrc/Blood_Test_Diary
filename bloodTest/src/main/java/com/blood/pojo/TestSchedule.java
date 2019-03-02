@@ -16,6 +16,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -39,10 +41,12 @@ public class TestSchedule {
     private String commet;
     @Column(name = "notified")
     private boolean notified;
-    @Column(name = "idpatient")
-    private int idpatient;
+    @OneToOne
+    @JoinColumn(name = "idpatient")
+    private Patient patient;
     @Column(name = "idlabel")
     private int idlabel;
+    
     
     //getters to retrieve scheduling information for patients
 
@@ -94,13 +98,13 @@ public class TestSchedule {
         this.notified = notified;
     }
 
-    public int getIdpatient() {
-        return idpatient;
+    public Patient getPatient() {
+        return patient;
     }
 
-    public void setIdpatient(int idpatient) {
-        this.idpatient = idpatient;
-    }
+    // public void setIdpatient(int idpatient) {
+    //     this.idpatient = idpatient;
+    // }
 
     public int getIdlabel() {
         return idlabel;

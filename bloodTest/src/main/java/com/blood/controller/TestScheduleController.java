@@ -26,15 +26,6 @@ public class TestScheduleController{
     public String getAllTestSchedule(Model model){
         model.addAttribute("testSchedules", this.tScheduleService.getAllTestSchedule());
         System.out.println("NAMEMNANANAN:");
-        model.addAttribute("patients",this.patientService.findById(1));
-        return "home";
-    }
-
-    @GetMapping(value = "/viewPatient/{id}")
-    public String getPatientsById(@PathVariable("id") int id, Model model) {
-        patient = this.patientService.findById(id);
-        System.out.println("NAMEMNANANAN:" + patient.getForename());
-        model.addAttribute("patients", patient);
         return "home";
     }
 
