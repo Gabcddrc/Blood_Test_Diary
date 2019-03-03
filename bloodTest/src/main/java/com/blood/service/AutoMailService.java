@@ -21,7 +21,7 @@ public class AutoMailService{
 	
 	private void autoSendNotification(){
 		List<Patient> notifyList = qPatientDao.findExpired();
-		mailService.sendNotification(notifyList);
+		mailService.sendNotification();
 	}
 	
 }
