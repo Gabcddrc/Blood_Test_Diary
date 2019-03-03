@@ -28,23 +28,7 @@ public class PatientController {
     public PatientController(PatientService patientService) {
         super();
         this.patientService = patientService;
-        
-    }
 
-    @PostMapping("SendNotification")
-    public void send() throws Exception {
-        mailService.sendNotification(patientService.listNotificationPatients());
-    }
-
-    @PostMapping("SendResult")
-    public Object sendResult(Patient patient,String file) throws Exception {
-        boolean res = mailService.sendResult(patient,file);
-        if (res==true){
-            return 1;
-        }
-        else {
-            return 0;
-        }
     }
 
     @RequestMapping(value = "/AddPatient", method = RequestMethod.GET)
@@ -53,7 +37,7 @@ public class PatientController {
         return "AddPatient";
     }
 
-    
+
     @RequestMapping(value = "/addPatient", method = RequestMethod.POST)
     public String saveRegister(@ModelAttribute("patient") Patient patient, BindingResult bindingResult, Model model) {
         // patientValidator.validate(patient, bindingResult);
@@ -64,7 +48,7 @@ public class PatientController {
             return "AddPatient";
         }*/
         try {
-            patientService.createPatient(newPatient); 
+            patientService.createPatient(newPatient);
         } catch (Exception e) {
             return "AddPatient";
         }
@@ -89,7 +73,7 @@ public class PatientController {
         patient2.setAddress(patient.getAddress());
         patient2.setComments(patient.getComments());
         patient2.setEmail(patient.getEmail());
-        patient2.setDOB(patient.getDOB()); //change this later 
+        patient2.setDOB(patient.getDOB()); //change this later
         patient2.setDiagnosis(patient.getDiagnosis());
         patient2.setLocal_hospital(patient.getLocal_hospital());
         patient2.setSex(patient.getSex());
