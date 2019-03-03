@@ -1,6 +1,7 @@
 package com.blood.service;
 
 import com.blood.pojo.Patient;
+import com.blood.pojo.TestSchedule;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,9 @@ import org.thymeleaf.context.Context;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.io.File;
+import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @Service("mailService")
 public class MailService {
@@ -26,27 +29,35 @@ public class MailService {
     private JavaMailSender mailSender;
     @Autowired
     private TemplateEngine templateEngine;
+    @Autowired
+    private TestScheduleService testScheduleService;
     @Value("${spring.mail.username}") //change in application.properties
     private String from;
-    public boolean sendNotification(List<Patient> patients) {
-        for (Patient patient:patients) {
-            if (patients.size() != 0) {
-                MimeMessage message = mailSender.createMimeMessage();
-                Context context = new Context();
-                context.setVariable("firstName",patient.getForename());
-                context.setVariable("lastName",patient.getSurname());
-                String emailContent = templateEngine.process("notificationTemplate", context);
-                try {
-                    String email = patient.getEmail();
-                    MimeMessageHelper helper = new MimeMessageHelper(message, true);
-                    helper.setFrom(from);
-                    helper.setTo(email);
-                    helper.setSubject("Liver Test Notification");
-                    helper.setText(emailContent, true);
-                    mailSender.send(message);
-                    logger.info("Send Successful");
-                } catch (MessagingException e) {
-                    logger.error("Send Failed！", e);
+    public boolean sendNotification() {
+        List<TestSchedule>testSchedules = testScheduleService.findAll();
+        for (TestSchedule testSchedule : testSchedules) {
+            if (testSchedules.size() != 0) {
+                Date date = new Date();
+                long diff = testSchedule.getDate().getTime() - date.getTime();
+                if ((TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS) < 8)) {
+                    Patient patient = patientService.findById(testSchedule.getIdpatient());
+                    MimeMessage message = mailSender.createMimeMessage();
+                    Context context = new Context();
+                    context.setVariable("firstName", patient.getForename());
+                    context.setVariable("lastName", patient.getSurname());
+                    String emailContent = templateEngine.process("notificationTemplate", context);
+                    try {
+                        String email = patient.getEmail();
+                        MimeMessageHelper helper = new MimeMessageHelper(message, true);
+                        helper.setFrom(from);
+                        helper.setTo(email);
+                        helper.setSubject("Liver Test Notification");
+                        helper.setText(emailContent, true);
+                        mailSender.send(message);
+                        logger.info("Send Successful");
+                    } catch (MessagingException e) {
+                        logger.error("Send Failed！", e);
+                    }
                 }
             } else {
                 return false;
@@ -79,4 +90,25 @@ public class MailService {
                     return false;
                 }
             }
+    public boolean sendDeleteResult(Patient patient) {
+        MimeMessage message = mailSender.createMimeMessage();
+        Context context = new Context();
+        context.setVariable("firstName", patient.getForename());
+        context.setVariable("lastName", patient.getSurname());
+        String emailContent = templateEngine.process("deleteTestEmailTemplate", context);
+        try {
+            String email = patient.getEmail();
+            MimeMessageHelper helper = new MimeMessageHelper(message, true);
+            helper.setFrom(from);
+            helper.setTo(email);
+            helper.setSubject("Delete Alert");
+            helper.setText(emailContent, true);
+            mailSender.send(message);
+            logger.info("Send Successful");
+            return true;
+        } catch (MessagingException e) {
+            logger.error("Send Failed！", e);
+            return false;
+        }
+    }
     }
