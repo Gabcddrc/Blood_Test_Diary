@@ -40,7 +40,7 @@ public class MailService {
                 Date date = new Date();
                 long diff = testSchedule.getDate().getTime() - date.getTime();
                 if ((TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS) < 8)) {
-                    Patient patient = patientService.findById(testSchedule.getIdpatient());
+                    Patient patient = patientService.findById(testSchedule.getPatient().getId());
                     MimeMessage message = mailSender.createMimeMessage();
                     Context context = new Context();
                     context.setVariable("firstName", patient.getForename());

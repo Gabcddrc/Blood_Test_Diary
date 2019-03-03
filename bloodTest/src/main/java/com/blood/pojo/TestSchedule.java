@@ -1,22 +1,24 @@
 /**
  * A Class representing the scheduling of blood tests for patients
- *
+ * 
  * @author Yeshvanth Prabakar, Patryck Whyte, Swapnil Paul, Zhenjie Jiang, Yilei Liang and Tao Lin
  * @version 2019.02.21
- *
+ * 
  */
 package com.blood.pojo;
 
 import org.springframework.context.annotation.Role;
 
-import java.util.Date;
 import java.util.Set;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -40,11 +42,13 @@ public class TestSchedule {
     private String commet;
     @Column(name = "notified")
     private boolean notified;
-    @Column(name = "idpatient")
-    private int idpatient;
+    @OneToOne
+    @JoinColumn(name = "idpatient")
+    private Patient patient;
     @Column(name = "idlabel")
     private int idlabel;
-
+    
+    
     //getters to retrieve scheduling information for patients
 
     public int getId() {
@@ -95,13 +99,13 @@ public class TestSchedule {
         this.notified = notified;
     }
 
-    public int getIdpatient() {
-        return idpatient;
+    public Patient getPatient() {
+        return patient;
     }
 
-    public void setIdpatient(int idpatient) {
-        this.idpatient = idpatient;
-    }
+    // public void setIdpatient(int idpatient) {
+    //     this.idpatient = idpatient;
+    // }
 
     public int getIdlabel() {
         return idlabel;

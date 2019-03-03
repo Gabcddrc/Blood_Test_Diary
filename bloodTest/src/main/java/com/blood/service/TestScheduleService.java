@@ -8,6 +8,7 @@ import com.blood.pojo.TestSchedule;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.Date;
 
 @Service
 public class TestScheduleService {
@@ -44,7 +45,7 @@ public class TestScheduleService {
         return testSchedule;
     }
 
-    public void updateTestSchedule(TestSchedule tSchedule, int id, String OPA, String date, boolean completed,
+    public void updateTestSchedule(TestSchedule tSchedule, int id, String OPA, Date date, boolean completed,
     String commet, boolean notified, int idpatient, int idlabel) {
                 tSchedule.setId(id);
                 tSchedule.setOPA(OPA);
