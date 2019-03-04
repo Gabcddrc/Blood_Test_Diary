@@ -28,5 +28,11 @@ public class TestScheduleController{
         return "home";
     }
 
+    @GetMapping("/email")
+    public String getEmailTest(Model model){
+        model.addAttribute("tests", this.tScheduleService.getAllTestSchedule());
+        return "email";
+    }
+
 
 }
