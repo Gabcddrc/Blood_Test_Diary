@@ -47,7 +47,6 @@
          <tr th:each="patient:${patients}">
            <td><form action="#"><label><input type="checkbox"/><span></span></label></form></td>
            <td><a href="/editPatient" th:href="@{editPatient/{id}(id=${patient.id})}" class="btn"> Edit </td>
-            <td><a href="/patients" th:href="@{deletePatient/{id}(id=${patient.id})}" class="red btn"> delete </td>
            <td th:text="${patient.forename}"></td>
            <td th:text="${patient.surname}"></td>
            <td th:text="${patient.sex}"></td>

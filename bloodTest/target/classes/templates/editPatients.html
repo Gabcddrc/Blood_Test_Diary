@@ -60,7 +60,7 @@
                                                 <label for="gender">Gender</label>
                                             </div>
                                         </div> -->
-                                      
+
                                         <div class="row">
                                             <div class="input-field col s12">
                                                 <input id="date_of_birth" th:field="*{DOB}" type="date" class="validate">
@@ -110,7 +110,13 @@
                                                 <label for="Comments">Comments</label>
                                             </div>
                                         </div> -->
-                                            <input type="submit" value="Edit Patient" class=" waves-light btn blue waves-effect">
+                                        <div class="row">
+                                            <input type="submit" value="Save" class=" waves-light btn blue waves-effect">
+                                        </div>
+                                        <div class="row">
+                                            <a href="/patients" th:href="@{deletePatient/{id}(id=${patient.id})}" class="red btn">
+                                                delete patient </a>
+                                        </div>
                                     </form>
                                 </div>
 
