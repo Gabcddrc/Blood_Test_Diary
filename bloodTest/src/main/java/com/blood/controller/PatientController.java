@@ -90,16 +90,21 @@ public class PatientController {
         return "redirect:/home";
     }
 
-    @RequestMapping(value = "deletePatient/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "editPatient/deletePatient/{id}", method = RequestMethod.GET)
     public String deletePatient(@PathVariable("id") String id){
         try{
             System.out.println(id);
             patientService.deletePatient(Integer.parseInt(id));
         } catch (Exception e){
-            return "patients";
+            return "editPatient";
         }
 
         return "redirect:/patients";
     }
 
+    @GetMapping("/patients")
+    public String getAllPatients(Model model){
+        model.addAttribute("patients", this.patientService.getAllPatients());
+        return "patients";
+    }
 }
