@@ -34,10 +34,10 @@ public class PageController {
         return "/AddPatient";
     }*/
 
-    @GetMapping(value="/email")
-    public String email(){
-        return "/email";
-    }
+    // @GetMapping(value="/email")
+    // public String email(){
+    //     return "/email";
+    // }
 
    /* @GetMapping(value="/hospitals")
     public String hospitals(){
