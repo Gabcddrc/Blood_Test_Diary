@@ -46,8 +46,9 @@
               <tbody>
                 <tr th:each="test:${tests}">
                   <td th:text="${test.patient.id}"></td>
-                  <td th:text="${test.patient.surname}">
-                    <div th:text="${test.patient.forename}"></div>
+                  <td>
+                    <span th:text="${test.patient.forename}"></span>
+                    <span th:text="${test.patient.surname}"></span>
                   </td>
                   <td th:text="${test.date}"></td>
                   <td th:text="${test.patient.local_hospital}"></td>
@@ -92,21 +93,20 @@
                 <th>Patient</th>
                 <th>Send Result</th>
               </tr>
-              <tr>
-                <td>1</td>
+              <tr th:each="test:${tests}">
+                <td th:text="${test.patient.id}"></td>
                 <td>
-                  <a class="waves-effect waves-light btn modal-trigger" href="#patientInfo1">
-                    Harry Potter
+                  <a th:text="${test.patient.surname}" class="waves-effect waves-light btn modal-trigger" href="#patientInfo1">
                   </a>
                   <!-- Modal Structure -->
                   <div id="patientInfo1" class="modal">
                     <div class="modal-content blue">
-                      <h4>Harry Potter</h4>
+                      <h4> <span th:text="${test.patient.forename}"></span>
+                        <span th:text="${test.patient.surname}"></span></h4>
                       <ul>
-                        <li>ID: 1</li>
-                        <li>Name: Harry</li>
-                        <li>Gender: Male</li>
-                        <li>Last blooding test date:2019.4.3</li>
+                        <li>ID: <span th:text="${test.patient.id}"> </span></li>
+                        <li>Gender: <span th:text="${test.patient.sex}"></li>
+                        <li>Next blooding test date: <span th:text="${test.date}"></span></li>
                       </ul>
                     </div>
                     <div class="modal-footer blue">
@@ -123,194 +123,13 @@
                   <!-- Modal Structure -->
                   <div id="patientReport1" class="modal">
                     <div class="modal-content blue">
-                      <h4>Harry Potter</h4>
+                      <h4> <span th:text="${test.patient.forename}"></span>
+                        <span th:text="${test.patient.surname}"></span></h4>
                       <ul>
-                        <li>ID: 1</li>
-                        <li>Name: Harry Potter</li>
-                        <li>Gender: Male</li>
+                        <li>ID: <span th:text="${test.patient.id}"> </span></li>
+                        <li>Email: <span th:text="${test.patient.email}"></li>
                         <li>Test Date:
-                          <input type="text" class="datepicker white-text">
-                        </li>
-                        <li>
-                          <form action="#">
-                            <div class="file-field input-field">
-                              <div class="btn">
-                                <span>Upload Report</span>
-                                <input type="file">
-                              </div>
-                              <div class="file-path-wrapper">
-                                <input class="file-path validate" type="text">
-                              </div>
-                            </div>
-                          </form>
-                        </li>
-                        <li>
-                          <div class="row">
-                            <h5>Sended Emails:</h5>
-                            <div class="col s12 m4">
-                              <label>
-                                <input type="checkbox" class="filled-in" checked="checked" />
-                                <span>Personal Email</span>
-                              </label>
-                            </div>
-                            <div class="col s12 m4">
-                              <label>
-                                <input type="checkbox" class="filled-in" checked="checked" />
-                                <span>Personal GP</span>
-                              </label>
-                            </div>
-                          </div>
-                          <div class="input-field col s12">
-                            <input id="email" type="email" class="validate">
-                            <label for="email">Other Email</label>
-                          </div>
-                        </li>
-                        <li>Comments:
-                          <div class="row">
-                            <form class="col s12">
-                              <div class="row">
-                                <div class="input-field col s6">
-                                  <i class="material-icons prefix">mode_edit</i>
-                                  <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
-                                  <label for="icon_prefix2">Add any</label>
-                                </div>
-                              </div>
-                            </form>
-                          </div>
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="modal-footer blue">
-                      <a href="#!" class="modal-close waves-effect waves-green btn-flat white-text">Cancel</a>
-                      <a href="#!" class="modal-close waves-effect waves-green btn-flat white-text">Send</a>
-                </td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>
-
-                  <a class="waves-effect waves-light btn modal-trigger" href="#patientInfo2">
-                    Jack Potatle
-                  </a>
-                  <!-- Modal Structure -->
-                  <div id="patientInfo2" class="modal">
-                    <div class="modal-content blue">
-                      <h4>Jack potatle</h4>
-                      <ul>
-                        <li>ID: 2</li>
-                        <li>Name: Jack</li>
-                        <li>Gender: Female</li>
-                        <li>Last blooding test date:2016.4.5</li>
-                      </ul>
-                    </div>
-                    <div class="modal-footer blue">
-                      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
-                </td>
-                <td>
-                  <a class="waves-effect waves-light btn modal-trigger" href="#patientReport2">
-                    Generate Email
-                    <i class="material-icons right">send</i>
-                  </a>
-                  <!-- Modal Structure -->
-                  <div id="patientReport2" class="modal">
-                    <div class="modal-content blue">
-                      <h4>Jack Potatle</h4>
-                      <ul>
-                        <li>ID: 1</li>
-                        <li>Name: Jack Potatle</li>
-                        <li>Gender: Female</li>
-                        <li>Test Date:
-                          <input type="text" class="datepicker white-text">
-                        </li>
-                        <li>
-                          <form action="#">
-                            <div class="file-field input-field">
-                              <div class="btn">
-                                <span>Upload Report</span>
-                                <input type="file">
-                              </div>
-                              <div class="file-path-wrapper">
-                                <input class="file-path validate" type="text">
-                              </div>
-                            </div>
-                          </form>
-                        </li>
-                        <li>
-                          <div class="row">
-                            <h5>Send Emails:</h5>
-                            <div class="col s12 m4">
-                              <label>
-                                <input type="checkbox" class="filled-in" checked="checked" />
-                                <span>Personal Email</span>
-                              </label>
-                            </div>
-                            <div class="col s12 m4">
-                              <label>
-                                <input type="checkbox" class="filled-in" checked="checked" />
-                                <span>Personal GP</span>
-                              </label>
-                            </div>
-                          </div>
-                          <div class="input-field col s12">
-                            <input id="email" type="email" class="validate">
-                            <label for="email">Other Email</label>
-                          </div>
-                        </li>
-                        <li>Comments:
-                          <div class="row">
-                            <form class="col s12">
-                              <div class="row">
-                                <div class="input-field col s6">
-                                  <i class="material-icons prefix">mode_edit</i>
-                                  <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
-                                  <label for="icon_prefix2">Add any</label>
-                                </div>
-                              </div>
-                            </form>
-                          </div>
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="modal-footer blue">
-                      <a href="#!" class="modal-close waves-effect waves-green btn-flat white-text">Cancel</a>
-                      <a href="#!" class="modal-close waves-effect waves-green btn-flat white-text">Send</a>
-                </td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>
-                  <a class="waves-effect waves-light btn modal-trigger" href="#patientInfo3">
-                    Universal Cheese
-                  </a>
-                  <!-- Modal Structure -->
-                  <div id="patientInfo3" class="modal">
-                    <div class="modal-content blue">
-                      <h4>Universal Cheese</h4>
-                      <ul>
-                        <li>ID: 2</li>
-                        <li>Name: Universal </li>
-                        <li>Gender: Cheese</li>
-                        <li>Last blooding test date:2019.6.3</li>
-                      </ul>
-                    </div>
-                    <div class="modal-footer blue">
-                      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
-                </td>
-                <td>
-                  <a class="waves-effect waves-light btn modal-trigger" href="#patientReport3">
-                    Generate Email
-                    <i class="material-icons right">send</i>
-                  </a>
-                  <!-- Modal Structure -->
-                  <div id="patientReport3" class="modal">
-                    <div class="modal-content blue">
-                      <h4>Universal Cheese</h4>
-                      <ul>
-                        <li>ID: 1</li>
-                        <li>Name: Universal Cheese</li>
-                        <li>Gender: Male</li>
-                        <li>Test Date:
-                          <input type="text" class="datepicker white-text">
+                          <span th:text="${test.date}" type="text" class="datepicker white-text"> </span>
                         </li>
                         <li>
                           <form action="#">
