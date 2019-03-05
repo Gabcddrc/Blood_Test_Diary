@@ -54,7 +54,7 @@
                 <td th:text="${hospital.address}"></td>
                 <td th:text="${hospital.email}"></td>
                 <td th:text="${hospital.phone}"></td>
-                <td><input id="showHospital" type="button" th:value="${hospital.address}"></td>
+                <td><button type="button" id="showHospital" onclick="buttonHelper()">Show on Google Map</button></td> <!--Point: How to pass ${hospital.email} as a parameter for buttonHelper -->
             </tr>
          </tr>
 
@@ -99,14 +99,18 @@
           center: {lat: 51.508530, lng: -0.076132}, //London
           zoom: 10
         });
-        var geocoder = new google.maps.Geocoder();
-        document.getElementById('showHospital').addEventListener('click',function(){
-          geocodeAddress(geocoder,map);
-        });
+        //var geocoder = new google.maps.Geocoder();
+        //document.getElementById('showHospital').addEventListener('click',function(){
+        //  geocodeAddress(geocoder,map);
+        //});
       }
 
-      function geocodeAddress(geocoder, resultsMap) {
-        var address = document.getElementById('showHospital').value; // The address of the hospital
+      function buttonHelper(address){
+        geocodeAddress(map,address);
+      }
+
+      function geocodeAddress(resultsMap,address) {
+        var geocoder = new google.maps.Geocoder(); //Test
         geocoder.geocode({'address': address}, function(results, status) {
           if (status === 'OK') {
             resultsMap.setCenter(results[0].geometry.location);
@@ -122,7 +126,7 @@
       }
       
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=Google_Map_Key&callback=initMap" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=Google_Map_API_KEY&callback=initMap" async defer></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
 
