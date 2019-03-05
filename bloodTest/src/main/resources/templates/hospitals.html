@@ -54,6 +54,7 @@
                 <td th:text="${hospital.address}"></td>
                 <td th:text="${hospital.email}"></td>
                 <td th:text="${hospital.phone}"></td>
+                <td><input id="showHospital" type="button" value="${hospital.address}"></td>
             </tr>
          </tr>
 
@@ -96,16 +97,16 @@
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: 51.508530, lng: -0.076132}, //London
-          zoom: 8
+          zoom: 10
         });
         var geocoder = new google.maps.Geocoder();
-        document.getElementById('submit').addEventListener('click',function(){
+        document.getElementById('showHospital').addEventListener('click',function(){
           geocodeAddress(geocoder,map);
         });
       }
 
       function geocodeAddress(geocoder, resultsMap) {
-        var address = document.getElementById('address').value; // The address of the hospital
+        var address = document.getElementById('showHospital').value; // The address of the hospital
         geocoder.geocode({'address': address}, function(results, status) {
           if (status === 'OK') {
             resultsMap.setCenter(results[0].geometry.location);
@@ -114,13 +115,13 @@
               position: results[0].geometry.location
             });
           } else {
-            alert('Geocode was not successful for the following reason: ' + status);
+            alert('Geocode was not successful for the following reason: ' + status+" "+address);
           }
         });
       }
       
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=Google_API_KEY&callback=initMap" async defer></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
 
