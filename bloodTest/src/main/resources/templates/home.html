@@ -27,6 +27,7 @@
     <div class="row">
       <div class="col s12">
         <div class="card blue lighten-3">
+            <form th:action="@{/editLabel}"  method="POST">
           <table class="highlight">
             <thead>
               <tr>
@@ -37,11 +38,14 @@
                 <th>COMMENT</th>
                 <th>NOTIFIED</th>
                 <th>idpatient</th>
-                <th>idlabel</th>
+                <th>Flag</th>
+                <th>Flag</th>
               </tr>
             </thead>
+           
             <tbody>
-              <tr th:each="testSchedule:${testSchedules}">
+                <tr th:each="testSchedule:${testSchedules}">
+                <td><label><input th:id="${testSchedule.id}" name="checkboxName" th:value="${testSchedule.id}" type="checkbox"/><span></span></label></td>
                 <td th:text="${testSchedule.id}"></td>
                 <td th:text="${testSchedule.OPA}"></td>
                 <td th:text="${testSchedule.date}"></td>
@@ -50,7 +54,11 @@
                 <td th:text="${testSchedule.notified}"></td>
                 <td th:text="${testSchedule.patient.id}"></td>
                 <td th:text="${testSchedule.idlabel}"></td>
+                <td><span th:class="${testSchedule.idlabel}" id="b1"></span></td>
+
+
                 <td>
+                  
                   <!-- Modal Trigger -->
                   <a href="#modal${testSchedule.patient.id}"  class="waves-effect waves-light btn modal-trigger" >Modal</a>
                   <!-- Modal Structure -->
@@ -111,11 +119,23 @@
                   </div>
                 </td>
               </tr>
+
+             
+
+          
             </tbody>
+           
+         <input type="submit" name="submitBtn" value="Mark Critical" class="waves-effect waves-light btn-large red">
+         <input type="submit" name="submitBtn" value="Mark Urgent" class="waves-effect waves-light btn-large orange">
+         <input type="submit" name="submitBtn" value="Mark Monitor" class="waves-effect waves-light btn-large green">
           </table>
+        </form>
         </div>
       </div>
     </div>
+
+    
+    
   </section>
 
   <!-- Footer -->
@@ -146,13 +166,22 @@
   <script>
     const sideNav = document.querySelector('.sidenav');
     M.Sidenav.init(sideNav, {});
-
     //Modal
     $(document).ready(function () {
       $(".modal").modal();
     });
-
   </script>
+
+<script>
+    $(document).ready(function(){
+      $("#1").click(function(){
+        $("#red").click(function(){
+       document.getElementById("b1").className = "badge red";
+      });
+      });
+    });
+    </script>
+    
 
 </body>
 

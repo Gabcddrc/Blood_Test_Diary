@@ -41,6 +41,18 @@ public class Contacts {
 
     //Getters retrieve Contact information for patients
 
+    public Contacts(int idcontact, String contactNum, String notes, int idpatient, String type) {
+        super();
+        this.idcontact = idcontact;
+        this.contactNum = contactNum;
+        this.notes= notes;
+        this.idpatient= idpatient;
+        this.type=type;
+    }
+
+    public Contacts() {
+    }
+
     public int getIdcontact() {
         return idcontact;
     }

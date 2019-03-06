@@ -2,7 +2,7 @@
  * 
  * A Class containing the carry over information for patient appointments
  * 
- * @author Yeshvanth Prabakar, Patryck Whyte, Swapnil Paul, Zhenjie Jiang, Yilei Liang and Tao Lin
+ * @author Yeshvanth Prabakar, Patrick Whyte, Swapnil Paul, Zhenjie Jiang, Yilei Liang and Tao Lin
  * @version 2019.02.21
  * 
  */
