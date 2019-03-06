@@ -27,6 +27,7 @@
     <div class="row">
       <div class="col s12">
         <div class="card blue lighten-3">
+            <form th:action="@{/editLabel}"  method="POST">
           <table class="highlight">
             <thead>
               <tr>
@@ -41,9 +42,10 @@
                 <th>Flag</th>
               </tr>
             </thead>
+           
             <tbody>
-              <tr th:each="testSchedule:${testSchedules}">
-                <td><form action="#" th:id="${testSchedule.id}"><label><input type="checkbox"/><span></span></label></form></td>
+                <tr th:each="testSchedule:${testSchedules}">
+                <td><label><input th:id="${testSchedule.id}" name="checkboxName" th:value="${testSchedule.id}" type="checkbox"/><span></span></label></td>
                 <td th:text="${testSchedule.id}"></td>
                 <td th:text="${testSchedule.OPA}"></td>
                 <td th:text="date"></td>
@@ -117,15 +119,24 @@
                   </div>
                 </td>
               </tr>
+
+             
+
+          
             </tbody>
+           
+            <a class="waves-effect waves-light btn-large red" id="red">Mark Critical</a>
+          <a class="waves-effect waves-light btn-large orange" id="orange">Mark Urgent</a>
+         <a class="waves-effect waves-light btn-large green" id="green">Mark Monitor</a>
+         <input type="submit" value="Save" class=" waves-light btn blue waves-effect">
+       
           </table>
+        </form>
         </div>
       </div>
     </div>
 
-    <a class="waves-effect waves-light btn-large red" id="red">Mark Critical</a>
-    <a class="waves-effect waves-light btn-large orange" id="orange">Mark Urgent</a>
-    <a class="waves-effect waves-light btn-large green" id="green">Mark Monitor</a>
+    
     
   </section>
 
