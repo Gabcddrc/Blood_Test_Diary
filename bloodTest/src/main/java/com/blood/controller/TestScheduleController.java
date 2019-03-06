@@ -35,8 +35,12 @@ public class TestScheduleController {
 
     @RequestMapping(value="/addTest", method=RequestMethod.POST)
     public String addTest(@ModelAttribute("patient") Patient patient, @ModelAttribute("test") TestSchedule test, BindingResult bindingResult,Model model) {
+        Patient thePatient = patientService.findById(patient.getId());
         TestSchedule newTest = new TestSchedule(test.getOPA(), test.getDate(), test.isCompleted(), test.getCommet(), test.isNotified(), test.getIdlabel());
-        newTest.setPatient(patientService.findById(patient.getId()));
+        newTest.setPatient(thePatient);
+        if(tScheduleService.findByPatient(thePatient) != null){
+          newTest.setId(tScheduleService.findByPatient(thePatient).getId());
+        }
         // if (bindingResult.hasErrors()) {
         //     return "editPatients";
         // }
