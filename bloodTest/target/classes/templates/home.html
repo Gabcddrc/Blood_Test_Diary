@@ -44,7 +44,7 @@
               <tr th:each="testSchedule:${testSchedules}">
                 <td th:text="${testSchedule.id}"></td>
                 <td th:text="${testSchedule.OPA}"></td>
-                <td th:text="date"></td>
+                <td th:text="${testSchedule.date}"></td>
                 <td th:text="${testSchedule.completed}"></td>
                 <td th:text="${testSchedule.commet}"></td>
                 <td th:text="${testSchedule.notified}"></td>

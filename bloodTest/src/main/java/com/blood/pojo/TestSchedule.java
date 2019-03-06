@@ -25,7 +25,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "test_schedule")
-@JsonIgnoreProperties({"handler", "hibernateLazyInitializer"})
+@JsonIgnoreProperties({ "handler", "hibernateLazyInitializer" })
 public class TestSchedule {
 
     @Id
@@ -47,9 +47,19 @@ public class TestSchedule {
     private Patient patient;
     @Column(name = "idlabel")
     private int idlabel;
-    
-    
-    //getters to retrieve scheduling information for patients
+
+    public TestSchedule() {
+    }
+
+    public TestSchedule(String OPA, Date date, boolean completed, String comment, boolean notified, int idlabel) {
+        this.OPA = OPA;
+        this.date = date;
+        this.completed = completed;
+        this.commet = comment;
+        this.notified = notified;
+        this.idlabel = idlabel;
+    }
+    // getters to retrieve scheduling information for patients
 
     public int getId() {
         return id;
@@ -87,8 +97,8 @@ public class TestSchedule {
         return commet;
     }
 
-    public void setCommet(String commet) {
-        this.commet = commet;
+    public void setCommet(String comment) {
+        this.commet = comment;
     }
 
     public boolean isNotified() {
@@ -103,8 +113,12 @@ public class TestSchedule {
         return patient;
     }
 
+    public void setPatient(Patient patient){
+        this.patient = patient;
+    }
+
     // public void setIdpatient(int idpatient) {
-    //     this.idpatient = idpatient;
+    // this.idpatient = idpatient;
     // }
 
     public int getIdlabel() {

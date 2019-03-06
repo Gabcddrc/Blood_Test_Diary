@@ -31,8 +31,9 @@ public class TestScheduleService {
         return testScheduleDAO.findByCompleted(complete);
     }
 
-    public void add(TestSchedule testSchedule) {
+    public TestSchedule save(TestSchedule testSchedule) {
         testScheduleDAO.save(testSchedule);
+        return testSchedule;
     }
 
     public void deletePatient(int id) {

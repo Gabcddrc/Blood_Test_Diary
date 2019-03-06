@@ -6,70 +6,76 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
   <link rel="stylesheet" href="css/main.css">
-  <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl"
+    crossorigin="anonymous"></script>
   <title>Blood Test Diary</title>
 </head>
 
 <body>
   <!-- Menu Bar -->
-  <div th:replace="component/navbar.html" ></div>
+  <div th:replace="component/navbar.html"></div>
 
   <div th:replace="component/mnav.html"></div>
 
   <!-- Patient Table -->
-<section class="section section-login light-blue lighten-5 center">
-  <div class="row">
-    <div class="col s6">
-    <input placeholder="Search By" id="first_name" type="text" class="validate">
+  <section class="section section-login light-blue lighten-5 center">
+    <div class="row">
+      <div class="col s6">
+        <input placeholder="Search By" id="first_name" type="text" class="validate">
+      </div>
+      <div class="col s12">
+        <div class="card blue lighten-3">
+          <table class="highlight">
+            <thead>
+              <tr>
+                <th>Mark</th>
+                <th><a class="btn-floating btn waves-effect waves-light blue"></a></th>
+                <th><a class="btn-floating btn waves-effect waves-light blue"></a></th>
+                <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Name</th>
+                <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Surname</th>
+                <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Gender</th>
+                <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Email</th>
+                <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Date
+                  Of Birth</th>
+                <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Diagnosis</th>
+                <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Transplant</th>
+                <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Local
+                  Hospital</th>
+                <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Surgery</th>
+                <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Comments</th>
+                <th>Flag</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:each="patient:${patients}">
+                <td>
+                  <form action="#"><label><input type="checkbox" /><span></span></label></form>
+                </td>
+                <td><a href="/editPatient" th:href="@{editPatient/{id}(id=${patient.id})}" class="btn"> Edit </td>
+                <td><a href="/addTest" th:href="@{addTest/{id}(id=${patient.id})}" class="btn"> AddTest </td>
+                <td th:text="${patient.forename}" placeholder="empty"></td>
+                <td th:text="${patient.surname}" placeholder="empty"></td>
+                <td th:text="${patient.sex}" placeholder="empty"></td>
+                <td th:text="${patient.email}" placeholder="empty"></td>
+                <td th:text="${patient.DOB}" placeholder="empty"></td>
+                <td th:text="${patient.diagnosis}" placeholder="empty"></td>
+                <td th:text="${patient.transplant}" placeholder="empty"></td>
+                <td th:text="${patient.local_hospital}" placeholder="empty"></td>
+                <td th:text="${patient.surgery}" placeholder="empty"></td>
+                <td th:text="${patient.comments}" placeholder="empty"></td>
+                <td><span class="badge red"></span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
-    <div class="col s12">
- <div class="card blue lighten-3">
-  <table class="highlight">
-       <thead>
-         <tr>
-             <th>Mark</th>
-             <th><a class="btn-floating btn waves-effect waves-light blue"></a></th>
-             <th><a class="btn-floating btn waves-effect waves-light blue"></a></th>
-             <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Name</th>
-             <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Surname</th>
-             <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Gender</th>
-             <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Email</th>
-             <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Date Of Birth</th>
-             <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Diagnosis</th>
-             <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Transplant</th>
-             <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Local Hospital</th>
-             <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Surgery</th>
-             <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Comments</th>
-             <th>Flag</th>
-         </tr>
-       </thead>
-       <tbody>
-         <tr th:each="patient:${patients}">
-           <td><form action="#"><label><input type="checkbox"/><span></span></label></form></td>
-           <td><a href="/editPatient" th:href="@{editPatient/{id}(id=${patient.id})}" class="btn"> Edit </td>
-           <td th:text="${patient.forename}"></td>
-           <td th:text="${patient.surname}"></td>
-           <td th:text="${patient.sex}"></td>
-           <td th:text="${patient.email}"></td>
-           <td th:text="${patient.DOB}"></td>
-           <td th:text="${patient.diagnosis}"></td>
-           <td th:text="${patient.transplant}"></td>
-           <td th:text="${patient.local_hospital}"></td>
-           <td th:text="${patient.surgery}"></td>
-           <td th:text="${patient.comments}"></td>
-           <td><span class="badge red"></span></td>
-         </tr>
-       </tbody>
-     </table>
-   </div>
- </div>
-</div>
 
-<a class="waves-effect waves-light btn-large red">Mark Critical</a>
-<a class="waves-effect waves-light btn-large orange">Mark Urgent</a>
-<a class="waves-effect waves-light btn-large green">Mark Monitor</a>
+    <a class="waves-effect waves-light btn-large red">Mark Critical</a>
+    <a class="waves-effect waves-light btn-large orange">Mark Urgent</a>
+    <a class="waves-effect waves-light btn-large green">Mark Monitor</a>
 
-</section>
+  </section>
 
   <!-- Footer -->
   <footer class="section blue darken-2 white-text center">
@@ -96,8 +102,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
 
   <script>
-  const sideNav = document.querySelector('.sidenav');
-  M.Sidenav.init(sideNav, {});
+    const sideNav = document.querySelector('.sidenav');
+    M.Sidenav.init(sideNav, {});
   </script>
 
 </body>

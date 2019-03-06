@@ -87,7 +87,7 @@ public class PatientController {
         } catch (Exception e) {
             return "editPatients";
         }
-        return "redirect:/home";
+        return "redirect:/patients";
     }
 
     @RequestMapping(value = "editPatient/deletePatient/{id}", method = RequestMethod.GET)
