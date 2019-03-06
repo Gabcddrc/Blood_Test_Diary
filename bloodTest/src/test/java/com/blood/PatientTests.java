@@ -1,8 +1,8 @@
 package com.blood;
 
 import static org.assertj.core.api.Assertions.*;
+import static org.junit.Assert.assertEquals;
 
-import com.blood.dao.PatientDAO;
 import com.blood.pojo.Patient;
 
 import org.junit.Test;
@@ -13,29 +13,61 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
-@RunWith(SpringRunner.class)
-@DataJpaTest
 public class PatientTests {
     
-    @Autowired
-    private TestEntityManager entityManager;
-
-    @Autowired
-    private PatientDAO patientDAO;
 
     @Test
-    public void whenFindByEmail_thenReturnPatient() {
+    public void testGetForename() {
         
-        // given
-        Patient testPatient = new Patient("tForename", "tSurname", "tDOB", 'M', "tAddress", "tDiagnosis", "tTransplant", "tHospital", "tSurgery", "tComments");
-        entityManager.persist(testPatient);
-        entityManager.flush();
- 
-        // when
-        Patient foundPatient = patientDAO.findByEmail(testPatient.getEmail());
- 
-        // then
-        assertThat(foundPatient.getEmail()).isEqualTo(testPatient.getEmail());
+        Patient patient = new Patient("tForename", "tSurname", "tEmail");
+
+        assertEquals(patient.getForename(), "tForename");
+    }
+
+    @Test
+    public void testSetForename() {
+        
+        Patient patient = new Patient("tForename", "tSurname", "tEmail");
+
+        patient.setForename("changedName");
+
+        assertEquals(patient.getForename(), "changedName");
+    }
+
+    @Test
+    public void testGetSurname() {
+        
+        Patient patient = new Patient("tForename", "tSurname", "tEmail");
+
+        assertEquals(patient.getSurname(), "tSurname");
+    }
+
+    @Test
+    public void testSetSurename() {
+        
+        Patient patient = new Patient("tForename", "tSurname", "tEmail");
+
+        patient.setSurname("changedName");
+
+        assertEquals(patient.getSurname(), "changedName");
+    }
+
+    @Test
+    public void testGetEmail() {
+        
+        Patient patient = new Patient("tForename", "tSurname", "tEmail");
+
+        assertEquals(patient.getEmail(), "tEmail");
+    }
+
+    @Test
+    public void testSetEmail() {
+        
+        Patient patient = new Patient("tForename", "tSurname", "tEmail");
+
+        patient.setEmail("changedEmail");
+
+        assertEquals(patient.getEmail(), "changedEmail");
     }
 
 }
