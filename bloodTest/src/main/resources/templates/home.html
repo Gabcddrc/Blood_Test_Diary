@@ -37,11 +37,13 @@
                 <th>COMMENT</th>
                 <th>NOTIFIED</th>
                 <th>idpatient</th>
-                <th>idlabel</th>
+                <th>Flag</th>
+                <th>Flag</th>
               </tr>
             </thead>
             <tbody>
               <tr th:each="testSchedule:${testSchedules}">
+                <td><form action="#" th:id="${testSchedule.id}"><label><input type="checkbox"/><span></span></label></form></td>
                 <td th:text="${testSchedule.id}"></td>
                 <td th:text="${testSchedule.OPA}"></td>
                 <td th:text="date"></td>
@@ -50,7 +52,11 @@
                 <td th:text="${testSchedule.notified}"></td>
                 <td th:text="${testSchedule.patient.id}"></td>
                 <td th:text="${testSchedule.idlabel}"></td>
+                <td><span th:class="${testSchedule.idlabel}" id="b1"></span></td>
+
+
                 <td>
+                  
                   <!-- Modal Trigger -->
                   <a href="#modal${testSchedule.patient.id}"  class="waves-effect waves-light btn modal-trigger" >Modal</a>
                   <!-- Modal Structure -->
@@ -116,6 +122,11 @@
         </div>
       </div>
     </div>
+
+    <a class="waves-effect waves-light btn-large red" id="red">Mark Critical</a>
+    <a class="waves-effect waves-light btn-large orange" id="orange">Mark Urgent</a>
+    <a class="waves-effect waves-light btn-large green" id="green">Mark Monitor</a>
+    
   </section>
 
   <!-- Footer -->
@@ -146,13 +157,22 @@
   <script>
     const sideNav = document.querySelector('.sidenav');
     M.Sidenav.init(sideNav, {});
-
     //Modal
     $(document).ready(function () {
       $(".modal").modal();
     });
-
   </script>
+
+<script>
+    $(document).ready(function(){
+      $("#1").click(function(){
+        $("#red").click(function(){
+       document.getElementById("b1").className = "badge red";
+      });
+      });
+    });
+    </script>
+    
 
 </body>
 

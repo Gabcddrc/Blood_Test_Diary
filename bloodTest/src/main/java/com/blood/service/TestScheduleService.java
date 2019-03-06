@@ -46,7 +46,7 @@ public class TestScheduleService {
     }
 
     public void updateTestSchedule(TestSchedule tSchedule, int id, String OPA, Date date, boolean completed,
-    String commet, boolean notified, int idpatient, int idlabel) {
+    String commet, boolean notified, int idpatient, String idlabel) {
                 tSchedule.setId(id);
                 tSchedule.setOPA(OPA);
                 tSchedule.setDate(date);

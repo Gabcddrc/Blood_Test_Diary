@@ -45,7 +45,7 @@
        </thead>
        <tbody>
          <tr th:each="patient:${patients}">
-           <td><form action="#"><label><input type="checkbox"/><span></span></label></form></td>
+
            <td><a href="/editPatient" th:href="@{editPatient/{id}(id=${patient.id})}" class="btn"> Edit </td>
            <td th:text="${patient.forename}"></td>
            <td th:text="${patient.surname}"></td>
@@ -65,9 +65,6 @@
  </div>
 </div>
 
-<a class="waves-effect waves-light btn-large red">Mark Critical</a>
-<a class="waves-effect waves-light btn-large orange">Mark Urgent</a>
-<a class="waves-effect waves-light btn-large green">Mark Monitor</a>
 
 </section>
 

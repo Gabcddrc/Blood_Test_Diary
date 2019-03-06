@@ -46,7 +46,7 @@ public class TestSchedule {
     @JoinColumn(name = "idpatient")
     private Patient patient;
     @Column(name = "idlabel")
-    private int idlabel;
+    private String idlabel;
     
     
     //getters to retrieve scheduling information for patients
@@ -107,11 +107,11 @@ public class TestSchedule {
     //     this.idpatient = idpatient;
     // }
 
-    public int getIdlabel() {
+    public String getIdlabel() {
         return idlabel;
     }
 
-    public void setIdlabel(int idlabel) {
+    public void setIdlabel(String idlabel) {
         this.idlabel = idlabel;
     }
 }
