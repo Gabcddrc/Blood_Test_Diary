@@ -141,7 +141,7 @@ CREATE TABLE IF NOT EXISTS `bloodtestdiary`.`test_schedule` (
   `commet` VARCHAR(100) NULL DEFAULT NULL,
   `notified` TINYINT(4) NULL DEFAULT '0',
   `idpatient` INT NULL,
-  `idlabel` INT NULL,
+  `idlabel` VARCHAR(100) NULL DEFAULT 'badge green',
   PRIMARY KEY (`idtest_schedule`),
   -- INDEX `idpatient` (`idpatient` ASC),
   -- INDEX `idlabel` (`idlabel` ASC),
@@ -149,12 +149,13 @@ CREATE TABLE IF NOT EXISTS `bloodtestdiary`.`test_schedule` (
     FOREIGN KEY (`idpatient`)
     REFERENCES `bloodtestdiary`.`patients` (`idpatient`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON UPDATE NO ACTION
   -- CONSTRAINT `idlabel`
-    FOREIGN KEY (`idlabel`)
-    REFERENCES `bloodtestdiary`.`label` (`idlabel`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    --  KEY (`idlabel`)
+   -- REFERENCES `bloodtestdiary`.`label` (`idlabel`)
+    -- ON DELETE NO ACTION
+    -- ON UPDATE NO ACTION
+    )
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
 

@@ -18,25 +18,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
-public class TestScheduleController{
-    @Autowired
-    private TestScheduleService tScheduleService;
-    @Autowired
-    private PatientService patientService;
-
-    private static Patient patient; 
-    
-    @GetMapping("/home")
-    public String getAllTestSchedule(Model model){
-        model.addAttribute("testSchedules", this.tScheduleService.getAllTestSchedule());
-        return "home";
-    }
-
-    @GetMapping("/email")
-    public String getEmailTest(Model model){
-        model.addAttribute("tests", this.tScheduleService.getAllTestSchedule());
-        return "email";
-    }
+public class TestScheduleController {
+  @Autowired
+  private TestScheduleService tScheduleService;
+  @Autowired
+  private PatientService patientService;
 
     @RequestMapping(value = "/addTest/{id}", method = RequestMethod.GET)
     public String getAddTest(@PathVariable("id") String id, Model model){
@@ -65,5 +51,57 @@ public class TestScheduleController{
 
 
 
+  private static Patient patient;
+
+  private final String COLOR_RED = "badge red";
+  private final String COLOR_GREEN = "badge green";
+  private final String COLOR_ORANGE = "badge orange";
+  private final String URGENT = "Mark Urgent";
+  private final String MONITOR = "Mark Monitor";
+  private final String CRITICAL = "Mark Critical";
+
+  @GetMapping("/home")
+  public String getAllTestSchedule(Model model) {
+    model.addAttribute("testSchedules", this.tScheduleService.getAllTestSchedule());
+    return "home";
+  }
+
+  @GetMapping("/email")
+  public String getEmailTest(Model model) {
+    model.addAttribute("tests", this.tScheduleService.getAllTestSchedule());
+    return "email";
+  }
+
+  @RequestMapping(value = "/editLabel", method = RequestMethod.POST)
+  public String editLabel(@RequestParam(value = "checkboxName", required = false) String[] checkboxValue,
+      @RequestParam(value = "submitBtn", required = false) String submitBtn, Model model) {
+        try {
+          if(submitBtn.equals(URGENT) && checkboxValue.length>0){
+            for (String id : checkboxValue) {
+              TestSchedule ts = this.tScheduleService.findById(Integer.parseInt(id));
+              ts.setIdlabel(COLOR_ORANGE);
+              tScheduleService.updateLabel(ts);
+            }
+          }else if(submitBtn.equals(MONITOR) && checkboxValue.length>0){
+            for (String id : checkboxValue) {
+              TestSchedule ts = this.tScheduleService.findById(Integer.parseInt(id));
+              ts.setIdlabel(COLOR_GREEN);
+              tScheduleService.updateLabel(ts);
+            }
+          }else if(submitBtn.equals(CRITICAL) && checkboxValue.length>0){
+            for (String id : checkboxValue) {
+              TestSchedule ts = this.tScheduleService.findById(Integer.parseInt(id));
+              ts.setIdlabel(COLOR_RED);
+              tScheduleService.updateLabel(ts);
+            }
+          }
+          
+      } catch (Exception e) {
+          return "redirect:/home";
+      }
+   
+   
+    return "redirect:/home";
+  }
 
 }
