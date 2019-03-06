@@ -35,6 +35,10 @@ public class TestScheduleService {
         testScheduleDAO.save(testSchedule);
     }
 
+    public void updateLabel(TestSchedule testSchedule){
+        testScheduleDAO.save(testSchedule);
+    }
+
     public void deletePatient(int id) {
         testScheduleDAO.delete(testScheduleDAO.findById(id));
     }

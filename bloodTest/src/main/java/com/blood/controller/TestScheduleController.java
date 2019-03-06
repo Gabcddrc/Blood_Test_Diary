@@ -17,42 +17,42 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class TestScheduleController{
-    @Autowired
-    private TestScheduleService tScheduleService;
-    @Autowired
-    private PatientService patientService;
+public class TestScheduleController {
+  @Autowired
+  private TestScheduleService tScheduleService;
+  @Autowired
+  private PatientService patientService;
 
-    private static Patient patient; 
-    
-    @GetMapping("/home")
-    public String getAllTestSchedule(Model model){
-        model.addAttribute("testSchedules", this.tScheduleService.getAllTestSchedule());
-        return "home";
+  private static Patient patient;
+
+  @GetMapping("/home")
+  public String getAllTestSchedule(Model model) {
+    model.addAttribute("testSchedules", this.tScheduleService.getAllTestSchedule());
+    return "home";
+  }
+
+  @GetMapping("/email")
+  public String getEmailTest(Model model) {
+    model.addAttribute("tests", this.tScheduleService.getAllTestSchedule());
+    return "email";
+  }
+
+  @RequestMapping(value = "/editLabel", method = RequestMethod.POST)
+  public String editLabel(@RequestParam(value = "checkboxName", required = false) String[] checkboxValue,
+      @RequestParam(value = "submitBtn", required = false) String submitBtn, Model model) {
+    if (submitBtn.equals("Cancel")) {
+      System.out.println("CALCALCLAL");
+    } else if (submitBtn.equals("Save")) {
+      for (String id : checkboxValue) {
+        TestSchedule ts = this.tScheduleService.findById(Integer.parseInt(id));
+        System.out.println(ts.getId());
+        System.out.println(ts.getIdlabel());
+        ts.setIdlabel("4");
+        tScheduleService.updateLabel(ts);
+      }
     }
 
-    @GetMapping("/email")
-    public String getEmailTest(Model model){
-        model.addAttribute("tests", this.tScheduleService.getAllTestSchedule());
-        return "email";
-    }
-
-    @RequestMapping(value = "/editLabel", method = RequestMethod.POST)
-    public String editLabel(@RequestParam(value = "checkboxName", required = false) String[] checkboxValue,Model model) {
-        if(checkboxValue[0] != null)
-        {
-         
-          for (String var : checkboxValue) {
-            System.out.println(var);
-          }
-        }
-        else
-        {
-          System.out.println("checkbox is not checked");
-        }
-        return "redirect:/home";
-    }
-
-
+    return "redirect:/home";
+  }
 
 }
