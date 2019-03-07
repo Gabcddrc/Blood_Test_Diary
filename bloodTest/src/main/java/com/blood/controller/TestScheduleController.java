@@ -48,13 +48,15 @@ public class TestScheduleController {
   @RequestMapping(value = "/addTest", method = RequestMethod.POST)
   public String addTest(@ModelAttribute("patient") Patient patient, @ModelAttribute("test") TestSchedule test,
       BindingResult bindingResult, Model model) throws ParseException {
+        
     Patient thePatient = patientService.findById(patient.getId());
+
     TestSchedule newTest = new TestSchedule(test.getOPA(), formatDate(patient.getDOB()), test.isCompleted(), test.getCommet(),
         test.isNotified(), test.getIdlabel());
     newTest.setPatient(thePatient);
-    if (tScheduleService.findByPatient(thePatient) != null) {
-      newTest.setId(tScheduleService.findByPatient(thePatient).getId());
-    }
+    // if (tScheduleService.findByPatient(thePatient) != null) {
+    //   newTest.setId(tScheduleService.findByPatient(thePatient).getId());
+    // }
     // if (bindingResult.hasErrors()) {
     // return "editPatients";
     // }

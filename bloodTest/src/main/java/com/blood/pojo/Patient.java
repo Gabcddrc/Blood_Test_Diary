@@ -10,6 +10,7 @@ package com.blood.pojo;
 
 import org.springframework.context.annotation.Role;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -19,6 +20,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -57,8 +59,8 @@ public class Patient {
     @Column(name = "comments")
     private String comments;
 
-    @OneToOne(mappedBy = "patient", cascade = CascadeType.ALL)
-    private TestSchedule test;
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
+    private List<TestSchedule> test;
     // @Column(name = "badge")
     // private String badge;
 

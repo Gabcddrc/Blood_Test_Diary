@@ -18,6 +18,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -42,7 +43,7 @@ public class TestSchedule {
     private String commet;
     @Column(name = "notified")
     private boolean notified;
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "idpatient")
     private Patient patient;
     @Column(name = "idlabel")
