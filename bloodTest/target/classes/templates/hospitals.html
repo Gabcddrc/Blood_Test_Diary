@@ -41,10 +41,9 @@
                 <td th:text="${hospital.address}"></td>
                 <td th:text="${hospital.email}"></td>
                 <td th:text="${hospital.phone}"></td>
-                <td><button type="button" id="showHospital" th:onclick="'buttonHelper(\'' + ${hospital.address} + '\');'">Show on Google Map</button></td> <!--Point: How to pass ${hospital.address} as a parameter for buttonHelper -->
+                <td><button th:attr="onclick='javascript:buttonHelper(\'kings college london\');'">Show on Google Map</button></td> <!--Point: How to pass ${hospital.address} as a parameter for buttonHelper -->
             </tr>
          </tr>
-
        </tbody>
      </table>
    </div>
@@ -93,6 +92,7 @@
       }
 
       function buttonHelper(address){
+        //alert(address);
         geocodeAddress(map,address);
       }
 
