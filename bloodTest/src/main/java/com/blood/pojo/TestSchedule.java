@@ -47,7 +47,17 @@ public class TestSchedule {
     private Patient patient;
     @Column(name = "idlabel")
     private int idlabel;
-    
+
+    public TestSchedule(String OPA, String commet, Boolean completed, Boolean notified, int idlabel)
+    {
+        this.OPA=OPA;
+        this.commet=commet;
+        this.completed=completed;
+        this.idlabel=idlabel;
+    }    
+
+    public TestSchedule()
+    {}
     
     //getters to retrieve scheduling information for patients
 
