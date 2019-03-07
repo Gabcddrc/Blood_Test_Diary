@@ -54,11 +54,11 @@
                   <td th:text="${test.patient.local_hospital}"></td>
                   <td><a class="waves-effect waves-light btn " style="background-color:transparent">Edit</a></td>
                   <td>
-                    <a class="waves-effect waves-light btn modal-trigger" style="background-color: red" href="#patientInfo2">
+                    <a class="waves-effect waves-light btn modal-trigger" style="background-color: red" href= "#${test.patient.id}">
                       Delete
                     </a>
                     <!-- Modal Structure -->
-                    <div id="patientInfo2" class="modal">
+                    <div id = "${test.patient.id}" class="modal">
                       <div class="modal-content blue">
                         <h4>Delete Test</h4>
                         <h5 style="padding-central:0px"> Are you sure to <b>delete</b> this test?</h5>
@@ -96,10 +96,10 @@
               <tr th:each="test:${tests}">
                 <td th:text="${test.patient.id}"></td>
                 <td>
-                  <a th:text="${test.patient.surname}" class="waves-effect waves-light btn modal-trigger" href="#patientInfo1">
+                  <a th:text="${test.patient.surname}" class="waves-effect waves-light btn modal-trigger" th:attr="href='#' + ${test.patient.id}">
                   </a>
                   <!-- Modal Structure -->
-                  <div id="patientInfo1" class="modal">
+                  <div th:attr= "id = ${test.patient.id}"  class="modal">
                     <div class="modal-content blue">
                       <h4> <span th:text="${test.patient.forename}"></span>
                         <span th:text="${test.patient.surname}"></span></h4>
@@ -116,12 +116,12 @@
                 </td>
 
                 <td>
-                  <a class="waves-effect waves-light btn modal-trigger" href="#patientReport1">
+                  <a class="waves-effect waves-light btn modal-trigger" th:attr="href='#1' + ${test.patient.id}">
                     Generate Email
                     <i class="material-icons right">send</i>
                   </a>
                   <!-- Modal Structure -->
-                  <div id="patientReport1" class="modal">
+                  <div th:attr= "id ='1'+${test.patient.id}" class="modal">
                     <div class="modal-content blue">
                       <h4> <span th:text="${test.patient.forename}"></span>
                         <span th:text="${test.patient.surname}"></span></h4>
