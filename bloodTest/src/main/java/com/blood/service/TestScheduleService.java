@@ -1,7 +1,6 @@
 package com.blood.service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import com.blood.dao.TestScheduleDAO;
 import com.blood.pojo.Patient;
@@ -9,7 +8,8 @@ import com.blood.pojo.TestSchedule;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.Date;
+
+import java.util.concurrent.TimeUnit;
 
 @Service
 public class TestScheduleService {
@@ -53,7 +53,23 @@ public class TestScheduleService {
         this.testScheduleDAO.findAll().forEach(testSchedule::add);
         return testSchedule;
     }
-
+    public void timeShif(){
+        Date date = new Date();
+        List<TestSchedule> testSchedules = testScheduleDAO.findAll();
+        for(TestSchedule testSchedule:testSchedules){
+            long diff = testSchedule.getDate().getTime() - date.getTime();
+            System.out.println((TimeUnit.HOURS.convert(diff, TimeUnit.MILLISECONDS)));
+            if ((TimeUnit.HOURS.convert(diff, TimeUnit.MILLISECONDS) < 0)){
+                Calendar calendar = new GregorianCalendar();
+                calendar.setTime(date);
+                calendar.add(calendar.DATE,7);
+                date=calendar.getTime();
+                testSchedule.setDate(date);
+                testSchedule.setNotified(false);
+                testScheduleDAO.save(testSchedule);
+            }
+        }
+    }
     public void updateTestSchedule(TestSchedule tSchedule, int id, String OPA, Date date, boolean completed,
     String commet, boolean notified, int idpatient, String idlabel) {
                 tSchedule.setId(id);
@@ -68,7 +84,7 @@ public class TestScheduleService {
         // TODO:REST
     }
 
-    
+
     public List<TestSchedule> findAll() {
         return testScheduleDAO.findAll();
     }

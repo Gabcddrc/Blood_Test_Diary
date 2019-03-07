@@ -41,10 +41,9 @@
                 <td th:text="${hospital.address}"></td>
                 <td th:text="${hospital.email}"></td>
                 <td th:text="${hospital.phone}"></td>
-                <td><button type="button" id="showHospital" th:onclick="'buttonHelper(\'' + ${hospital.address} + '\');'">Show on Google Map</button></td> <!--Point: How to pass ${hospital.address} as a parameter for buttonHelper -->
+                <td><button th:data-address="${hospital.address}" onclick="buttonHelper(this.getAttribute('data-address'))">Show on Google Map</button></td> <!--Point: How to pass ${hospital.address} as a parameter for buttonHelper -->
             </tr>
          </tr>
-
        </tbody>
      </table>
    </div>
@@ -79,7 +78,7 @@
 
   <div id="map"></div>
     <!-- Google Map API-->
-    <script>
+    <script th:inline="javascript">
       var map;
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {

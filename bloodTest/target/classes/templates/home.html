@@ -6,8 +6,7 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
   <link rel="stylesheet" href="css/main.css">
-  <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js"
-    integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl"
+  <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl"
     crossorigin="anonymous"></script>
 
   <script src="javascript/vue.min.js"></script>
@@ -27,116 +26,97 @@
     <div class="row">
       <div class="col s12">
         <div class="card blue lighten-3">
-            <form th:action="@{/editLabel}"  method="POST">
-          <table class="highlight">
-            <thead>
-              <tr>
-                <th></th>
-                <th>ID</th>
-                <th>OPA</th>
-                <th>DATE</th>
-                <th>COMPLETED</th>
-                <th>COMMENT</th>
-                <th>NOTIFIED</th>
-                <th>idpatient</th>
-                <th>Flag</th>
-                <th>Flag</th>
-              </tr>
-            </thead>
-           
-            <tbody>
+          <form th:action="@{/editLabel}" method="POST">
+            <table class="highlight">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>ID</th>
+                  <th>OPA</th>
+                  <th>DATE</th>
+                  <th>COMPLETED</th>
+                  <th>COMMENT</th>
+                  <th>NOTIFIED</th>
+                  <th>idpatient</th>
+                  <th>Flag</th>
+                  <th>Flag</th>
+                </tr>
+              </thead>
+
+              <tbody>
                 <tr th:each="testSchedule:${testSchedules}">
-                <td><label><input th:id="${testSchedule.id}" name="checkboxName" th:value="${testSchedule.id}" type="checkbox"/><span></span></label></td>
-                <td th:text="${testSchedule.id}"></td>
-                <td th:text="${testSchedule.OPA}"></td>
-                <td th:text="${testSchedule.date}"></td>
-                <td th:text="${testSchedule.completed}"></td>
-                <td th:text="${testSchedule.commet}"></td>
-                <td th:text="${testSchedule.notified}"></td>
-                <td th:text="${testSchedule.patient.id}"></td>
-                <td th:text="${testSchedule.idlabel}"></td>
-                <td><span th:class="${testSchedule.idlabel}" id="b1"></span></td>
+                  <td><label><input th:id="${testSchedule.id}" name="checkboxName" th:value="${testSchedule.id}" type="checkbox" /><span></span></label></td>
+                  <td th:text="${testSchedule.id}"></td>
+                  <td th:text="${testSchedule.OPA}"></td>
+                  <td th:text="${testSchedule.date}"></td>
+                  <td th:text="${testSchedule.completed}"></td>
+                  <td th:text="${testSchedule.commet}"></td>
+                  <td th:text="${testSchedule.notified}"></td>
+                  <td th:text="${testSchedule.patient.id}"></td>
+                  <td th:text="${testSchedule.idlabel}"></td>
+                  <td><span th:class="${testSchedule.idlabel}" id="b1"></span></td>
 
 
-                <td>
-                  
-                  <!-- Modal Trigger -->
-                  <a href="#modal${testSchedule.patient.id}"  class="waves-effect waves-light btn modal-trigger" >Modal</a>
-                  <!-- Modal Structure -->
-                  <div id="modal${testSchedule.patient.id}" class="modal modal-fixed-footer">
-                    <div  class="modal-content">
+                  <td>
 
-                      <blockquote>
-                        <h4 th:text="${testSchedule.patient.forename}"></h4>
-                        <h4 th:text="${testSchedule.patient.surname}"></h4>
-                      </blockquote>
-                      
-                      <div class="row">
-                        <!-- Place -->
-                        <div class="col s12 place mt-4 p-0">
-                          <div class="col s2 m2 l2"><i class="material-icons"> place </i></div>
-                          <div class="col s10 m10 l10">
-                            <p class="m-0"  th:text="*{address}" ></p>
+                    <!-- Modal Trigger -->
+                    <a th:attr="href='#' + ${testSchedule.patient.id}" class="waves-effect waves-light btn modal-trigger">Modal</a>
+                    <!-- Modal Structure -->
+                    <div th:attr="id = ${testSchedule.patient.id}" class="modal modal-fixed-footer">
+                      <div class="modal-content">
+
+                        <blockquote>
+                          <h4 th:text="${testSchedule.patient.forename}"></h4>
+                          <h4 th:text="${testSchedule.patient.surname}"></h4>
+                        </blockquote>
+
+                        <div class="row">
+                          <!-- Place -->
+                          <div class="col s12 place mt-4 p-0">
+                            <div class="col s2 m2 l2"><i class="material-icons"> place </i></div>
+                            <div class="col s10 m10 l10">
+                              <p class="m-0" th:text="*{address}"></p>
+                            </div>
                           </div>
-                        </div>
-                        <!-- Phone -->
-                        <div class="col s12 phone mt-4 p-0">
-                          <div class="col s2 m2 l2"><i class="material-icons"> call </i></div>
-                          <div class="col s10 m10 l10">
-                            <p class="m-0"  >insert phone number on db</p>
+                          <!-- Phone -->
+                          <div class="col s12 phone mt-4 p-0">
+                            <div class="col s2 m2 l2"><i class="material-icons"> call </i></div>
+                            <div class="col s10 m10 l10">
+                              <p class="m-0">insert phone number on db</p>
+                            </div>
                           </div>
-                        </div>
-                        <!-- Mail -->
-                        <div class="col s12 mail mt-4 p-0">
-                          <div class="col s2 m2 l2"><i class="material-icons"> mail_outline </i></div>
-                          <div class="col s10 m10 l10">
-                            <p class="m-0" th:text="${testSchedule.patient.email}"></p>
+                          <!-- Mail -->
+                          <div class="col s12 mail mt-4 p-0">
+                            <div class="col s2 m2 l2"><i class="material-icons"> mail_outline </i></div>
+                            <div class="col s10 m10 l10">
+                              <p class="m-0" th:text="${testSchedule.patient.email}"></p>
+                            </div>
                           </div>
                         </div>
                       </div>
-                      <!-- 
-                        <table>
-                          <tbody>
-                          <tr th:each="patient:${patients}">
-                            <td><a href="/editPatient" th:href="@{editPatient/{id}(id=${patient.id})}" class="btn"> Edit </td>
-                            <td th:text="${patient.forename}"></td>
-                            <td th:text="${patient.surname}"></td>
-                            <td th:text="${patient.sex}"></td>
-                            <td th:text="${patient.DOB}"></td>
-                            <td th:text="${patient.diagnosis}"></td>
-                            <td th:text="${patient.transplant}"></td>
-                            <td th:text="${patient.local_hospital}"></td>
-                            <td th:text="${patient.surgery}"></td>
-                            <td th:text="${patient.comments}"></td>
-                            <td><span class="badge red">urgent</span></td>
-                          </tr>
-                        </tbody>
-                      </table>
-                      -->
+                      <div class="modal-footer">
+                        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
+                      </div>
                     </div>
-                    <div class="modal-footer">
-                      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
-                    </div>
-                  </div>
-                </td>
-              </tr>
+                  </td>
+                </tr>
 
-             
 
-          
-            </tbody>
-           
-         <input type="submit" name="submitBtn" value="Mark Critical" class="waves-effect waves-light btn-large red">
-         <input type="submit" name="submitBtn" value="Mark Urgent" class="waves-effect waves-light btn-large orange">
-         <input type="submit" name="submitBtn" value="Mark Monitor" class="waves-effect waves-light btn-large green">
-          </table>
-        </form>
+
+
+              </tbody>
+
+              <input type="submit" name="submitBtn" value="Mark Critical" class="waves-effect waves-light btn-large red">
+              <input type="submit" name="submitBtn" value="Mark Urgent" class="waves-effect waves-light btn-large orange">
+              <input type="submit" name="submitBtn" value="Mark Monitor" class="waves-effect waves-light btn-large green">
+            </table>
+          </form>
         </div>
       </div>
     </div>
 
-    
-    
+
+
   </section>
 
   <!-- Footer -->
@@ -149,8 +129,7 @@
             <a href="https://www.facebook.com/NHS24/" class="white-text">
               <i class="fab fa-facebook fa-4x"></i>
             </a>
-            <a href="https://twitter.com/NHSEngland?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor"
-              class="white-text">
+            <a href="https://twitter.com/NHSEngland?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" class="white-text">
               <i class="fab fa-twitter fa-4x"></i>
             </a>
             <a href="https://www.instagram.com/nhsenglandldn/?hl=en" class="white-text">
@@ -173,16 +152,16 @@
     });
   </script>
 
-<script>
-    $(document).ready(function(){
-      $("#1").click(function(){
-        $("#red").click(function(){
-       document.getElementById("b1").className = "badge red";
-      });
+  <script>
+    $(document).ready(function () {
+      $("#1").click(function () {
+        $("#red").click(function () {
+          document.getElementById("b1").className = "badge red";
+        });
       });
     });
-    </script>
-    
+  </script>
+
 
 </body>
 
