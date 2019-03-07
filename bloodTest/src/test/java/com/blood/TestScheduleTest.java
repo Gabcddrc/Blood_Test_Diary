@@ -47,7 +47,7 @@ public class TestScheduleTest {
     @Test
     public void testisCompleted() {  
         TestSchedule test = new TestSchedule("tOPA", "tCommet", true, false, 0);
-        assertEquals(test.getOPA(), true);
+        assertEquals(test.isCompleted(), true);
     }
 
     @Test
@@ -60,14 +60,14 @@ public class TestScheduleTest {
     @Test
     public void testGetCommet() {  
         TestSchedule test = new TestSchedule("tOPA", "tCommet", true, false, 0);
-        assertEquals(test.getCommet(), true);
+        assertEquals(test.getCommet(), "tCommet");
     }
 
     @Test
     public void testSetCommet() {
         TestSchedule test = new TestSchedule("tOPA", "tCommet", true, false, 0);
-        test.setCommet("false");
-        assertEquals(test.getCommet(), false);
+        test.setCommet("changedCommet");
+        assertEquals(test.getCommet(), "changedCommet");
     }
 
 
