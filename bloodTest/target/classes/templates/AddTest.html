@@ -24,7 +24,7 @@
                     <div class="col s12 s7">
                         <div class="card">
                             <div class="card-image">
-                                <img th:src="@{images/pen.jpg}" />
+                                <img th:src="@{/images/pen.jpg}" />
                                 <span class="card-title">Fill In Patient Info</span>
                             </div>
                             <div class="card-content">
@@ -45,8 +45,8 @@
                                                     placeholder="OPA">
                                                 <label for="OPA">OPA</label>
                                             </div>
-                                            <div class="col s6">
-                                                <input id="date" th:field="*{date}" type="datetime-local" class="validate">
+                                            <div class="col s6" th:object="${patient}">
+                                                <input id="date" th:field="*{DOB}" type="datetime-local" class="validate">
                                                 <label for="date">Date</label>
                                             </div>
                                         </div>
