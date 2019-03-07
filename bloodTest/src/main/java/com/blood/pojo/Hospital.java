@@ -1,7 +1,7 @@
 /**
  * 
  * A Class representing the hospitals for patients
- * @author Yeshvanth Prabakar, Patryck Whyte, Swapnil Paul, Zhenjie Jiang, Yilei Liang and Tao Lin
+ * @author Yeshvanth Prabakar, Patrick Whyte, Swapnil Paul, Zhenjie Jiang, Yilei Liang and Tao Lin
  * @version 2019.02.21
  * 
  */
