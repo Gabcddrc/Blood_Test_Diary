@@ -58,6 +58,7 @@ public class TestScheduleService {
         List<TestSchedule> testSchedules = testScheduleDAO.findAll();
         for(TestSchedule testSchedule:testSchedules){
             long diff = testSchedule.getDate().getTime() - date.getTime();
+            System.out.println((TimeUnit.HOURS.convert(diff, TimeUnit.MILLISECONDS)));
             if ((TimeUnit.HOURS.convert(diff, TimeUnit.MILLISECONDS) < 0)){
                 Calendar calendar = new GregorianCalendar();
                 calendar.setTime(date);
