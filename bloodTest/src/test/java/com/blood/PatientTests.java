@@ -18,14 +18,12 @@ public class PatientTests {
 
     @Test
     public void testGetForename() {
-        
         Patient patient = new Patient("tForename", "tSurname", "tEmail");
         assertEquals(patient.getForename(), "tForename");
     }
 
     @Test
     public void testSetForename() {
-        
         Patient patient = new Patient("tForename", "tSurname", "tEmail");
         patient.setForename("changedName");
         assertEquals(patient.getForename(), "changedName");
@@ -33,14 +31,12 @@ public class PatientTests {
 
     @Test
     public void testGetSurname() {
-        
         Patient patient = new Patient("tForename", "tSurname", "tEmail");
         assertEquals(patient.getSurname(), "tSurname");
     }
 
     @Test
-    public void testSetSurename() {
-        
+    public void testSetSurename() { 
         Patient patient = new Patient("tForename", "tSurname", "tEmail");
         patient.setSurname("changedName");
         assertEquals(patient.getSurname(), "changedName");
@@ -48,14 +44,12 @@ public class PatientTests {
 
     @Test
     public void testGetEmail() {
-        
         Patient patient = new Patient("tForename", "tSurname", "tEmail");
         assertEquals(patient.getEmail(), "tEmail");
     }
 
     @Test
     public void testSetEmail() {
-        
         Patient patient = new Patient("tForename", "tSurname", "tEmail");
         patient.setEmail("changedEmail");
         assertEquals(patient.getEmail(), "changedEmail");
@@ -63,7 +57,6 @@ public class PatientTests {
 
     @Test
     public void testGetSurgery() {
-        
         Patient patient = new Patient("tForename", "tSurname", "1997-03-03", 'M', "Great Britannia Street","tDiagnosis",
        "tTransplant", "tlocal_hospital", "tSurgery", "tComments");
         

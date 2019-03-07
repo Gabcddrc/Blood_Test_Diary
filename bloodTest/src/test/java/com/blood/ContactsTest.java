@@ -19,7 +19,7 @@ public class ContactsTest {
     @Test
     public void testgetContactNum() {
         Contacts contact = new Contacts(0, "tcontactNum","tnotes", 0,"tType");     
-        assertEquals(contact.getContactNum(), 0);
+        assertEquals(contact.getContactNum(), "tcontactNum");
     }
 
     @Test
@@ -31,7 +31,7 @@ public class ContactsTest {
 
     @Test
     public void testgetNotes() {
-        Contacts contact = new Contacts(0, "tcontactNum","tnotes", 0,"tType");     
+        Contacts contact = new Contacts(0, "tcontactNum","tNotes", 0,"tType");     
         assertEquals(contact.getNotes(), "tNotes");
     }
 
@@ -58,23 +58,23 @@ public class ContactsTest {
     @Test
     public void testgetType() {
         Contacts contact = new Contacts(0, "tcontactNum","tnotes", 0,"tType");    
-        assertEquals(contact.getNotes(), "tType");
+        assertEquals(contact.getType(), "tType");
     }
 
     @Test
     public void testSetType() {    
         Contacts contact = new Contacts(0, "tcontactNum","tnotes", 0,"tType");     
-        contact.setNotes("changedType"); 
-        assertEquals(contact.getIdcontact(), "changedType");
+        contact.setType("changedType"); 
+        assertEquals(contact.getType(), "changedType");
     }
         
-        @Test
-        public void testEmptyContacts() {   
-            Contacts contacts = new Contacts();
-            assertEquals(contacts.getContactNum(), null);
-            assertEquals(contacts.getIdpatient(), null);
-            assertEquals(contacts.getNotes(), null);
-            assertEquals(contacts.getType(), null);
-        }
+    @Test
+    public void testEmptyContacts() {   
+        Contacts contacts = new Contacts();
+        assertEquals(contacts.getContactNum(), null);
+        assertEquals(contacts.getIdpatient(), 0);
+        assertEquals(contacts.getNotes(), null);
+        assertEquals(contacts.getType(), null);
+    }
 
 }

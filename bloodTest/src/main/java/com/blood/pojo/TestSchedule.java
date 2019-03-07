@@ -60,10 +60,7 @@ public class TestSchedule {
         this.notified = notified;
         this.idlabel = idlabel;
     }
-    // getters to retrieve scheduling information for patients
-    
-    
-    
+
     //getters to retrieve scheduling information for patients
 
     public int getId() {
