@@ -16,6 +16,8 @@ import org.thymeleaf.context.Context;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.io.File;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -39,13 +41,19 @@ public class MailService {
             if (testSchedules.size() != 0) {
                 Date date = new Date();
                 long diff = testSchedule.getDate().getTime() - date.getTime();
-                if ((TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS) < 8)) {
-                    Patient patient = patientService.findById(testSchedule.getPatient().getId());
+                if ((TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS) < 8)&&!testSchedule.isNotified()) {
+                    Patient patient = testSchedule.getPatient();
                     MimeMessage message = mailSender.createMimeMessage();
+                    String location = patient.getLocal_hospital();
+                    SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    Date now = testSchedule.getDate();
+                    String str = df.format(now);
                     Context context = new Context();
                     context.setVariable("firstName", patient.getForename());
                     context.setVariable("lastName", patient.getSurname());
-                    String emailContent = templateEngine.process("notificationTemplate", context);
+                    context.setVariable("testTime",str);
+                    context.setVariable("location",location);
+                    String emailContent = templateEngine.process("sendAutomatedEmailTest", context);
                     try {
                         String email = patient.getEmail();
                         MimeMessageHelper helper = new MimeMessageHelper(message, true);
@@ -54,7 +62,8 @@ public class MailService {
                         helper.setSubject("Liver Test Notification");
                         helper.setText(emailContent, true);
                         mailSender.send(message);
-                        logger.info("Send Successful");
+                        testSchedule.setNotified(true);
+                        testScheduleService.save(testSchedule);
                     } catch (MessagingException e) {
                         logger.error("Send Failed！", e);
                     }
@@ -71,25 +80,25 @@ public class MailService {
         Context context = new Context();
         context.setVariable("firstName", patient.getForename());
         context.setVariable("lastName", patient.getSurname());
-                String emailContent = templateEngine.process("resultTemplate", context);
-                try {
-                    String email = patient.getEmail();
-                    FileSystemResource file = new FileSystemResource(new File(filePath));
-                    MimeMessageHelper helper = new MimeMessageHelper(message, true);
-                    String fileName = filePath.substring(filePath.lastIndexOf(File.separator));
-                    helper.addAttachment(fileName, file);
-                    helper.setFrom(from);
-                    helper.setTo(email);
-                    helper.setSubject("Liver Test Result");
-                    helper.setText(emailContent, true);
-                    mailSender.send(message);
-                    logger.info("Send Successful");
-                    return true;
-                } catch (MessagingException e) {
-                    logger.error("Send Failed！", e);
-                    return false;
-                }
-            }
+        String emailContent = templateEngine.process("resultTemplate", context);
+        try {
+            String email = patient.getEmail();
+            FileSystemResource file = new FileSystemResource(new File(filePath));
+            MimeMessageHelper helper = new MimeMessageHelper(message, true);
+            String fileName = filePath.substring(filePath.lastIndexOf(File.separator));
+            helper.addAttachment(fileName, file);
+            helper.setFrom(from);
+            helper.setTo(email);
+            helper.setSubject("Liver Test Result");
+            helper.setText(emailContent, true);
+            mailSender.send(message);
+            logger.info("Send Successful");
+            return true;
+        } catch (MessagingException e) {
+            logger.error("Send Failed！", e);
+            return false;
+        }
+    }
     public boolean sendDeleteResult(Patient patient) {
         MimeMessage message = mailSender.createMimeMessage();
         Context context = new Context();
@@ -111,4 +120,4 @@ public class MailService {
             return false;
         }
     }
-    }
+}

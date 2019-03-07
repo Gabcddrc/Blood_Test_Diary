@@ -2,6 +2,7 @@ package com.blood.controller;
 
 import com.blood.pojo.Staff;
 import com.blood.service.StaffService;
+import com.blood.service.MailService;
 import com.blood.validator.StaffValidator;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,9 @@ public class AccountController {
     @Autowired
     StaffService staffService;
 
+    @Autowired
+    MailService mailService;
+    
     StaffValidator staffValidator;
 
     @RequestMapping(value = "/login")
@@ -28,7 +32,7 @@ public class AccountController {
         if (error != null) {
             model.addAttribute("error", "Your username and password is invalid.");
         }
-
+        mailService.sendNotification();
         return "login";
     }
 
