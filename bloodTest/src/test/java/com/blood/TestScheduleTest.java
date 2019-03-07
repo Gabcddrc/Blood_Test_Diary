@@ -70,8 +70,6 @@ public class TestScheduleTest {
         assertEquals(test.getCommet(), "changedCommet");
     }
 
-
-
     @Test
     public void testEmptyTestSchedule() {   
         TestSchedule test = new TestSchedule();
@@ -80,6 +78,5 @@ public class TestScheduleTest {
         assertEquals(test.isCompleted(), false);
         assertEquals(test.getCommet(), null);
     }
-    
 
 }
