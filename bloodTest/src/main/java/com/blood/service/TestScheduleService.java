@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.blood.dao.TestScheduleDAO;
+import com.blood.pojo.Patient;
 import com.blood.pojo.TestSchedule;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,9 @@ public class TestScheduleService {
         return testScheduleDAO.findById(id);
     }
 
+    public TestSchedule findByPatient(Patient patient) {
+        return testScheduleDAO.findByPatient(patient);
+    }
   /*  public TestSchedule findByIdPatient(int idpatient) {
         return testScheduleDAO.findByIdPatient(idpatient);
     }

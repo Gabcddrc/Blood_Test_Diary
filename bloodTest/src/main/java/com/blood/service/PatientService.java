@@ -16,6 +16,7 @@ public class PatientService {
     public Patient findByEmail(String email) {
         return patientDAO.findByEmail(email);
     }
+    
 
     public void add(Patient patient) {
         patientDAO.save(patient);
