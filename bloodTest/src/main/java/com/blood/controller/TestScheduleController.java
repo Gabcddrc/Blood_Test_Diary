@@ -35,6 +35,7 @@ public class TestScheduleController {
 
     @RequestMapping(value="/addTest", method=RequestMethod.POST)
     public String addTest(@ModelAttribute("patient") Patient patient, @ModelAttribute("test") TestSchedule test, BindingResult bindingResult,Model model) {
+        System.out.print(test.getDate());
         Patient thePatient = patientService.findById(patient.getId());
         TestSchedule newTest = new TestSchedule(test.getOPA(), test.getDate(), test.isCompleted(), test.getCommet(), test.isNotified(), test.getIdlabel());
         newTest.setPatient(thePatient);
