@@ -29,9 +29,9 @@
           <div class="card-panel blue">
             <h5 class="white-text text-lighten-5">Upcoming test</h5>
             <div class="input-field">
-              <input type="text" class="white black-text autocomplete" id="autocomplete-input" placeholder="Search patient name or ID" />
+              <input type="text" id="idInput" onkeyup="searchPatientFunction()" placeholder="Search by patient id..." style="color: white;">
             </div>
-            <table class="centered transparent white-text">
+            <table class="centered transparent white-text" id="patientTable">
               <thead>
                 <tr>
                   <th>Patient Number</th>
@@ -46,7 +46,7 @@
               <tbody>
                 <tr th:each="test:${tests}">
                   <td th:text="${test.patient.id}"></td>
-                  <td>
+                  <td id="patient_name">
                     <span th:text="${test.patient.forename}"></span>
                     <span th:text="${test.patient.surname}"></span>
                   </td>
@@ -84,10 +84,10 @@
           <div class="card-panel blue">
             <h5 class="white-text text-lighten-5">Sending result</h5>
             <div class="input-field">
-              <input type="text" class="white black-text autocomplete" id="autocomplete-input" placeholder="Search patient name or ID" />
+              <input type="text" id="resultInput" onkeyup="searchResultFunction()" placeholder=" Search patient Id..." style="color: white;" this.placehol>
             </div>
 
-            <table class="transparent white-text">
+            <table class="transparent white-text" id="resultTable">
               <tr class="header">
                 <th>ID</th>
                 <th>Patient</th>
@@ -150,19 +150,19 @@
                             <div class="col s12 m4">
                               <label>
                                 <input type="checkbox" class="filled-in" checked="checked" />
-                                <span>Personal Email</span>
+                                <span style="color: white;">Personal Email</span>
                               </label>
                             </div>
                             <div class="col s12 m4">
                               <label>
                                 <input type="checkbox" class="filled-in" checked="checked" />
-                                <span>Personal GP</span>
+                                <span style="color: white;">Personal GP</span>
                               </label>
                             </div>
                           </div>
                           <div class="input-field col s12">
                             <input id="email" type="email" class="validate">
-                            <label for="email">Other Email</label>
+                            <label for="email" style="color: white;">Other Email</label>
                           </div>
                         </li>
                         <li>Comments:
@@ -172,7 +172,7 @@
                                 <div class="input-field col s6">
                                   <i class="material-icons prefix">mode_edit</i>
                                   <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
-                                  <label for="icon_prefix2">Add any</label>
+                                  <label for="icon_prefix2" style="color: white;">Add any</label>
                                 </div>
                               </div>
                             </form>
@@ -270,6 +270,47 @@
       })
     });
   </script>
+<script>
+  function searchPatientFunction() {
+    var input, filter, table, tr, td, i;
+    input = document.getElementById("idInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("patientTable");
+    tr = table.getElementsByTagName("tr");
+
+
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[0];
+      if (td) {
+        if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+  }
+
+  function searchResultFunction() {
+    var input, filter, table, tr, td, i;
+    input = document.getElementById("resultInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("resultTable");
+    tr = table.getElementsByTagName("tr");
+
+
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[0];
+      if (td) {
+        if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+  }
+</script>
 </body>
 
 </html>

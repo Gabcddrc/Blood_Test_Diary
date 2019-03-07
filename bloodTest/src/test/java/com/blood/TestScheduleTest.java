@@ -15,24 +15,24 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
 public class TestScheduleTest {
-    
+
 
     @Test
-    public void testGetId() {  
+    public void testGetId() {
         TestSchedule test = new TestSchedule("tOPA", "tCommet", true, false, 0);
         assertEquals(test.getId(), 0);
     }
 
     @Test
     public void testSetId() {
-        
+
         TestSchedule test = new TestSchedule("tOPA", "tCommet", true, false, 0);
         test.setId(1);
         assertEquals(test.getId(), 1);
     }
 
     @Test
-    public void testGetOPA() {  
+    public void testGetOPA() {
         TestSchedule test = new TestSchedule("tOPA", "tCommet", true, false, 0);
         assertEquals(test.getOPA(), "tOPA");
     }
@@ -45,7 +45,7 @@ public class TestScheduleTest {
     }
 
     @Test
-    public void testisCompleted() {  
+    public void testisCompleted() {
         TestSchedule test = new TestSchedule("tOPA", "tCommet", true, false, 0);
         assertEquals(test.isCompleted(), true);
     }
@@ -58,7 +58,7 @@ public class TestScheduleTest {
     }
 
     @Test
-    public void testGetCommet() {  
+    public void testGetCommet() {
         TestSchedule test = new TestSchedule("tOPA", "tCommet", true, false, 0);
         assertEquals(test.getCommet(), "tCommet");
     }
@@ -71,7 +71,7 @@ public class TestScheduleTest {
     }
 
     @Test
-    public void testEmptyTestSchedule() {   
+    public void testEmptyTestSchedule() {
         TestSchedule test = new TestSchedule();
         assertEquals(test.getId(), 0);
         assertEquals(test.getOPA(), null);

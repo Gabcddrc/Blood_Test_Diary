@@ -61,6 +61,9 @@ public class TestSchedule {
         this.idlabel = idlabel;
     }
 
+    public TestSchedule(String tOPA, String tCommet, boolean b, boolean b1, int i) {
+    }
+
     //getters to retrieve scheduling information for patients
 
     public int getId() {
