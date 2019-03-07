@@ -1,5 +1,9 @@
 package com.blood.controller;
 
+import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 import com.blood.pojo.Patient;
 import com.blood.pojo.TestSchedule;
 import com.blood.service.PatientService;
@@ -16,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
 @Controller
 public class TestScheduleController {
   @Autowired
@@ -24,36 +27,46 @@ public class TestScheduleController {
   @Autowired
   private PatientService patientService;
 
-    @RequestMapping(value = "/addTest/{id}", method = RequestMethod.GET)
-    public String getAddTest(@PathVariable("id") String id, Model model){
-        Patient patient = this.patientService.findById(Integer.parseInt(id));
-        model.addAttribute("patient", patient);
-        model.addAttribute("test", new TestSchedule());
+  @RequestMapping(value = "/addTest/{id}", method = RequestMethod.GET)
+  public String getAddTest(@PathVariable("id") String id, Model model) {
+    Patient patient = this.patientService.findById(Integer.parseInt(id));
+    model.addAttribute("patient", patient);
+    model.addAttribute("test", new TestSchedule());
+
+    return "addTest";
+  }
+
+  public Date formatDate(String date) throws ParseException {
+    String[] dates = date.split("T");
+    date =  dates[0] + " " + dates[1] +":00";
+    SimpleDateFormat formatter=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
+    //SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    Date datetime = formatter.parse(date);
+    return datetime;
+  }
+
+  @RequestMapping(value = "/addTest", method = RequestMethod.POST)
+  public String addTest(@ModelAttribute("patient") Patient patient, @ModelAttribute("test") TestSchedule test,
+      BindingResult bindingResult, Model model) throws ParseException {
         
-        return "addTest";
+    Patient thePatient = patientService.findById(patient.getId());
+
+    TestSchedule newTest = new TestSchedule(test.getOPA(), formatDate(patient.getDOB()), test.isCompleted(), test.getCommet(),
+        test.isNotified(), test.getIdlabel());
+    newTest.setPatient(thePatient);
+    // if (tScheduleService.findByPatient(thePatient) != null) {
+    //   newTest.setId(tScheduleService.findByPatient(thePatient).getId());
+    // }
+    // if (bindingResult.hasErrors()) {
+    // return "editPatients";
+    // }
+    try {
+      tScheduleService.save(newTest);
+    } catch (Exception e) {
+      return "addTest";
     }
-
-    @RequestMapping(value="/addTest", method=RequestMethod.POST)
-    public String addTest(@ModelAttribute("patient") Patient patient, @ModelAttribute("test") TestSchedule test, BindingResult bindingResult,Model model) {
-        Patient thePatient = patientService.findById(patient.getId());
-        TestSchedule newTest = new TestSchedule(test.getOPA(), test.getDate(), test.isCompleted(), test.getCommet(), test.isNotified(), test.getIdlabel());
-        newTest.setPatient(thePatient);
-        if(tScheduleService.findByPatient(thePatient) != null){
-          newTest.setId(tScheduleService.findByPatient(thePatient).getId());
-        }
-        // if (bindingResult.hasErrors()) {
-        //     return "editPatients";
-        // }
-        try {
-            tScheduleService.save(newTest);
-        } catch (Exception e) {
-            return "addTest";
-        }
-        return "redirect:/home";
-    }
-    
-
-
+    return "redirect:/home";
+  }
 
   private static Patient patient;
 
@@ -79,32 +92,31 @@ public class TestScheduleController {
   @RequestMapping(value = "/editLabel", method = RequestMethod.POST)
   public String editLabel(@RequestParam(value = "checkboxName", required = false) String[] checkboxValue,
       @RequestParam(value = "submitBtn", required = false) String submitBtn, Model model) {
-        try {
-          if(submitBtn.equals(URGENT) && checkboxValue.length>0){
-            for (String id : checkboxValue) {
-              TestSchedule ts = this.tScheduleService.findById(Integer.parseInt(id));
-              ts.setIdlabel(COLOR_ORANGE);
-              tScheduleService.updateLabel(ts);
-            }
-          }else if(submitBtn.equals(MONITOR) && checkboxValue.length>0){
-            for (String id : checkboxValue) {
-              TestSchedule ts = this.tScheduleService.findById(Integer.parseInt(id));
-              ts.setIdlabel(COLOR_GREEN);
-              tScheduleService.updateLabel(ts);
-            }
-          }else if(submitBtn.equals(CRITICAL) && checkboxValue.length>0){
-            for (String id : checkboxValue) {
-              TestSchedule ts = this.tScheduleService.findById(Integer.parseInt(id));
-              ts.setIdlabel(COLOR_RED);
-              tScheduleService.updateLabel(ts);
-            }
-          }
-          
-      } catch (Exception e) {
-          return "redirect:/home";
+    try {
+      if (submitBtn.equals(URGENT) && checkboxValue.length > 0) {
+        for (String id : checkboxValue) {
+          TestSchedule ts = this.tScheduleService.findById(Integer.parseInt(id));
+          ts.setIdlabel(COLOR_ORANGE);
+          tScheduleService.updateLabel(ts);
+        }
+      } else if (submitBtn.equals(MONITOR) && checkboxValue.length > 0) {
+        for (String id : checkboxValue) {
+          TestSchedule ts = this.tScheduleService.findById(Integer.parseInt(id));
+          ts.setIdlabel(COLOR_GREEN);
+          tScheduleService.updateLabel(ts);
+        }
+      } else if (submitBtn.equals(CRITICAL) && checkboxValue.length > 0) {
+        for (String id : checkboxValue) {
+          TestSchedule ts = this.tScheduleService.findById(Integer.parseInt(id));
+          ts.setIdlabel(COLOR_RED);
+          tScheduleService.updateLabel(ts);
+        }
       }
-   
-   
+
+    } catch (Exception e) {
+      return "redirect:/home";
+    }
+
     return "redirect:/home";
   }
 

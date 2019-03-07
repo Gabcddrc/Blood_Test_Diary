@@ -24,7 +24,7 @@
                     <div class="col s12 s7">
                         <div class="card">
                             <div class="card-image">
-                                <img th:src="@{images/pen.jpg}" />
+                                <img th:src="@{/images/pen.jpg}" />
                                 <span class="card-title">Fill In Patient Info</span>
                             </div>
                             <div class="card-content">
@@ -36,7 +36,7 @@
                                             <div class="input-field col s6" th:object="${patient}">
                                                 <input id="patientId" type="text" th:field="*{id}" placeholder="patient Id"
                                                     readonly>
-                                                    <label for="patientid">Patient_id</label>
+                                                <label for="patientid">Patient_id</label>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -45,22 +45,18 @@
                                                     placeholder="OPA">
                                                 <label for="OPA">OPA</label>
                                             </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="input-field col s12">
-                                                <input id="date" th:field="*{date}" type="date" class="validate"
-                                                    placeholder="Date">
+                                            <div class="col s6" th:object="${patient}">
+                                                <input id="date" th:field="*{DOB}" type="datetime-local" class="validate">
                                                 <label for="date">Date</label>
                                             </div>
                                         </div>
 
                                         <div class="row">
                                             <div class="col s6">
-                                              <select th:field="*{completed}" class="browser-default">
-                                                <option value="1">Compeleted</option>
-                                                <option value="0">Not Completed</option>
-                                              </select>
+                                                <select th:field="*{completed}" class="browser-default">
+                                                    <option value="1">Compeleted</option>
+                                                    <option value="0">Not Completed</option>
+                                                </select>
                                             </div>
                                         </div>
 
@@ -81,7 +77,7 @@
                                                     <option value="badge green">badge green</option>
                                                     <option value="badge orange">badge orange</option>
                                                 </select>
-                                                   
+
                                             </div>
                                         </div>
 
