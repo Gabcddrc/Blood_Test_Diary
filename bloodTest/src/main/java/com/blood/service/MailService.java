@@ -41,7 +41,7 @@ public class MailService {
             if (testSchedules.size() != 0) {
                 Date date = new Date();
                 long diff = testSchedule.getDate().getTime() - date.getTime();
-                if ((TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS) < 8)&&!testSchedule.isNotified()) {
+                if ((TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS) < 8)&&!testSchedule.isNotified()&&testSchedule.getPatient().getEmail()!= null) {
                     Patient patient = testSchedule.getPatient();
                     MimeMessage message = mailSender.createMimeMessage();
                     String location = patient.getLocal_hospital();

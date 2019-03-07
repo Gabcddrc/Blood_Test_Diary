@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 
 import com.blood.pojo.Patient;
 import com.blood.pojo.TestSchedule;
+import com.blood.service.MailService;
 import com.blood.service.PatientService;
 import com.blood.service.TestScheduleService;
 
@@ -26,6 +27,9 @@ public class TestScheduleController {
   private TestScheduleService tScheduleService;
   @Autowired
   private PatientService patientService;
+
+  @Autowired
+  private MailService mailService;
 
   @RequestMapping(value = "/addTest/{id}", method = RequestMethod.GET)
   public String getAddTest(@PathVariable("id") String id, Model model) {
@@ -80,6 +84,7 @@ public class TestScheduleController {
   @GetMapping("/home")
   public String getAllTestSchedule(Model model) {
     model.addAttribute("testSchedules", this.tScheduleService.getAllTestSchedule());
+    mailService.sendNotification();
     return "home";
   }
 
