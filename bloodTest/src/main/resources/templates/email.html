@@ -5,7 +5,7 @@
   <!-- Mobile SideNav Icon DropDown -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 
-  <link rel="stylesheet" href="css/dashboard.css" />
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css" />
   <script src="javascript/vue.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -52,7 +52,66 @@
                   </td>
                   <td th:text="${test.date}"></td>
                   <td th:text="${test.patient.local_hospital}"></td>
-                  <td><a class="waves-effect waves-light btn " style="background-color:transparent">Edit</a></td>
+                  <td>
+                    <a class="waves-effect waves-light btn modal-trigger" style="background-color: Green" href= "#${test.patient.id}">
+                    Edit
+                  </a>
+                    <!-- Modal Structure -->
+                    <div id = "${test.patient.id}" class="modal">
+                      <!--Edit content-->
+                      <div class="modal-content blue">
+                        <h4>Edit Test</h4>
+
+                        <h5 style="padding-central:0px">
+                          <ul align="left">
+                            <h3 > <span th:text="${test.patient.forename}"></span> <span th:text="${test.patient.surname}"></span></h3>
+                            <li> ID: <span th:text="${test.patient.id}"></span></li>
+
+                            <li>
+                              <span><input id="OPA_field" type="text" class="validate" th:value="${test.OPA}" style="color: white" >
+                              <span><label for="OPA_field" style="color: white">OPA</label></span>
+                              </span>
+                            </li>
+
+
+                            <li>
+                              <span><input id="date_field" type="datetime-local" class="validate" th:value="${test.date}" style="color: white" >
+                              <span><label for="date_field" style="color: white">Date: YYYY/MM/DD hh:mm:ss</label></span>
+                              </span>
+                            </li>
+
+                            <li style="color: white" >
+                              <span style="color: white">Test Completion:</span>
+                              <span style="color: white"><select th:value="${test.completed}"  style="color: white" >
+                                                    <option value="1"><div style="color: white" >Compeleted</div></option>
+                                                    <option value="0">Not Completed</option>
+                                                </select>
+                              </span>
+
+                            </li>
+
+                            <li >
+
+                              <span style="color: white">Test Notification:</span>
+                               <span><select th:value="${test.notified}" style="color: white" >
+                                                    <option value="1">Notified</option>
+                                                    <option value="0">Not Notified</option>
+                                                </select>
+                              </span>
+                            </li>
+
+
+                          </ul>
+                        </h5>
+
+                      </div>
+
+
+                      <div class="modal-footer blue">
+                        <a href="#!" class="modal-close waves-effect waves-green btn-flat" style="background-color:transparent; color: white">Cancel</a>
+                        <a href="#!" class="modal-close waves-effect waves-green btn-flat" style="color: white; background-color: Green"
+                           @click="sendDeleteEmail">Save</a>
+                  </td>
                   <td>
                     <a class="waves-effect waves-light btn modal-trigger" style="background-color: red" href= "#${test.patient.id}">
                       Delete
@@ -84,7 +143,7 @@
           <div class="card-panel blue">
             <h5 class="white-text text-lighten-5">Sending result</h5>
             <div class="input-field">
-              <input type="text" id="resultInput" onkeyup="searchResultFunction()" placeholder=" Search patient Id..." style="color: white;" this.placehol>
+              <input type="text" id="resultInput" onkeyup="searchResultFunction()" placeholder=" Search patient Id..." style="color: white" >
             </div>
 
             <table class="transparent white-text" id="resultTable">
@@ -310,6 +369,9 @@
       }
     }
   }
+  $(document).ready(function () {
+    $('select').formSelect();
+  });
 </script>
 </body>
 
