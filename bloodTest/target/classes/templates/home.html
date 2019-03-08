@@ -31,14 +31,13 @@
               <thead>
                 <tr>
                   <th></th>
-                  <th>ID</th>
+                  <th>NAME & SURNAME</th>
                   <th>OPA</th>
-                  <th>DATE</th>
+                  <th>CURRENT TEST</th>
                   <th>COMPLETED</th>
-                  <th>COMMENT</th>
                   <th>NOTIFIED</th>
-                  <th>idpatient</th>
-                  <th>Flag</th>
+                  <th>NEXT TEST</th>
+                  <th>COMMENT</th>
                   <th>Flag</th>
                 </tr>
               </thead>
@@ -46,23 +45,12 @@
               <tbody>
                 <tr th:each="testSchedule:${testSchedules}">
                   <td><label><input th:id="${testSchedule.id}" name="checkboxName" th:value="${testSchedule.id}" type="checkbox" /><span></span></label></td>
-                  <td th:text="${testSchedule.id}"></td>
-                  <td th:text="${testSchedule.OPA}"></td>
-                  <td th:text="${testSchedule.date}"></td>
-                  <td th:text="${testSchedule.completed}"></td>
-                  <td th:text="${testSchedule.commet}"></td>
-                  <td th:text="${testSchedule.notified}"></td>
-                  <td th:text="${testSchedule.patient.id}"></td>
-                  <td th:text="${testSchedule.idlabel}"></td>
-                  <td><span th:class="${testSchedule.idlabel}" id="b1"></span></td>
-
 
                   <td>
-
                     <!-- Modal Trigger -->
-                    <a th:attr="href='#' + ${testSchedule.patient.id}" class="waves-effect waves-light btn modal-trigger">Modal</a>
+                    <a th:attr="href='#modal' + ${testSchedule.patient.id}" class="waves-effect waves-light btn modal-trigger" > <span th:text="${testSchedule.patient.forename}"></span> <span th:text="${testSchedule.patient.surname}"></span></a>
                     <!-- Modal Structure -->
-                    <div th:attr="id = ${testSchedule.patient.id}" class="modal modal-fixed-footer">
+                    <div th:attr="id = 'modal' + ${testSchedule.patient.id}" class="modal modal-fixed-footer">
                       <div class="modal-content">
 
                         <blockquote>
@@ -99,6 +87,14 @@
                       </div>
                     </div>
                   </td>
+                  <td th:text="${testSchedule.OPA}"></td>
+                  <td th:text="${testSchedule.date}"></td>
+                  <td th:text="${testSchedule.completed}"></td>
+                  <td th:text="${testSchedule.notified}"></td>
+                  <td th:text="${testSchedule.nextSchedule}"></td>
+                  <td th:text="${testSchedule.commet}"></td>
+                  <td><span th:class="${testSchedule.idlabel}" id="b1"></span></td>
+
                 </tr>
 
 
