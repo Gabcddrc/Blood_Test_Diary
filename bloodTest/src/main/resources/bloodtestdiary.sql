@@ -23,6 +23,7 @@ CREATE TABLE IF NOT EXISTS `bloodtestdiary`.`patients` (
   `surname` VARCHAR(100) NULL DEFAULT NULL,
   `DOB` DATE NULL DEFAULT NULL,
   `email` VARCHAR(150) NULL DEFAULT NULL,
+  `phone` VARCHAR(45) NULL DEFAULT NULL,
   `sex` CHAR(1) NULL DEFAULT NULL,
   `address` VARCHAR(1000) NULL DEFAULT NULL,
   `diagnosis` LONGTEXT NULL DEFAULT NULL,
@@ -56,6 +57,7 @@ CREATE TABLE IF NOT EXISTS `bloodtestdiary`.`test_carried_over` (
   `OPA` VARCHAR(45) NULL,
   `test_carried_overcol` VARCHAR(45) NULL,
   `date` DATETIME NULL,
+  `next_schedule` DATETIME NULL DEFAULT NULL,
   `completed` TINYINT NULL DEFAULT 0,
   `commet` VARCHAR(100) NULL,
   `notified` TINYINT NULL DEFAULT 0,
@@ -137,6 +139,7 @@ CREATE TABLE IF NOT EXISTS `bloodtestdiary`.`test_schedule` (
   `idtest_schedule` INT NOT NULL AUTO_INCREMENT,
   `OPA` VARCHAR(45) NULL DEFAULT NULL,
   `date` DATETIME NULL DEFAULT NULL,
+  `next_schedule` DATETIME NULL DEFAULT NULL,
   `completed` TINYINT(4) NULL DEFAULT 0,
   `commet` VARCHAR(100) NULL DEFAULT NULL,
   `notified` TINYINT(4) NULL DEFAULT '0',
@@ -151,10 +154,10 @@ CREATE TABLE IF NOT EXISTS `bloodtestdiary`.`test_schedule` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
   -- CONSTRAINT `idlabel`
-    --  KEY (`idlabel`)
-   -- REFERENCES `bloodtestdiary`.`label` (`idlabel`)
-    -- ON DELETE NO ACTION
-    -- ON UPDATE NO ACTION
+  -- KEY (`idlabel`)
+  -- REFERENCES `bloodtestdiary`.`label` (`idlabel`)
+  -- ON DELETE NO ACTION
+  -- ON UPDATE NO ACTION
     )
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;

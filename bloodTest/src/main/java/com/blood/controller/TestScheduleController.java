@@ -42,9 +42,9 @@ public class TestScheduleController {
 
   public Date formatDate(String date) throws ParseException {
     String[] dates = date.split("T");
-    date =  dates[0] + " " + dates[1] +":00";
-    SimpleDateFormat formatter=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
-    //SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    date = dates[0] + " " + dates[1] + ":00";
+    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    // SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     Date datetime = formatter.parse(date);
     return datetime;
   }
@@ -52,14 +52,14 @@ public class TestScheduleController {
   @RequestMapping(value = "/addTest", method = RequestMethod.POST)
   public String addTest(@ModelAttribute("patient") Patient patient, @ModelAttribute("test") TestSchedule test,
       BindingResult bindingResult, Model model) throws ParseException {
-        
+
     Patient thePatient = patientService.findById(patient.getId());
 
-    TestSchedule newTest = new TestSchedule(test.getOPA(), formatDate(patient.getDOB()), test.isCompleted(), test.getCommet(),
-        test.isNotified(), test.getIdlabel());
+    TestSchedule newTest = new TestSchedule(test.getOPA(), formatDate(patient.getDOB()), test.isCompleted(),
+        test.getCommet(), test.isNotified(), test.getIdlabel());
     newTest.setPatient(thePatient);
     // if (tScheduleService.findByPatient(thePatient) != null) {
-    //   newTest.setId(tScheduleService.findByPatient(thePatient).getId());
+    // newTest.setId(tScheduleService.findByPatient(thePatient).getId());
     // }
     // if (bindingResult.hasErrors()) {
     // return "editPatients";
@@ -84,7 +84,7 @@ public class TestScheduleController {
   @GetMapping("/home")
   public String getAllTestSchedule(Model model) {
     model.addAttribute("testSchedules", this.tScheduleService.getAllTestSchedule());
-    mailService.sendNotification();
+    //mailService.sendNotification(); // <-- TO BE ENABLE (when you enable say to the group)
     return "home";
   }
 

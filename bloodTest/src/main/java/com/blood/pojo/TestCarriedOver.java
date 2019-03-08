@@ -24,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "test_carried_over")
-@JsonIgnoreProperties({"handler", "hibernateLazyInitializer"})
+@JsonIgnoreProperties({ "handler", "hibernateLazyInitializer" })
 public class TestCarriedOver {
 
     @Id
@@ -35,6 +35,8 @@ public class TestCarriedOver {
     private String OPA;
     @Column(name = "date")
     private String date;
+    @Column(name = "next_schedule")
+    private String nextSchedule;
     @Column(name = "completed")
     private boolean completed;
     @Column(name = "commet")
@@ -46,7 +48,7 @@ public class TestCarriedOver {
     @Column(name = "idlabel")
     private int idlabel;
 
-    //getters and setters for carrying over blood test information
+    // getters and setters for carrying over blood test information
 
     public int getIdtest_carried_over() {
         return idtest_carried_over;
@@ -70,6 +72,14 @@ public class TestCarriedOver {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getNextSchedule() {
+        return nextSchedule;
+    }
+
+    public void setNextSchedule(String nextSchedule) {
+        this.nextSchedule = nextSchedule;
     }
 
     public boolean isCompleted() {
