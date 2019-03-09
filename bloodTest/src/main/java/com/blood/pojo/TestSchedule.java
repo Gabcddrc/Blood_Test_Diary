@@ -38,7 +38,7 @@ public class TestSchedule {
     @Column(name = "date")
     private Date date;
     @Column(name = "next_schedule")
-    private String nextSchedule;
+    private Date nextSchedule;
     @Column(name = "completed")
     private boolean completed;
     @Column(name = "commet")
@@ -55,13 +55,14 @@ public class TestSchedule {
 
     }
 
-    public TestSchedule(String OPA, Date date, boolean completed, String comment, boolean notified, String idlabel) {
+    public TestSchedule(String OPA, Date date, boolean completed, String comment, boolean notified, String idlabel, Date nextSchedule) {
         this.OPA = OPA;
         this.date = date;
         this.completed = completed;
         this.commet = comment;
         this.notified = notified;
         this.idlabel = idlabel;
+        this.nextSchedule = nextSchedule;
     }
 
     // getters to retrieve scheduling information for patients
@@ -90,11 +91,11 @@ public class TestSchedule {
         this.date = date;
     }
 
-    public String getNextSchedule() {
+    public Date getNextSchedule() {
         return nextSchedule;
     }
 
-    public void setNextSchedule(String nextSchedule) {
+    public void setNextSchedule(Date nextSchedule) {
         this.nextSchedule = nextSchedule;
     }
 

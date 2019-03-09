@@ -56,7 +56,7 @@ public class TestScheduleController {
     Patient thePatient = patientService.findById(patient.getId());
 
     TestSchedule newTest = new TestSchedule(test.getOPA(), formatDate(patient.getDOB()), test.isCompleted(),
-        test.getCommet(), test.isNotified(), test.getIdlabel());
+        test.getCommet(), test.isNotified(), test.getIdlabel(), formatDate(patient.getComments()));
     newTest.setPatient(thePatient);
     // if (tScheduleService.findByPatient(thePatient) != null) {
     // newTest.setId(tScheduleService.findByPatient(thePatient).getId());

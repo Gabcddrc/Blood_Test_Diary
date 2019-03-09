@@ -25,7 +25,7 @@
                         <div class="card">
                             <div class="card-image">
                                 <img th:src="@{/images/pen.jpg}" />
-                                <span class="card-title">Fill In Patient Info</span>
+                                <span class="card-title">Fill In Test Info</span>
                             </div>
                             <div class="card-content">
 
@@ -39,15 +39,14 @@
                                                 <label for="patientid">Patient_id</label>
                                             </div>
                                         </div>
-                                        <div class="row">
+                                        <div class="row" th:object="${patient}">
                                             <div class="col s6">
-                                                <input id="OPA" th:field="*{OPA}" type="text" class="validate"
-                                                    placeholder="OPA">
-                                                <label for="OPA">OPA</label>
-                                            </div>
-                                            <div class="col s6" th:object="${patient}">
                                                 <input id="date" th:field="*{DOB}" type="datetime-local" class="validate">
                                                 <label for="date">Date</label>
+                                            </div>
+                                            <div class="col s6">
+                                                <input id="date" th:field="*{comments}" type="datetime-local" class="validate">
+                                                <label for="date">next test</label>
                                             </div>
                                         </div>
 
@@ -58,6 +57,7 @@
                                                     <option value="0">Not Completed</option>
                                                 </select>
                                             </div>
+
                                         </div>
 
                                         <div class="row">
@@ -76,6 +76,7 @@
                                                     <option value="badge red">badge red</option>
                                                     <option value="badge green">badge green</option>
                                                     <option value="badge orange">badge orange</option>
+                                                    <option value="OPA">OPA</option>
                                                 </select>
 
                                             </div>
@@ -89,7 +90,7 @@
                                             </div>
                                         </div>
 
-                                        <input type="submit" value="Add Patient" class=" waves-light btn blue waves-effect">
+                                        <input type="submit" value="Add Test" class=" waves-light btn blue waves-effect">
                                     </form>
                                 </div>
 
