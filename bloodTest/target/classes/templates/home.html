@@ -31,6 +31,7 @@
               <thead>
                 <tr>
                   <th></th>
+                  <th></th>
                   <th>NAME & SURNAME</th>
                   <th>OPA</th>
                   <th>CURRENT TEST</th>
@@ -45,10 +46,83 @@
               <tbody>
                 <tr th:each="testSchedule:${testSchedules}">
                   <td><label><input th:id="${testSchedule.id}" name="checkboxName" th:value="${testSchedule.id}" type="checkbox" /><span></span></label></td>
+                  <!-- edit test modal -->
+                  <td>
+                    <a class="waves-effect waves-light btn modal-trigger" href="#${test.patient.id}">
+                      Edit
+                    </a>
+                    <!-- Modal Structure -->
+                    <div id="${test.patient.id}" class="modal">
+                      <!--Edit content-->
+                      <div class="modal-content ">
+                        <h4>Edit Test</h4>
+                        <div class="row">
+                          <form method="POST" class="col s12">
+                            <div class="row">
+                              <div class="input-field col s6">
+                                <input id="patientId" type="text" placeholder="patient Id" readonly>
+                                <label for="patientid">Patient_id</label>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col s6">
+                                <label for="date">Date</label>
+                                <input id="date" type="datetime-local" class="validate">
+                              </div>
+                              <div class="col s6">
+                                <label for="date">next test</label>
+                                <input id="date" type="datetime-local" class="validate">
+                              </div>
+                            </div>
+
+                            <div class="row">
+                              <div class="col s6">
+                                <select class="browser-default">
+                                  <option value="1">Notified</option>
+                                  <option value="0">Not Notified</option>
+                                </select>
+                              </div>
+                              <div class="col s6">
+                                <select class="browser-default">
+                                  <option value="1">Compeleted</option>
+                                  <option value="0">Not Completed</option>
+                                </select>
+                              </div>
+
+                            </div>
+
+
+                            <div class="row">
+                              <div class="col s12">
+                                <label for="label">label</label>
+                                <select id="label" class="browser-default">
+                                  <option value="badge red">badge red</option>
+                                  <option value="badge green">badge green</option>
+                                  <option value="badge orange">badge orange</option>
+                                  <option value="OPA">OPA</option>
+                                </select>
+                              </div>
+                            </div>
+
+                            <div class="row">
+                              <div class="input-field col s12">
+                                <input id="Comments" type="text" placeholder="comment" class="validate">
+                                <label for="Comments">Comments</label>
+                              </div>
+                            </div>
+                            <div class="modal-footer">
+                              <a href="#!" class=" waves-light btn grey waves-effect">Cancel</a>
+                              <a href="#!" class=" waves-light btn blue waves-effect" @click="sendDeleteEmail">Save</a>
+                            </div>
+
+                          </form>
+                        </div>
+                  </td>
 
                   <td>
                     <!-- Modal Trigger -->
-                    <a th:attr="href='#modal' + ${testSchedule.patient.id}" class="waves-effect waves-light btn modal-trigger" > <span th:text="${testSchedule.patient.forename}"></span> <span th:text="${testSchedule.patient.surname}"></span></a>
+                    <a th:attr="href='#modal' + ${testSchedule.patient.id}" class="waves-effect waves-light btn modal-trigger">
+                      <span th:text="${testSchedule.patient.forename}"></span> <span th:text="${testSchedule.patient.surname}"></span></a>
                     <!-- Modal Structure -->
                     <div th:attr="id = 'modal' + ${testSchedule.patient.id}" class="modal modal-fixed-footer">
                       <div class="modal-content">
