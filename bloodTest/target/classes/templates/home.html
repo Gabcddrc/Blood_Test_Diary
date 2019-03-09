@@ -48,16 +48,16 @@
                   <td><label><input th:id="${testSchedule.id}" name="checkboxName" th:value="${testSchedule.id}" type="checkbox" /><span></span></label></td>
                   <!-- edit test modal -->
                   <td>
-                    <a class="waves-effect waves-light btn modal-trigger" href="#${test.patient.id}">
+                    <a class="waves-effect waves-light btn modal-trigger" th:attr="href='#edit' + ${testSchedule.patient.id}">
                       Edit
                     </a>
                     <!-- Modal Structure -->
-                    <div id="${test.patient.id}" class="modal">
+                    <div th:attr="id = 'edit' + ${testSchedule.patient.id}" class="modal">
                       <!--Edit content-->
                       <div class="modal-content ">
                         <h4>Edit Test</h4>
                         <div class="row">
-                          <form method="POST" class="col s12">
+                          <form th:action="@{/editTest}" method="POST" class="col s12">
                             <div class="row">
                               <div class="input-field col s6">
                                 <input id="patientId" type="text" placeholder="patient Id" readonly>
@@ -112,7 +112,7 @@
                             </div>
                             <div class="modal-footer">
                               <a href="#!" class=" waves-light btn grey waves-effect">Cancel</a>
-                              <a href="#!" class=" waves-light btn blue waves-effect" @click="sendDeleteEmail">Save</a>
+                              <div><input class="btn-large waves effect waves-dark blue" type="submit" value="Submit" /> </div>
                             </div>
 
                           </form>

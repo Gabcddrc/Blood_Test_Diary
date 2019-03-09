@@ -40,6 +40,12 @@ public class TestScheduleController {
     return "addTest";
   }
 
+  @RequestMapping(value = "/editTest")
+  public String editTest(@ModelAttribute("testEdit") TestSchedule test) {
+
+      return "home";
+  }
+
   public Date formatDate(String date) throws ParseException {
     String[] dates = date.split("T");
     date = dates[0] + " " + dates[1] + ":00";
@@ -84,6 +90,7 @@ public class TestScheduleController {
   @GetMapping("/home")
   public String getAllTestSchedule(Model model) {
     model.addAttribute("testSchedules", this.tScheduleService.getAllTestSchedule());
+    model.addAttribute("testEdit", new TestSchedule());
     //mailService.sendNotification(); // <-- TO BE ENABLE (when you enable say to the group)
     return "home";
   }
