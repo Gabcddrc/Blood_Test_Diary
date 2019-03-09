@@ -7,6 +7,7 @@
 
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css" />
+  <link rel="stylesheet" href="css/email.css" />
   <script src="javascript/vue.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
@@ -29,7 +30,7 @@
           <div class="card-panel blue">
             <h5 class="white-text text-lighten-5">Upcoming test</h5>
             <div class="input-field">
-              <input type="text" id="idInput" onkeyup="searchPatientFunction()" placeholder="Search by patient id..." style="color: white;">
+              <input type="text" id="idInput" onkeyup="searchPatientFunction()" placeholder="Search by patient forename..." style="color: white;">
             </div>
             <table class="centered transparent white-text" id="patientTable">
               <thead>
@@ -331,7 +332,7 @@
     table = document.getElementById("patientTable");
     tr = table.getElementsByTagName("tr");
     for (i = 0; i < tr.length; i++) {
-      td = tr[i].getElementsByTagName("td")[0];
+      td = tr[i].getElementsByTagName("td")[1];
       if (td) {
         if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
           tr[i].style.display = "";
