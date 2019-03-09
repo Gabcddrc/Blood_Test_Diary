@@ -40,10 +40,49 @@ public class TestScheduleController {
     return "addTest";
   }
 
-  @RequestMapping(value = "/editTest")
-  public String editTest(@ModelAttribute("testEdit") TestSchedule test) {
+  public String dateToString(Date date){
+    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    String dateString = formatter.format(date);
+    String [] dateArr = dateString.split(" ");
+    String [] dateArr2 = dateArr[1].split(":");
+    dateString = dateArr[0] + "T" + dateArr2[0] + ":" + dateArr2[1];
+    return dateString;
+  }
 
-      return "home";
+  @RequestMapping(value = "/editTest/{id}", method = RequestMethod.GET)
+  public String getTestsById(@PathVariable("id") String id, Model model) {
+      TestSchedule testSchedule = this.tScheduleService.findById(Integer.parseInt(id));
+      Patient patient = testSchedule.getPatient();
+      patient.setDOB(dateToString(testSchedule.getDate()));
+      patient.setComments(dateToString(testSchedule.getNextSchedule()));
+      model.addAttribute("testEdit", testSchedule);
+      model.addAttribute("patient", patient);
+
+      return "editTest";
+  }
+
+
+  @RequestMapping(value = "/editTest", method = RequestMethod.POST)
+  public String editTest(@ModelAttribute("patient") Patient patient, @ModelAttribute("testEdit") TestSchedule test,
+      BindingResult bindingResult, Model model) throws ParseException {
+    Patient thePatient = patientService.findById(patient.getId());
+
+    TestSchedule newTest = new TestSchedule(test.getOPA(), formatDate(patient.getDOB()), test.isCompleted(),
+        test.getCommet(), test.isNotified(), test.getIdlabel(), formatDate(patient.getComments()));
+    newTest.setPatient(thePatient);
+    newTest.setId(test.getId());
+    // if (tScheduleService.findByPatient(thePatient) != null) {
+    // newTest.setId(tScheduleService.findByPatient(thePatient).getId());
+    // }
+    // if (bindingResult.hasErrors()) {
+    // return "editPatients";
+    // }
+    try {
+      tScheduleService.save(newTest);
+    } catch (Exception e) {
+      return "editTest";
+    }
+    return "redirect:/home";
   }
 
   public Date formatDate(String date) throws ParseException {

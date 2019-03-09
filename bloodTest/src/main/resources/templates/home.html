@@ -8,8 +8,6 @@
   <link rel="stylesheet" href="css/main.css">
   <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl"
     crossorigin="anonymous"></script>
-
-  <script src="javascript/vue.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
   <title>Blood Test Diary</title>
@@ -48,75 +46,7 @@
                   <td><label><input th:id="${testSchedule.id}" name="checkboxName" th:value="${testSchedule.id}" type="checkbox" /><span></span></label></td>
                   <!-- edit test modal -->
                   <td>
-                    <a class="waves-effect waves-light btn modal-trigger" th:attr="href='#edit' + ${testSchedule.patient.id}">
-                      Edit
-                    </a>
-                    <!-- Modal Structure -->
-                    <div th:attr="id = 'edit' + ${testSchedule.patient.id}" class="modal">
-                      <!--Edit content-->
-                      <div class="modal-content ">
-                        <h4>Edit Test</h4>
-                        <div class="row">
-                          <form th:action="@{/editTest}" method="POST" class="col s12">
-                            <div class="row">
-                              <div class="input-field col s6">
-                                <input id="patientId" type="text" placeholder="patient Id" readonly>
-                                <label for="patientid">Patient_id</label>
-                              </div>
-                            </div>
-                            <div class="row">
-                              <div class="col s6">
-                                <label for="date">Date</label>
-                                <input id="date" type="datetime-local" class="validate">
-                              </div>
-                              <div class="col s6">
-                                <label for="date">next test</label>
-                                <input id="date" type="datetime-local" class="validate">
-                              </div>
-                            </div>
-
-                            <div class="row">
-                              <div class="col s6">
-                                <select class="browser-default">
-                                  <option value="1">Notified</option>
-                                  <option value="0">Not Notified</option>
-                                </select>
-                              </div>
-                              <div class="col s6">
-                                <select class="browser-default">
-                                  <option value="1">Compeleted</option>
-                                  <option value="0">Not Completed</option>
-                                </select>
-                              </div>
-
-                            </div>
-
-
-                            <div class="row">
-                              <div class="col s12">
-                                <label for="label">label</label>
-                                <select id="label" class="browser-default">
-                                  <option value="badge red">badge red</option>
-                                  <option value="badge green">badge green</option>
-                                  <option value="badge orange">badge orange</option>
-                                  <option value="OPA">OPA</option>
-                                </select>
-                              </div>
-                            </div>
-
-                            <div class="row">
-                              <div class="input-field col s12">
-                                <input id="Comments" type="text" placeholder="comment" class="validate">
-                                <label for="Comments">Comments</label>
-                              </div>
-                            </div>
-                            <div class="modal-footer">
-                              <a href="#!" class=" waves-light btn grey waves-effect">Cancel</a>
-                              <div><input class="btn-large waves effect waves-dark blue" type="submit" value="Submit" /> </div>
-                            </div>
-
-                          </form>
-                        </div>
+                      <a href="/editTests" th:href="@{editTest/{id}(id=${testSchedule.id})}" class="btn"> edit
                   </td>
 
                   <td>
@@ -232,6 +162,42 @@
     });
   </script>
 
+  <script>
+    $('#login-form').on('submit', function (event) {
+
+      var self = this;
+      var form = $(this);
+      var errorMsg = $('#errorMsg');
+
+
+      if (form.data('requestRunning')) {
+        return;
+      }
+
+      form.data('requestRunning', true);
+      event.preventDefault();
+      $.ajax({
+        url: form.attr("th:action"),
+        type: form.attr("method"),
+        data: form.serialize(),
+        success: function (result) {
+
+          console.log(hi);
+          if (result.login == undefined) {
+            self.submit();
+          } else {
+            errorMsg.text(result.login.FAILURE).addClass("alert alert-danger");
+          }
+
+        },
+        complete: function (e) {
+          form.data('requestRunning', false);
+        }
+
+      });
+
+    });
+  </script>
 
 </body>
 
