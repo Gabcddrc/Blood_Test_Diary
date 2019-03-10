@@ -42,38 +42,3 @@ $(document).ready(function () {
     });
   });
 
-  $('#login-form').on('submit', function (event) {
-
-    var self = this;
-    var form = $(this);
-    var errorMsg = $('#errorMsg');
-
-
-    if (form.data('requestRunning')) {
-      return;
-    }
-
-    form.data('requestRunning', true);
-    event.preventDefault();
-    $.ajax({
-      url: form.attr("th:action"),
-      type: form.attr("method"),
-      data: form.serialize(),
-      success: function (result) {
-
-        console.log(hi);
-        if (result.login == undefined) {
-          self.submit();
-        } else {
-          errorMsg.text(result.login.FAILURE).addClass("alert alert-danger");
-        }
-
-      },
-      complete: function (e) {
-        form.data('requestRunning', false);
-      }
-
-    });
-
-  });
-

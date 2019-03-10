@@ -13,12 +13,6 @@
 </head>
 
 <body>
-  <!--drop down content-->
-  <ul id="flag" class="dropdown-content" onclick="filter()">
-    <li onclick="filter()" class="red" value="bage red">Critical</li>
-    <li class="yellow">Urgent</li>
-    <li class="green">Monitor</li>
-  </ul>
   <!-- Menu Bar -->
   <div th:replace="component/navbar.html"></div>
 
@@ -39,13 +33,12 @@
                   <th></th>
                   <th></th>
                   <th>NAME & SURNAME</th>
-                  <th>OPA</th>
                   <th>CURRENT TEST</th>
                   <th>COMPLETED</th>
                   <th>NOTIFIED</th>
                   <th>NEXT TEST</th>
                   <th>COMMENT</th>
-                  <th> <select id= "flag" value="flag" onchange="filter(this.value)" class="browser-default">
+                  <th> <select id= "flag" value="flag" onchange="filter(this.value)" class="blue lighten-3 browser-default">
                       <option value="">All flag</option>               
                       <option value="badge red">badge red</option>
                       <option value="badge green">badge green</option>
@@ -106,7 +99,6 @@
                       </div>
                     </div>
                   </td>
-                  <td th:text="${testSchedule.OPA}"></td>
                   <td th:text="${testSchedule.date}"></td>
                   <td th:text="${testSchedule.completed}"></td>
                   <td th:text="${testSchedule.notified}"></td>
@@ -124,6 +116,7 @@
               <input type="submit" name="submitBtn" value="Mark Critical" class="waves-effect waves-light btn-large red">
               <input type="submit" name="submitBtn" value="Mark Urgent" class="waves-effect waves-light btn-large orange">
               <input type="submit" name="submitBtn" value="Mark Monitor" class="waves-effect waves-light btn-large green">
+              <input type="submit" name="submitBtn" value="Mark OPA" class="waves-effect waves-light btn-large white">
             </table>
           </form>
         </div>
