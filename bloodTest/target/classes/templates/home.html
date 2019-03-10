@@ -9,7 +9,6 @@
   <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl"
     crossorigin="anonymous"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
   <title>Blood Test Diary</title>
 </head>
 
@@ -28,7 +27,7 @@
       <div class="col s12">
         <div class="card blue lighten-3">
           <form th:action="@{/editLabel}" method="POST">
-            <table id ="testTable" class="highlight">
+            <table id="testTable" class="highlight">
               <thead>
                 <tr>
                   <th></th>
@@ -125,81 +124,13 @@
   <div th:replace="component/footer.html"></div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
-
   <script>
-    function searchTestFunction() {
-      var input, filter, table, tr, td, i;
-      input = document.getElementById("patient");
-      filter = input.value.toUpperCase();
-      table = document.getElementById("testTable");
-      tr = table.getElementsByTagName("tr");
-      for (i = 0; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName("td")[2];
-        if (td) {
-          if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-            tr[i].style.display = "";
-          } else {
-            tr[i].style.display = "none";
-          }
-        }
-      }
-    }
+
   </script>
-  <script>
-    const sideNav = document.querySelector('.sidenav');
-    M.Sidenav.init(sideNav, {});
-    //Modal
-    $(document).ready(function () {
-      $(".modal").modal();
-    });
-  </script>
-
-  <script>
-    $(document).ready(function () {
-      $("#1").click(function () {
-        $("#red").click(function () {
-          document.getElementById("b1").className = "badge red";
-        });
-      });
-    });
-  </script>
-
-  <script>
-    $('#login-form').on('submit', function (event) {
-
-      var self = this;
-      var form = $(this);
-      var errorMsg = $('#errorMsg');
+  <script th:src="@{/js/home.js}" > </script>
+  <script  th:src="@{/js/nav.js}" > </script>
 
 
-      if (form.data('requestRunning')) {
-        return;
-      }
-
-      form.data('requestRunning', true);
-      event.preventDefault();
-      $.ajax({
-        url: form.attr("th:action"),
-        type: form.attr("method"),
-        data: form.serialize(),
-        success: function (result) {
-
-          console.log(hi);
-          if (result.login == undefined) {
-            self.submit();
-          } else {
-            errorMsg.text(result.login.FAILURE).addClass("alert alert-danger");
-          }
-
-        },
-        complete: function (e) {
-          form.data('requestRunning', false);
-        }
-
-      });
-
-    });
-  </script>
 
 </body>
 

@@ -60,76 +60,12 @@
   <div th:replace="component/footer.html"></div>
 
   <div id="map"></div>
-  <!-- Google Map API-->
-  <script th:inline="javascript">
-    var map;
-
-    function initMap() {
-      map = new google.maps.Map(document.getElementById('map'), {
-        center: {
-          lat: 51.508530,
-          lng: -0.076132
-        }, //London
-        zoom: 10
-      });
-      //var geocoder = new google.maps.Geocoder();
-      //document.getElementById('showHospital').addEventListener('click',function(){
-      //  geocodeAddress(geocoder,map);
-      //});
-    }
-
-    function buttonHelper(address) {
-      geocodeAddress(map, address);
-    }
-
-    function geocodeAddress(resultsMap, address) {
-      var geocoder = new google.maps.Geocoder(); //Test
-      geocoder.geocode({
-        'address': address
-      }, function (results, status) {
-        if (status === 'OK') {
-          resultsMap.setCenter(results[0].geometry.location);
-          var marker = new google.maps.Marker({
-            map: resultsMap,
-            position: results[0].geometry.location
-          });
-          resultsMap.setZoom(15);
-        } else {
-          alert('Not successful for the following reason: ' + status);
-        }
-      });
-    }
-  </script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBh9zKIFA-ZFU8dzYetT3xPUugxj99Kauw&callback=initMap"
     async defer></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
 
-  <script>
-    const sideNav = document.querySelector('.sidenav');
-    M.Sidenav.init(sideNav, {});
-  </script>
-
-  <script>
-    function searchHospitalFunction() {
-      let input, filter, table, tr, td, i;
-      input = document.getElementById("name");
-      filter = input.value.toUpperCase();
-      table = document.getElementById("hospitalTable");
-      tr = table.getElementsByTagName("tr");
-      for (i = 0; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName("td")[0];
-        if (td) {
-          if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-            tr[i].style.display = "";
-          } else {
-            tr[i].style.display = "none";
-          }
-        }
-      }
-    }
-  </script>
-
+  <script  th:src="@{/js/hospital.js}" > </script>
 </body>
 
 </html>
