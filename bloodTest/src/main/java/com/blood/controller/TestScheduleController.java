@@ -40,27 +40,26 @@ public class TestScheduleController {
     return "addTest";
   }
 
-  public String dateToString(Date date){
+  public String dateToString(Date date) {
     SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     String dateString = formatter.format(date);
-    String [] dateArr = dateString.split(" ");
-    String [] dateArr2 = dateArr[1].split(":");
+    String[] dateArr = dateString.split(" ");
+    String[] dateArr2 = dateArr[1].split(":");
     dateString = dateArr[0] + "T" + dateArr2[0] + ":" + dateArr2[1];
     return dateString;
   }
 
   @RequestMapping(value = "/editTest/{id}", method = RequestMethod.GET)
   public String getTestsById(@PathVariable("id") String id, Model model) {
-      TestSchedule testSchedule = this.tScheduleService.findById(Integer.parseInt(id));
-      Patient patient = testSchedule.getPatient();
-      patient.setDOB(dateToString(testSchedule.getDate()));
-      patient.setComments(dateToString(testSchedule.getNextSchedule()));
-      model.addAttribute("testEdit", testSchedule);
-      model.addAttribute("patient", patient);
+    TestSchedule testSchedule = this.tScheduleService.findById(Integer.parseInt(id));
+    Patient patient = testSchedule.getPatient();
+    patient.setDOB(dateToString(testSchedule.getDate()));
+    patient.setComments(dateToString(testSchedule.getNextSchedule()));
+    model.addAttribute("testEdit", testSchedule);
+    model.addAttribute("patient", patient);
 
-      return "editTest";
+    return "editTest";
   }
-
 
   @RequestMapping(value = "/editTest", method = RequestMethod.POST)
   public String editTest(@ModelAttribute("patient") Patient patient, @ModelAttribute("testEdit") TestSchedule test,
@@ -122,15 +121,18 @@ public class TestScheduleController {
   private final String COLOR_RED = "badge red";
   private final String COLOR_GREEN = "badge green";
   private final String COLOR_ORANGE = "badge orange";
+  private final String COLOR_WHITE = "badge white";
   private final String URGENT = "Mark Urgent";
   private final String MONITOR = "Mark Monitor";
   private final String CRITICAL = "Mark Critical";
+  private final String OPA = "Mark OPA";
 
   @GetMapping("/home")
   public String getAllTestSchedule(Model model) {
     model.addAttribute("testSchedules", this.tScheduleService.getAllTestSchedule());
     model.addAttribute("testEdit", new TestSchedule());
-    //mailService.sendNotification(); // <-- TO BE ENABLE (when you enable say to the group)
+    // mailService.sendNotification(); // <-- TO BE ENABLE (when you enable say to
+    // the group)
     return "home";
   }
 
@@ -162,6 +164,13 @@ public class TestScheduleController {
           ts.setIdlabel(COLOR_RED);
           tScheduleService.updateLabel(ts);
         }
+      }
+        else if (submitBtn.equals(OPA) && checkboxValue.length > 0) {
+          for (String id : checkboxValue) {
+            TestSchedule ts = this.tScheduleService.findById(Integer.parseInt(id));
+            ts.setIdlabel(COLOR_WHITE);
+            tScheduleService.updateLabel(ts);
+          }
       }
 
     } catch (Exception e) {

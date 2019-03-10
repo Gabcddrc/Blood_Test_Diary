@@ -33,13 +33,19 @@
                   <th></th>
                   <th></th>
                   <th>NAME & SURNAME</th>
-                  <th>OPA</th>
                   <th>CURRENT TEST</th>
                   <th>COMPLETED</th>
                   <th>NOTIFIED</th>
                   <th>NEXT TEST</th>
                   <th>COMMENT</th>
-                  <th>Flag</th>
+                  <th> <select id= "flag" value="flag" onchange="filter(this.value)" class="blue lighten-3 browser-default">
+                      <option value="">All flag</option>               
+                      <option value="badge red">badge red</option>
+                      <option value="badge green">badge green</option>
+                      <option value="badge orange">badge orange</option>
+                      <option value="OPA">OPA</option>
+                    </select></a>
+                  </th>
                 </tr>
               </thead>
 
@@ -93,7 +99,6 @@
                       </div>
                     </div>
                   </td>
-                  <td th:text="${testSchedule.OPA}"></td>
                   <td th:text="${testSchedule.date}"></td>
                   <td th:text="${testSchedule.completed}"></td>
                   <td th:text="${testSchedule.notified}"></td>
@@ -111,6 +116,7 @@
               <input type="submit" name="submitBtn" value="Mark Critical" class="waves-effect waves-light btn-large red">
               <input type="submit" name="submitBtn" value="Mark Urgent" class="waves-effect waves-light btn-large orange">
               <input type="submit" name="submitBtn" value="Mark Monitor" class="waves-effect waves-light btn-large green">
+              <input type="submit" name="submitBtn" value="Mark OPA" class="waves-effect waves-light btn-large white">
             </table>
           </form>
         </div>
@@ -127,8 +133,8 @@
   <script>
 
   </script>
-  <script th:src="@{/js/home.js}" > </script>
-  <script  th:src="@{/js/nav.js}" > </script>
+  <script th:src="@{/js/home.js}"> </script>
+  <script th:src="@{/js/nav.js}"> </script>
 
 
 
