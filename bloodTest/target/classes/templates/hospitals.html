@@ -30,10 +30,10 @@
           <table class="highlight" id="hospitalTable">
             <thead>
               <tr>
-                <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Name</th>
-                <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Address</th>
-                <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Email</th>
-                <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Phone</th>
+                <th><Name</th>
+                <th></a>Address</th>
+                <th>Email</th>
+                <th>Phone</th>
             </thead>
             <tbody>
               <tr>
@@ -42,8 +42,8 @@
                 <td th:text="${hospital.address}"></td>
                 <td th:text="${hospital.email}"></td>
                 <td th:text="${hospital.phone}"></td>
-                <td><button th:data-address="${hospital.address}" onclick="buttonHelper(this.getAttribute('data-address'))">Show
-                    on Google Map</button></td>
+                <td><a class="waves-effect blue waves-light btn" th:data-address="${hospital.address}" onclick="buttonHelper(this.getAttribute('data-address'))">Show
+                    on Google Map<i class="material-icons left">map</i></a></td>
                 <!--Point: How to pass ${hospital.address} as a parameter for buttonHelper -->
               </tr>
               </tr>
