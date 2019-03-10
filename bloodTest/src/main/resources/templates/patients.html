@@ -21,18 +21,17 @@
   <section class="section section-login light-blue lighten-5 center">
     <div class="row">
       <div class="col s6">
-        <input placeholder="Search By" id="first_name" type="text" class="validate">
+        <input placeholder="Search By patient name" id="name"  onkeyup="searchPatientFunction()" type="text" class="validate">
       </div>
       <div class="col s12">
         <div class="card blue lighten-3">
-          <table class="highlight">
+          <table id = "patientTable" class="highlight">
             <thead>
               <tr>
                 <th>Mark</th>
                 <th><a class="btn-floating btn waves-effect waves-light blue"></a></th>
                 <th><a class="btn-floating btn waves-effect waves-light blue"></a></th>
                 <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Name</th>
-                <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Surname</th>
                 <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Gender</th>
                 <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Email</th>
                 <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Date
@@ -53,8 +52,7 @@
                 </td>
                 <td><a href="/editPatient" th:href="@{editPatient/{id}(id=${patient.id})}" class="btn"> Edit </td>
                 <td><a href="/addTest" th:href="@{addTest/{id}(id=${patient.id})}" class="btn"> AddTest </td>
-                <td th:text="${patient.forename}" placeholder="empty"></td>
-                <td th:text="${patient.surname}" placeholder="empty"></td>
+                <td th:text="${patient.forename} + ' ' + ${patient.surname}" placeholder="empty"></td>
                 <td th:text="${patient.sex}" placeholder="empty"></td>
                 <td th:text="${patient.email}" placeholder="empty"></td>
                 <td th:text="${patient.DOB}" placeholder="empty"></td>
@@ -85,7 +83,25 @@
     const sideNav = document.querySelector('.sidenav');
     M.Sidenav.init(sideNav, {});
   </script>
-
+  <script>
+    function searchPatientFunction() {
+      let input, filter, table, tr, td, i;
+      input = document.getElementById("name");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("patientTable");
+      tr = table.getElementsByTagName("tr");
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[3];
+        if (td) {
+          if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+  </script>
 </body>
 
 </html>
