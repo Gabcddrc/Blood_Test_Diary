@@ -13,6 +13,12 @@
 </head>
 
 <body>
+  <!--drop down content-->
+  <ul id="flag" class="dropdown-content" onclick="filter()">
+    <li onclick="filter()" class="red" value="bage red">Critical</li>
+    <li class="yellow">Urgent</li>
+    <li class="green">Monitor</li>
+  </ul>
   <!-- Menu Bar -->
   <div th:replace="component/navbar.html"></div>
 
@@ -39,7 +45,14 @@
                   <th>NOTIFIED</th>
                   <th>NEXT TEST</th>
                   <th>COMMENT</th>
-                  <th>Flag</th>
+                  <th> <select id= "flag" value="flag" onchange="filter(this.value)" class="browser-default">
+                      <option value="">All flag</option>               
+                      <option value="badge red">badge red</option>
+                      <option value="badge green">badge green</option>
+                      <option value="badge orange">badge orange</option>
+                      <option value="OPA">OPA</option>
+                    </select></a>
+                  </th>
                 </tr>
               </thead>
 
@@ -127,8 +140,8 @@
   <script>
 
   </script>
-  <script th:src="@{/js/home.js}" > </script>
-  <script  th:src="@{/js/nav.js}" > </script>
+  <script th:src="@{/js/home.js}"> </script>
+  <script th:src="@{/js/nav.js}"> </script>
 
 
 
