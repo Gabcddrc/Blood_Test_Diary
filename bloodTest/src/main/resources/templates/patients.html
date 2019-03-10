@@ -28,28 +28,21 @@
           <table id = "patientTable" class="highlight">
             <thead>
               <tr>
-                <th>Mark</th>
-                <th><a class="btn-floating btn waves-effect waves-light blue"></a></th>
-                <th><a class="btn-floating btn waves-effect waves-light blue"></a></th>
-                <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Name</th>
-                <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Gender</th>
-                <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Email</th>
-                <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Date
-                  Of Birth</th>
-                <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Diagnosis</th>
-                <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Transplant</th>
-                <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Local
-                  Hospital</th>
-                <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Surgery</th>
-                <th><a class="btn-floating btn waves-effect waves-light blue"><i class="medium material-icons">arrow_drop_down</i></a>Comments</th>
-                <th>Flag</th>
+                 <th>Edit Patient</th>
+                 <th>Add Patient Test</th>
+                <th>Name</th>
+                <th>Gender</th>
+                <th>Email</th>
+                <th>Date Of Birth</th>
+                <th>Diagnosis</th>
+                <th>Transplant</th>
+                <th>LocalHospital</th>
+                <th>Surgery</th>
+                <th>Comments</th>
               </tr>
             </thead>
             <tbody>
               <tr th:each="patient:${patients}">
-                <td>
-                  <form action="#"><label><input type="checkbox" /><span></span></label></form>
-                </td>
                 <td><a href="/editPatient" th:href="@{editPatient/{id}(id=${patient.id})}" class="btn"> Edit </td>
                 <td><a href="/addTest" th:href="@{addTest/{id}(id=${patient.id})}" class="btn"> AddTest </td>
                 <td th:text="${patient.forename} + ' ' + ${patient.surname}" placeholder="empty"></td>
@@ -61,18 +54,12 @@
                 <td th:text="${patient.local_hospital}" placeholder="empty"></td>
                 <td th:text="${patient.surgery}" placeholder="empty"></td>
                 <td th:text="${patient.comments}" placeholder="empty"></td>
-                <td><span class="badge red"></span></td>
               </tr>
             </tbody>
           </table>
         </div>
       </div>
     </div>
-
-    <a class="waves-effect waves-light btn-large red">Mark Critical</a>
-    <a class="waves-effect waves-light btn-large orange">Mark Urgent</a>
-    <a class="waves-effect waves-light btn-large green">Mark Monitor</a>
-
   </section>
 
   <div th:replace="component/footer.html"></div>
