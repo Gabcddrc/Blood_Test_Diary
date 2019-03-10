@@ -22,10 +22,13 @@
   <!-- Patient Table -->
   <section class="section section-login light-blue lighten-5 center">
     <div class="row">
+      <div class="col s6">
+        <input placeholder="Search By patient" id="patient" onkeyup="searchTestFunction()" type="text">
+      </div>
       <div class="col s12">
         <div class="card blue lighten-3">
           <form th:action="@{/editLabel}" method="POST">
-            <table class="highlight">
+            <table id ="testTable" class="highlight">
               <thead>
                 <tr>
                   <th></th>
@@ -46,13 +49,13 @@
                   <td><label><input th:id="${testSchedule.id}" name="checkboxName" th:value="${testSchedule.id}" type="checkbox" /><span></span></label></td>
                   <!-- edit test modal -->
                   <td>
-                      <a href="/editTests" th:href="@{editTest/{id}(id=${testSchedule.id})}" class="btn"> edit
+                    <a href="/editTests" th:href="@{editTest/{id}(id=${testSchedule.id})}" class="btn"> edit
                   </td>
 
                   <td>
                     <!-- Modal Trigger -->
                     <a th:attr="href='#modal' + ${testSchedule.patient.id}" class="waves-effect waves-light btn modal-trigger">
-                      <span th:text="${testSchedule.patient.forename}"></span> <span th:text="${testSchedule.patient.surname}"></span></a>
+                      <span th:text="${testSchedule.patient.forename} + ' ' + ${testSchedule.patient.surname}"></span></a>
                     <!-- Modal Structure -->
                     <div th:attr="id = 'modal' + ${testSchedule.patient.id}" class="modal modal-fixed-footer">
                       <div class="modal-content">
@@ -123,6 +126,25 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
 
+  <script>
+    function searchTestFunction() {
+      var input, filter, table, tr, td, i;
+      input = document.getElementById("patient");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("testTable");
+      tr = table.getElementsByTagName("tr");
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[2];
+        if (td) {
+          if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+  </script>
   <script>
     const sideNav = document.querySelector('.sidenav');
     M.Sidenav.init(sideNav, {});
