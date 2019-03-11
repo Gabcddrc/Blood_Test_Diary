@@ -4,8 +4,7 @@
 <head>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
-  <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js"
-    integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl"
+  <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl"
     crossorigin="anonymous"></script>
   <title>Blood Test Diary</title>
 </head>
@@ -35,10 +34,10 @@
                   <form th:action="@{/addPatient}" th:object="${patient}" method="POST" class="col s12">
                     <div class="row">
                       <div class="input-field col s6">
-                        <input id="forename" type="text" th:field="*{forename}" placeholder="forename"  class="validate">
+                        <input id="forename" type="text" th:field="*{forename}" placeholder="forename" class="validate">
                         <label for="forename">First Name</label>
                       </div>
-                      
+
                       <div class="input-field col s6">
                         <input id="surname" th:field="*{surname}" placeholder="surname" type="text" class="validate">
                         <label for="surname">Last Name</label>
@@ -46,33 +45,28 @@
                     </div>
                     <div class="row">
                       <div class="col s6">
-                          <select th:field="*{sex}" class="browser-default">
-                              <!-- <option value="" disabled selected>Sex</option> -->
-                              <option value="M">Male</option>
-                              <option value="F">Female</option>
-                          </select>
+                        <select th:field="*{sex}" class="browser-default">
+                          <!-- <option value="" disabled selected>Sex</option> -->
+                          <option value="M">Male</option>
+                          <option value="F">Female</option>
+                        </select>
                       </div>
-                  </div>
-
-                    <div class="row">
-                      <div class="input-field col s12">
-
-
-                        <input id="date_of_birth" th:field="*{DOB}" type="date"  class="validate" placeholder="Date of Birth">
+                      <div class="input-field col s6">
+                        <input id="date_of_birth" th:field="*{DOB}" type="date" class="validate" placeholder="Date of Birth">
                         <label for="date_of_birth">Date of Birth</label>
                       </div>
                     </div>
 
                     <div class="row">
                       <div class="input-field col s12">
-                        <input id="address" type="text"  th:field="*{address}" placeholder="address" class="validate">
+                        <input id="address" type="text" th:field="*{address}" placeholder="address" class="validate">
                         <label for="address">Address</label>
                       </div>
                     </div>
 
                     <div class="row">
                       <div class="input-field col s12">
-                        <input id="Diagnosis" type="text"  th:field="*{diagnosis}" placeholder="diagnosis" class="validate">
+                        <input id="Diagnosis" type="text" th:field="*{diagnosis}" placeholder="diagnosis" class="validate">
                         <label for="Diagnosis">Diagnosis</label>
                       </div>
                     </div>
@@ -86,7 +80,8 @@
 
                     <div class="row">
                       <div class="input-field col s12">
-                        <input id="local_hospital" th:field="*{local_hospital}" placeholder="Local Hospital"  type="text" transplant class="validate">
+                        <input id="local_hospital" th:field="*{local_hospital}" placeholder="Local Hospital" type="text"
+                          transplant class="validate">
                         <label for="local_hospital">Local Hospital</label>
                       </div>
                     </div>
@@ -97,17 +92,15 @@
                         <label for="email">Email</label>
                       </div>
                     </div>
-
                     <div class="row">
                       <div class="input-field col s12">
-                        <input id="phone_number" type="text" class="phone_number" placeholder="Phone Number">
-                        <label for="phone_number">Phone Number</label>
+                        <input id="phone" th:field="*{phone}" type="tel" class="validate" placeholder="Phone Number">
+                        <label for="phone">Phone Number</label>
                       </div>
                     </div>
-
                     <div class="row">
                       <div class="input-field col s12">
-                        <input id="Comments" type="text"   th:field="*{comments}" placeholder="comments"  class="validate">
+                        <input id="Comments" type="text" th:field="*{comments}" placeholder="comments" class="validate">
                         <label for="Comments">Comments</label>
                       </div>
                     </div>

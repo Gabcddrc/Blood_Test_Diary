@@ -35,7 +35,7 @@ public class AccountController {
             model.addAttribute("error", "Your username and password is invalid.");
         }
 
-        mailService.sendNotification();
+        //mailService.sendNotification();
         testScheduleService.timeShif();
         return "login";
     }
