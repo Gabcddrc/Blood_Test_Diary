@@ -64,6 +64,10 @@ public class TestScheduleService {
                 calendar.setTime(date);
                 calendar.add(calendar.DATE,7);
                 date=calendar.getTime();
+                testSchedule.setMissTest(testSchedule.getMissTest()+1);
+                if(testSchedule.getMissTest()>1){
+                    testSchedule.setIdlabel("badge red");
+                }
                 testSchedule.setDate(date);
                 testSchedule.setNotified(false);
                 testScheduleDAO.save(testSchedule);

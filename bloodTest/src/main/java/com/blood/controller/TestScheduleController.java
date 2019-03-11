@@ -54,7 +54,6 @@ public class TestScheduleController {
     TestSchedule testSchedule = this.tScheduleService.findById(Integer.parseInt(id));
     Patient patient = testSchedule.getPatient();
     patient.setDOB(dateToString(testSchedule.getDate()));
-    patient.setComments(dateToString(testSchedule.getNextSchedule()));
     model.addAttribute("testEdit", testSchedule);
     model.addAttribute("patient", patient);
 
@@ -67,7 +66,7 @@ public class TestScheduleController {
     Patient thePatient = patientService.findById(patient.getId());
 
     TestSchedule newTest = new TestSchedule(test.getOPA(), formatDate(patient.getDOB()), test.isCompleted(),
-        test.getCommet(), test.isNotified(), test.getIdlabel(), formatDate(patient.getComments()));
+        test.getCommet(), test.isNotified(), test.getIdlabel(), test.getMissTest());
     newTest.setPatient(thePatient);
     newTest.setId(test.getId());
     // if (tScheduleService.findByPatient(thePatient) != null) {
@@ -100,7 +99,7 @@ public class TestScheduleController {
     Patient thePatient = patientService.findById(patient.getId());
 
     TestSchedule newTest = new TestSchedule(test.getOPA(), formatDate(patient.getDOB()), test.isCompleted(),
-        test.getCommet(), test.isNotified(), test.getIdlabel(), formatDate(patient.getComments()));
+        test.getCommet(), test.isNotified(), test.getIdlabel(), 0);
     newTest.setPatient(thePatient);
     // if (tScheduleService.findByPatient(thePatient) != null) {
     // newTest.setId(tScheduleService.findByPatient(thePatient).getId());
@@ -131,6 +130,7 @@ public class TestScheduleController {
   public String getAllTestSchedule(Model model) {
     model.addAttribute("testSchedules", this.tScheduleService.getAllTestSchedule());
     model.addAttribute("testEdit", new TestSchedule());
+    tScheduleService.timeShif();
     // mailService.sendNotification(); // <-- TO BE ENABLE (when you enable say to
     // the group)
     return "home";

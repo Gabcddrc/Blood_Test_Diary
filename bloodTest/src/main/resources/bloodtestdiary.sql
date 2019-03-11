@@ -139,7 +139,7 @@ CREATE TABLE IF NOT EXISTS `bloodtestdiary`.`test_schedule` (
   `idtest_schedule` INT NOT NULL AUTO_INCREMENT,
   `OPA` VARCHAR(45) NULL DEFAULT NULL,
   `date` DATETIME NULL DEFAULT NULL,
-  `next_schedule` DATETIME NULL DEFAULT NULL,
+  `miss_test` INT NULL DEFAULT 0,
   `completed` TINYINT(4) NULL DEFAULT 0,
   `commet` VARCHAR(100) NULL DEFAULT NULL,
   `notified` TINYINT(4) NULL DEFAULT '0',
