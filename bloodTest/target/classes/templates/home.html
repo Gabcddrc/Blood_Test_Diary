@@ -36,7 +36,7 @@
                   <th>CURRENT TEST</th>
                   <th>COMPLETED</th>
                   <th>NOTIFIED</th>
-                  <th>NEXT TEST</th>
+                  <th>MISSED TEST</th>
                   <th>COMMENT</th>
                   <th> <select id= "flag" onchange="filter(this.value)" class="blue lighten-3 browser-default">
                       <option value="">All flag</option>               
@@ -95,7 +95,7 @@
                   <td th:text="${testSchedule.date}"></td>
                   <td th:text="${testSchedule.completed}"></td>
                   <td th:text="${testSchedule.notified}"></td>
-                  <td th:text="${testSchedule.nextSchedule}"></td>
+                  <td th:text="${testSchedule.missTest}"></td>
                   <td th:text="${testSchedule.commet}"></td>
                   <td><span th:class="${testSchedule.idlabel}" id="b1"></span></td>
 

@@ -32,7 +32,7 @@
 
                                 <div class="row">
                                     <form th:action="@{/editTest}" th:object="${testEdit}" method="POST" class="col s12">
-                                        <div th:text="${testEdit.id}" placeholder="empty"></div>
+                                        <div>Test id: <span th:text="${testEdit.id}" placeholder="empty"></span></div>
                                         <div class="row">
                                             <div class="input-field col s6" th:object="${patient}">
                                                 <input id="patientId" type="text" th:field="*{id}" placeholder="patient Id"
@@ -45,10 +45,6 @@
                                                 <input id="date" th:field="*{DOB}" type="datetime-local" class="validate">
                                                 <label for="date">Date</label>
                                             </div>
-                                            <div class="col s6">
-                                                <input id="date" th:field="*{comments}" type="datetime-local" class="validate">
-                                                <label for="date">next test</label>
-                                            </div>
                                         </div>
 
                                         <div class="row">
@@ -58,10 +54,6 @@
                                                     <option value="0">Not Completed</option>
                                                 </select>
                                             </div>
-
-                                        </div>
-
-                                        <div class="row">
                                             <div class="col s6">
                                                 <select th:field="*{notified}" class="browser-default">
                                                     <option value="1">Notified</option>
@@ -70,21 +62,25 @@
                                             </div>
                                         </div>
 
-
                                         <div class="row">
-                                            <div class="input-field col s12">
-                                                <select th:field="*{idlabel}" class="browser-default">
-                                                        <option value="badge red">Critical</option>
-                                                        <option value="badge orange">Urgent</option>
-                                                        <option value="badge green">Monitor</option>
-                                                        <option value="badge white">OPA</option>
-                                                </select>
 
+                                            <div class="input-field col s6">
+                                                <select th:field="*{idlabel}" class="browser-default">
+                                                    <option value="badge red">Critical</option>
+                                                    <option value="badge orange">Urgent</option>
+                                                    <option value="badge green">Monitor</option>
+                                                    <option value="badge white">OPA</option>
+                                                </select>
                                             </div>
                                         </div>
 
                                         <div class="row">
-                                            <div class="input-field col s12">
+
+                                            <div class="col s1">
+                                                <input id="miss_test" th:field="*{missTest}" type="number" class="validate">
+                                                <label for="miss_test">Missed Tests</label>
+                                            </div>
+                                            <div class="input-field col s11">
                                                 <input id="Comments" type="text" th:field="*{commet}" placeholder="comment"
                                                     class="validate">
                                                 <label for="Comments">Comments</label>
