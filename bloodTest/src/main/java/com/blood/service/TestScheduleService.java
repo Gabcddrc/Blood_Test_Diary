@@ -23,14 +23,18 @@ public class TestScheduleService {
     public TestSchedule findByPatient(Patient patient) {
         return testScheduleDAO.findByPatient(patient);
     }
-  /*  public TestSchedule findByIdPatient(int idpatient) {
-        return testScheduleDAO.findByIdPatient(idpatient);
+
+    public void deleteTest(int id) {
+        testScheduleDAO.delete(testScheduleDAO.findById(id));
     }
 
-    public TestSchedule findByIdLabel(int idlabel) {
-        return testScheduleDAO.findByIdLabel(idlabel);
-    }
-  */
+    /*
+     * public TestSchedule findByIdPatient(int idpatient) { return
+     * testScheduleDAO.findByIdPatient(idpatient); }
+     * 
+     * public TestSchedule findByIdLabel(int idlabel) { return
+     * testScheduleDAO.findByIdLabel(idlabel); }
+     */
     public TestSchedule findByCompleted(boolean complete) {
         return testScheduleDAO.findByCompleted(complete);
     }
@@ -40,7 +44,7 @@ public class TestScheduleService {
         return testSchedule;
     }
 
-    public void updateLabel(TestSchedule testSchedule){
+    public void updateLabel(TestSchedule testSchedule) {
         testScheduleDAO.save(testSchedule);
     }
 
@@ -53,18 +57,19 @@ public class TestScheduleService {
         this.testScheduleDAO.findAll().forEach(testSchedule::add);
         return testSchedule;
     }
-    public void timeShif(){
+
+    public void timeShif() {
         Date date = new Date();
         List<TestSchedule> testSchedules = testScheduleDAO.findAll();
-        for(TestSchedule testSchedule:testSchedules){
+        for (TestSchedule testSchedule : testSchedules) {
             long diff = testSchedule.getDate().getTime() - date.getTime();
-            if ((TimeUnit.HOURS.convert(diff, TimeUnit.MILLISECONDS) < 0)){
+            if ((TimeUnit.HOURS.convert(diff, TimeUnit.MILLISECONDS) < 0)) {
                 Calendar calendar = new GregorianCalendar();
                 calendar.setTime(date);
-                calendar.add(calendar.DATE,7);
-                date=calendar.getTime();
-                testSchedule.setMissTest(testSchedule.getMissTest()+1);
-                if(testSchedule.getMissTest()>1){
+                calendar.add(calendar.DATE, 7);
+                date = calendar.getTime();
+                testSchedule.setMissTest(testSchedule.getMissTest() + 1);
+                if (testSchedule.getMissTest() > 1) {
                     testSchedule.setIdlabel("badge red");
                 }
                 testSchedule.setDate(date);
@@ -73,20 +78,20 @@ public class TestScheduleService {
             }
         }
     }
+
     public void updateTestSchedule(TestSchedule tSchedule, int id, String OPA, Date date, boolean completed,
-    String commet, boolean notified, int idpatient, String idlabel) {
-                tSchedule.setId(id);
-                tSchedule.setOPA(OPA);
-                tSchedule.setDate(date);
-                tSchedule.setCompleted(completed);
-                tSchedule.setCommet(commet);
-                tSchedule.setNotified(notified);
-                // tSchedule.setIdpatient(idpatient);
-                tSchedule.setIdlabel(idlabel);
-                testScheduleDAO.save(tSchedule);
+            String commet, boolean notified, int idpatient, String idlabel) {
+        tSchedule.setId(id);
+        tSchedule.setOPA(OPA);
+        tSchedule.setDate(date);
+        tSchedule.setCompleted(completed);
+        tSchedule.setCommet(commet);
+        tSchedule.setNotified(notified);
+        // tSchedule.setIdpatient(idpatient);
+        tSchedule.setIdlabel(idlabel);
+        testScheduleDAO.save(tSchedule);
         // TODO:REST
     }
-
 
     public List<TestSchedule> findAll() {
         return testScheduleDAO.findAll();
