@@ -16,6 +16,12 @@ import org.thymeleaf.context.Context;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.DirectoryNotEmptyException;
+import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -77,53 +83,41 @@ public class MailService {
         return true;
     }
 
-
-    //TOBE MODIFED WTH PATIENT INFO ATTACHMENT
-    public boolean sendResult(String filePath) {
-        MimeMessage message = mailSender.createMimeMessage();
-        Context context = new Context();
-        context.setVariable("firstName", "swapb");
-        context.setVariable("lastName", "dahjb");
-        context.setVariable("testTime", "str");
-        context.setVariable("location", "location");
-        String emailContent = templateEngine.process("sendAutomatedEmailTest", context);
-        try {
-            String email = "swapnil.paul@kcl.ac.uk";
-            FileSystemResource file = new FileSystemResource(new File(filePath));
-            MimeMessageHelper helper = new MimeMessageHelper(message, true);
-            // String fileName = filePath.substring(filePath.lastIndexOf(File.separator));
-            helper.addAttachment("ab.pdf", file);
-            helper.setFrom(from);
-            helper.setTo(email);
-            helper.setSubject("Liver Test Result");
-            helper.setText(emailContent, true);
-            mailSender.send(message);
-            logger.info("Send Successful");
-            return true;
-        } catch (MessagingException e) {
-            logger.error("Send Failed！", e);
-            return false;
-        }
-    }
-
-    public boolean sendResult(Patient patient, String filePath) {
+    // TOBE MODIFED WTH PATIENT INFO ATTACHMENT
+    public boolean sendResult(String filePath, Patient patient, TestSchedule test) {
         MimeMessage message = mailSender.createMimeMessage();
         Context context = new Context();
         context.setVariable("firstName", patient.getForename());
         context.setVariable("lastName", patient.getSurname());
-        String emailContent = templateEngine.process("resultTemplate", context);
+        context.setVariable("testTime", test.getDate());
+        context.setVariable("location", "location");
+        String emailContent = templateEngine.process("sendAutomatedEmailTest", context);
         try {
             String email = patient.getEmail();
             FileSystemResource file = new FileSystemResource(new File(filePath));
+            System.out.println(file.getPath());
             MimeMessageHelper helper = new MimeMessageHelper(message, true);
-            String fileName = filePath.substring(filePath.lastIndexOf(File.separator));
+            // String fileName = filePath.substring(filePath.lastIndexOf(File.separator));
+            String fileName = patient.getForename() + "_result.pdf";
             helper.addAttachment(fileName, file);
             helper.setFrom(from);
             helper.setTo(email);
             helper.setSubject("Liver Test Result");
             helper.setText(emailContent, true);
             mailSender.send(message);
+            try {
+                Path path = Paths.get(filePath);
+                Files.deleteIfExists(path);
+            } catch (NoSuchFileException x) {
+                System.err.format("%s: no such" + " file or directory%n", filePath);
+            } catch (DirectoryNotEmptyException x) {
+                System.err.format("%s not empty%n", filePath);
+            } catch (IOException x) {
+                // File permission problems are caught here.
+                System.err.println(x);
+            }
             logger.info("Send Successful");
+
             return true;
         } catch (MessagingException e) {
             logger.error("Send Failed！", e);
