@@ -58,7 +58,7 @@ public class PatientTests {
     @Test
     public void testGetSurgery() {
         Patient patient = new Patient("tForename", "tSurname", "1997-03-03", 'M', "Great Britannia Street","tDiagnosis",
-       "tTransplant", "tlocal_hospital", "tSurgery", "tComments");
+       "tTransplant", "tlocal_hospital", "tSurgery", "tComments", "1334444", "abcd@abc.com");
         
         assertEquals(patient.getSurgery(), "tSurgery");
     }
@@ -67,7 +67,7 @@ public class PatientTests {
     public void testSetSurgery() {
         
         Patient patient = new Patient("tForename", "tSurname", "1997-03-03", 'M', "Great Britannia Street","tDiagnosis",
-        "tTransplant", "tlocal_hospital", "tSurgery", "tComments");
+        "tTransplant", "tlocal_hospital", "tSurgery", "tComments", "1234", "email@email.com");
         patient.setSurgery("changedSurgery");
         assertEquals(patient.getSurgery(), "changedSurgery");
     }
@@ -76,7 +76,7 @@ public class PatientTests {
     public void testGetComments() {
         
         Patient patient = new Patient("tForename", "tSurname", "1997-03-03", 'M', "Great Britannia Street","tDiagnosis",
-       "tTransplant", "tlocal_hospital", "tSurgery", "tComments");
+       "tTransplant", "tlocal_hospital", "tSurgery", "tComments","1234", "email@email.com");
         
         assertEquals(patient.getComments(), "tComments");
     }
@@ -85,7 +85,7 @@ public class PatientTests {
     public void testSetComments() {
         
         Patient patient = new Patient("tForename", "tSurname", "1997-03-03", 'M', "Great Britannia Street","tDiagnosis",
-        "tTransplant", "tlocal_hospital", "tSurgery", "tComments");
+        "tTransplant", "tlocal_hospital", "tSurgery", "tComments", "1234", "email@email.com");
         patient.setComments("changedComments");
         assertEquals(patient.getComments(), "changedComments");
     }
@@ -94,7 +94,7 @@ public class PatientTests {
     public void testgetDiagnosis() {
         
         Patient patient = new Patient("tForename", "tSurname", "1997-03-03", 'M', "Great Britannia Street","tDiagnosis",
-       "tTransplant", "tlocal_hospital", "tSurgery", "tComments");
+       "tTransplant", "tlocal_hospital", "tSurgery", "tComments", "1234", "email@email.com");
         
         assertEquals(patient.getDiagnosis(), "tDiagnosis");
     }
@@ -103,7 +103,7 @@ public class PatientTests {
     public void testSetDiagnosis() {
         
         Patient patient = new Patient("tForename", "tSurname", "1997-03-03", 'M', "Great Britannia Street","tDiagnosis",
-        "tTransplant", "tlocal_hospital", "tSurgery", "tComments");
+        "tTransplant", "tlocal_hospital", "tSurgery", "tComments", "1234", "email@email.com");
         patient.setDiagnosis("changedDiagnosis");
         assertEquals(patient.getDiagnosis(), "changedDiagnosis");
     }

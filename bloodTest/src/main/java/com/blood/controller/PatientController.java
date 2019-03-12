@@ -42,7 +42,7 @@ public class PatientController {
     public String saveRegister(@ModelAttribute("patient") Patient patient, BindingResult bindingResult, Model model) {
         // patientValidator.validate(patient, bindingResult);
         Patient newPatient = new Patient(patient.getForename(),patient.getSurname(),patient.getDOB(),patient.getSex(),patient.getAddress(),
-                                        patient.getDiagnosis(),patient.getTransplant(),patient.getLocal_hospital(),patient.getSurgery(),patient.getComments());
+                                        patient.getDiagnosis(),patient.getTransplant(),patient.getLocal_hospital(),patient.getSurgery(),patient.getComments(), patient.getPhone(), patient.getEmail());
 
        /* if (bindingResult.hasErrors()) {
             return "AddPatient";
@@ -53,7 +53,7 @@ public class PatientController {
             return "AddPatient";
         }
 
-        return "redirect:/home";
+        return "redirect:/patients";
     }
 
     @RequestMapping(value = "/editPatient/{id}", method = RequestMethod.GET)
@@ -66,7 +66,6 @@ public class PatientController {
     @RequestMapping(value = "/editPatient", method = RequestMethod.POST)
     public String saveEditPatient(@ModelAttribute("patient") Patient patient, BindingResult bindingResult,Model model) {
         Patient patient2 = new Patient();
-        System.out.println(patient.getForename());
         patient2.setId(patient.getId());
         patient2.setForename(patient.getForename());
         patient2.setSurname(patient.getSurname());
@@ -79,6 +78,7 @@ public class PatientController {
         patient2.setSex(patient.getSex());
         patient2.setSurgery(patient.getSurgery());
         patient2.setTransplant(patient.getTransplant());
+        patient2.setPhone(patient.getPhone());
         if (bindingResult.hasErrors()) {
             return "editPatients";
         }
@@ -93,7 +93,6 @@ public class PatientController {
     @RequestMapping(value = "editPatient/deletePatient/{id}", method = RequestMethod.GET)
     public String deletePatient(@PathVariable("id") String id){
         try{
-            System.out.println(id);
             patientService.deletePatient(Integer.parseInt(id));
         } catch (Exception e){
             return "editPatient";

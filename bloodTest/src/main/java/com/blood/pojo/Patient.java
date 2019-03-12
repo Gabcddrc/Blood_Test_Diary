@@ -44,6 +44,10 @@ public class Patient {
     private String DOB;
     @Column(name = "email")
     private String email;
+
+    @Column(name = "phone")
+    private String phone;
+
     @Column(name = "sex")
     private char sex;
     @Column(name = "address")
@@ -81,7 +85,7 @@ public class Patient {
     }
 
     public Patient(String forename, String surname, String DOB, char sex, String address, String diagnosis,
-            String transplant, String local_hospital, String surgery, String comments) {
+            String transplant, String local_hospital, String surgery, String comments, String phone, String email) {
         super();
         this.forename = forename;
         this.surname = surname;
@@ -93,6 +97,8 @@ public class Patient {
         this.local_hospital = local_hospital;
         this.surgery = surgery;
         this.comments = comments;
+        this.phone = phone;
+        this.email = email;
     }
 
     // getters to retreive patient information
@@ -103,6 +109,14 @@ public class Patient {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getForename() {

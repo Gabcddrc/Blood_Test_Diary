@@ -54,7 +54,6 @@ DEFAULT CHARACTER SET = latin1;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `bloodtestdiary`.`test_carried_over` (
   `idtest_carried_over` INT NOT NULL AUTO_INCREMENT,
-  `OPA` VARCHAR(45) NULL,
   `test_carried_overcol` VARCHAR(45) NULL,
   `date` DATETIME NULL,
   `next_schedule` DATETIME NULL DEFAULT NULL,
