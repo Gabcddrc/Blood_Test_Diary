@@ -55,6 +55,7 @@
                     </select>
                   </th>
                   <th>COMMENT</th>
+                  <th></th>
                 </tr>
               </thead>
 
@@ -107,6 +108,10 @@
                   <td th:text="${testSchedule.missTest}"></td>
                   <td><span th:class="${testSchedule.idlabel}" id="b1"></span></td>
                   <td th:text="${testSchedule.commet}"></td>
+                  <td>
+                    <a href="/sendTestResults" th:href="@{sendTestResult/{id}(id=${testSchedule.id})}" class="btn"> Send Result </a>
+                  </td>
+
                 </tr>
 
 
