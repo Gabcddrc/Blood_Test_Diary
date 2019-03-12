@@ -83,6 +83,18 @@ public class TestScheduleController {
     return "redirect:/home";
   }
 
+  @RequestMapping(value = "editTest/deleteTest/{id}", method = RequestMethod.GET)
+  public String deletePatient(@PathVariable("id") String id){
+      try{
+          tScheduleService.deleteTest(Integer.parseInt(id));
+      } catch (Exception e){
+          return "editTest";
+      }
+
+      return "redirect:/home";
+  }
+
+
   public Date formatDate(String date) throws ParseException {
     String[] dates = date.split("T");
     date = dates[0] + " " + dates[1] + ":00";

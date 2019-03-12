@@ -86,8 +86,13 @@
                                                 <label for="Comments">Comments</label>
                                             </div>
                                         </div>
-
-                                        <input type="submit" value="Edit Test" class=" waves-light btn blue waves-effect">
+                                        <div class="row">
+                                            <input type="submit" value="Edit Test" class=" waves-light btn blue waves-effect">
+                                        </div>
+                                        <div class="row">
+                                            <a href="/home" th:href="@{deleteTest/{id}(id=${testEdit.id})}" class="red btn">
+                                                delete Test </a>
+                                        </div> 
                                     </form>
                                 </div>
 
