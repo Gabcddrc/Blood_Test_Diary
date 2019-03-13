@@ -33,10 +33,20 @@ function searchHospitalFunction() {
   }
 
   function buttonHelper(address) {
-    geocodeAddress(map, address);
+    geocodeAddress(map, address, "FE7569");
   }
 
-  function geocodeAddress(resultsMap, address) {
+
+
+
+
+  function geocodeAddress(resultsMap, address, pinColor) {
+      //Set Color of marker
+      var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor,
+          new google.maps.Size(21, 34),
+          new google.maps.Point(0,0),
+          new google.maps.Point(10, 34));
+
     var geocoder = new google.maps.Geocoder(); //Test
     geocoder.geocode({
       'address': address
@@ -45,7 +55,9 @@ function searchHospitalFunction() {
         resultsMap.setCenter(results[0].geometry.location);
         var marker = new google.maps.Marker({
           map: resultsMap,
-          position: results[0].geometry.location
+          position: results[0].geometry.location,
+            icon: pinImage
+
         });
         resultsMap.setZoom(15);
       } else {
@@ -53,3 +65,20 @@ function searchHospitalFunction() {
       }
     });
   }
+
+
+
+
+
+
+
+function searchPatientLocation(){
+    let input;
+
+    input = document.getElementById("name");
+    filter = input.value.toLowerCase();
+
+    geocodeAddress(map, filter,"9400D3");
+  }
+
+
