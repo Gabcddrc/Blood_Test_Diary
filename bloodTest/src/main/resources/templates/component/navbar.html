@@ -1,3 +1,19 @@
+<ul id="patient" class="dropdown-content">
+  <li>
+    <a href="/patients">Patient List</a>
+  </li>
+  <li>
+    <a href="/AddPatient">Add Patient</a>
+  </li>
+</ul>
+<ul id="hospital" class="dropdown-content">
+  <li>
+    <a href="/hospitals">Hospital List</a>
+  </li>
+  <li>
+    <a href="/AddHospital">Add Hosptial</a>
+  </li>
+</ul>
 <div class="navbar-fixed">
   <nav class="blue">
     <div class="container">
@@ -10,26 +26,14 @@
         </a>
         <ul class="right hide-on-med-and-down">
           <li>
-            <a href="/home">Home</a>
+            <a href="/home">Test Schedules</a>
           </li>
-          <li>
-            <a href="/AddPatient">Add Patient</a>
-          </li>
-          <li>
-            <a href="/email">Send Email</a>
-          </li>
-          <li>
-            <a href="/hospitals">Hospital</a>
-          </li>
-          <li>
-            <a href="/patients">Patient</a>
-          </li>
+          <li><a class="dropdown-trigger" href="#!" data-target="patient">Patient<i class="material-icons right">arrow_drop_down</i></a></li>
+          <li><a class="dropdown-trigger" href="#!" data-target="hospital">Hospital<i class="material-icons right">arrow_drop_down</i></a></li>
           <li>
             <a href="/register">Register</a>
           </li>
-          <li>
-            <a href="/AddHospital">Add Hosptial</a>
-          </li>
+
           <li>
             <a href="/logout">Logout</a>
           </li>
