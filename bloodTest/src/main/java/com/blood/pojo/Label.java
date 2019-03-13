@@ -22,7 +22,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "label")
-@JsonIgnoreProperties({"handler", "hibernateLazyInitializer"})
+@JsonIgnoreProperties({ "handler", "hibernateLazyInitializer" })
 public class Label {
 
     @Id
@@ -36,7 +36,19 @@ public class Label {
     @Column(name = "description")
     private String description;
 
-    //getters to return label/flag of patients
+    // getters to return label/flag of patients
+
+    public Label(int id, String name, String color, String description) {
+        super();
+        this.idlabel = id;
+        this.name = name;
+        this.color = color;
+        this.description = description;
+    }
+
+    public Label() {
+        super();
+    }
 
     public int getIdlabel() {
         return idlabel;

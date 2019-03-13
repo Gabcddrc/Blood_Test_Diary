@@ -9,18 +9,13 @@
 
 package com.blood.pojo;
 
-import org.springframework.context.annotation.Role;
-
-import java.util.Set;
-
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+
 
 @Entity
 @Table(name = "test_carried_over")
@@ -49,6 +44,24 @@ public class TestCarriedOver {
     private int idlabel;
 
     // getters and setters for carrying over blood test information
+
+    public TestCarriedOver(int id, String OPA, String date, String nextSchedule, boolean isCompleted, String commet,
+            boolean notified, int idpatient, int idlabel) {
+        super();
+        this.idtest_carried_over = id;
+        this.OPA = OPA;
+        this.date = date;
+        this.nextSchedule = nextSchedule;
+        this.completed = isCompleted;
+        this.commet = commet;
+        this.notified = notified;
+        this.idpatient = idpatient;
+        this.idlabel = idlabel;
+    }
+
+    public TestCarriedOver() {
+        super();
+    }
 
     public int getIdtest_carried_over() {
         return idtest_carried_over;
