@@ -6,7 +6,8 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
   <link rel="stylesheet" href="css/main.css">
-  <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl"
+  <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js"
+    integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl"
     crossorigin="anonymous"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <title>Blood Test Diary</title>
@@ -21,9 +22,32 @@
   <!-- Patient Table -->
   <section class="section section-login light-blue lighten-5 center">
     <div class="row">
-      <div class="col s6">
-        <input placeholder="Search By patient" id="patient" onkeyup="searchTestFunction()" type="text">
+
+
+      <!--SEARCH BAR-->
+      <div class="container">
+        <div id="view-search-bar" class="active" style="display: block;">
+          <div class="row">
+            <div class="col s11">
+              <nav class="blue lighten-2">
+                <div class="nav-wrapper">
+                  <form>
+                    <div class="input-field">
+                      <input placeholder="Search By Patient" id="patient" onkeyup="searchTestFunction()" type="search">
+                      <label class="label-icon" for="search-example">
+                        <i class="material-icons">search</i>
+                      </label>
+                      <i class="material-icons">close</i>
+                    </div>
+                  </form>
+                </div>
+              </nav>
+            </div>
+          </div>
+        </div>
       </div>
+
+
       <div class="col s12">
         <div class="card blue lighten-3">
           <form th:action="@{/editLabel}" method="POST">
@@ -35,19 +59,21 @@
                   <th>NAME & SURNAME</th>
                   <th>CURRENT TEST</th>
                   <th>NOTIFIED</th>
-                  <th><select id= "completed" onchange="filterComplete(this.value)" class="blue lighten-3 browser-default">
-                    <option value="">Completion</option>
-                    <option value="true">Completed</option>               
-                    <option value="false">Not Completed</option>
-                  </select></th>
-                  
-                  <th><select id= "missTest" onchange="filterMissTest(this.value)" class="blue lighten-3 browser-default">
-                    <option value="">Missed Tests</option>
-                    <option value="1">Test not Carried over</option>               
-                    <option value="2">Test CarriedOver</option>
-                  </select></th>
-                  <th> <select id= "flag" onchange="filterFlag(this.value)" class="blue lighten-3 browser-default">
-                      <option value="">All flag</option>               
+                  <th><select id="completed" onchange="filterComplete(this.value)"
+                      class="blue lighten-3 browser-default">
+                      <option value="">Completion</option>
+                      <option value="true">Completed</option>
+                      <option value="false">Not Completed</option>
+                    </select></th>
+
+                  <th><select id="missTest" onchange="filterMissTest(this.value)"
+                      class="blue lighten-3 browser-default">
+                      <option value="">Missed Tests</option>
+                      <option value="1">Test not Carried over</option>
+                      <option value="2">Test CarriedOver</option>
+                    </select></th>
+                  <th> <select id="flag" onchange="filterFlag(this.value)" class="blue lighten-3 browser-default">
+                      <option value="">All flag</option>
                       <option value="badge red">Critical</option>
                       <option value="badge orange">Emergency</option>
                       <option value="badge green">Monitor</option>
@@ -55,68 +81,82 @@
                     </select>
                   </th>
                   <th>COMMENT</th>
+                  <th></th>
                 </tr>
               </thead>
 
               <tbody>
                 <tr th:each="testSchedule:${testSchedules}">
-                  <td><label><input th:id="${testSchedule.id}" name="checkboxName" th:value="${testSchedule.id}" type="checkbox" /><span></span></label></td>
+                  <td><label><input th:id="${testSchedule.id}" name="checkboxName" th:value="${testSchedule.id}"
+                        type="checkbox" /><span></span></label></td>
                   <!-- edit test modal -->
                   <td>
                     <a href="/editTests" th:href="@{editTest/{id}(id=${testSchedule.id})}" class="btn"> edit
                   </td>
 
                   <td>
-                      <!-- Modal Trigger -->
-                      <a th:attr="href='#modal' + ${testSchedule.id}" class="waves-effect waves-light btn modal-trigger" > <span th:text="${testSchedule.patient.forename} +' ' +${testSchedule.patient.surname}"></span></a>
-                      <!-- Modal Structure -->
-                      <div th:attr="id = 'modal' + ${testSchedule.id}" class="modal modal-fixed-footer">
-                        <div class="modal-content">
-  
-                          <blockquote>
-                            <h4 th:text="${testSchedule.patient.forename} + ' ' + ${testSchedule.patient.surname}"></h4>
-                          </blockquote>
-  
-                          <div class="row">
-                            <!-- Place -->
-                            <div class="col s8 place mt-4 p-0">
-                              <div class="col s8"><i class="material-icons"> place </i> <span th:text="*{address}"></span></div>
-                            </div>
-                            <br/>
-                            <br/>
-                            <!-- Phone -->
-                            <div class="col s8 phone mt-4 p-0">
-                              <div class="col s8"><i class="material-icons"> call </i>&nbsp;<span th:text="${testSchedule.patient.phone}"></span></div>
-                            </div>
-                            <br/>
-                            <br/>
-                            <!-- Mail -->
-                            <div class="col s8 mail mt-4 p-0">
-                              <div class="col s8"><i class="material-icons"> mail_outline </i> &nbsp;<span th:text="${testSchedule.patient.email}"></span></div>
+                    <!-- Modal Trigger -->
+                    <a th:attr="href='#modal' + ${testSchedule.id}" class="waves-effect waves-light btn modal-trigger">
+                      <span th:text="${testSchedule.patient.forename} +' ' +${testSchedule.patient.surname}"></span></a>
+                    <!-- Modal Structure -->
+                    <div th:attr="id = 'modal' + ${testSchedule.id}" class="modal modal-fixed-footer">
+                      <div class="modal-content">
+
+                        <blockquote>
+                          <h4 th:text="${testSchedule.patient.forename} + ' ' + ${testSchedule.patient.surname}"></h4>
+                        </blockquote>
+
+                        <div class="row">
+                          <!-- Place -->
+                          <div class="col s8 place mt-4 p-0">
+                            <div class="col s8"><i class="material-icons"> place </i> <span th:text="*{address}"></span>
                             </div>
                           </div>
-                        </div>
-                        <div class="modal-footer">
-                          <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">OK</a>
+                          <br />
+                          <br />
+                          <!-- Phone -->
+                          <div class="col s8 phone mt-4 p-0">
+                            <div class="col s8"><i class="material-icons"> call </i>&nbsp;<span
+                                th:text="${testSchedule.patient.phone}"></span></div>
+                          </div>
+                          <br />
+                          <br />
+                          <!-- Mail -->
+                          <div class="col s8 mail mt-4 p-0">
+                            <div class="col s8"><i class="material-icons"> mail_outline </i> &nbsp;<span
+                                th:text="${testSchedule.patient.email}"></span></div>
+                          </div>
                         </div>
                       </div>
-                    </td>
+                      <div class="modal-footer">
+                        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">OK</a>
+                      </div>
+                    </div>
+                  </td>
                   <td th:text="${testSchedule.date}"></td>
                   <td th:text="${testSchedule.notified}"></td>
                   <td th:text="${testSchedule.completed}"></td>
                   <td th:text="${testSchedule.missTest}"></td>
                   <td><span th:class="${testSchedule.idlabel}" id="b1"></span></td>
                   <td th:text="${testSchedule.commet}"></td>
+                  <td>
+                    <a href="/sendTestResults" th:href="@{sendTestResult/{id}(id=${testSchedule.id})}" class="btn"> Send
+                      Result </a>
+                  </td>
+
                 </tr>
 
 
 
 
               </tbody>
-<br>
-              <input type="submit" name="submitBtn" value="Mark Critical" class="waves-effect waves-light btn-large red">
-              <input type="submit" name="submitBtn" value="Mark Urgent" class="waves-effect waves-light btn-large orange">
-              <input type="submit" name="submitBtn" value="Mark Monitor" class="waves-effect waves-light btn-large green">
+              <br>
+              <input type="submit" name="submitBtn" value="Mark Critical"
+                class="waves-effect waves-light btn-large red">
+              <input type="submit" name="submitBtn" value="Mark Urgent"
+                class="waves-effect waves-light btn-large orange">
+              <input type="submit" name="submitBtn" value="Mark Monitor"
+                class="waves-effect waves-light btn-large green">
               <input type="submit" name="submitBtn" value="Mark OPA" class="waves-effect waves-light btn-large white">
             </table>
           </form>

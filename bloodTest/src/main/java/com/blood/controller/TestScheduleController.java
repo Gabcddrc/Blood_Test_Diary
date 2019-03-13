@@ -84,16 +84,15 @@ public class TestScheduleController {
   }
 
   @RequestMapping(value = "editTest/deleteTest/{id}", method = RequestMethod.GET)
-  public String deletePatient(@PathVariable("id") String id){
-      try{
-          tScheduleService.deleteTest(Integer.parseInt(id));
-      } catch (Exception e){
-          return "editTest";
-      }
+  public String deletePatient(@PathVariable("id") String id) {
+    try {
+      tScheduleService.deleteTest(Integer.parseInt(id));
+    } catch (Exception e) {
+      return "editTest";
+    }
 
-      return "redirect:/home";
+    return "redirect:/home";
   }
-
 
   public Date formatDate(String date) throws ParseException {
     String[] dates = date.split("T");
@@ -176,13 +175,12 @@ public class TestScheduleController {
           ts.setIdlabel(COLOR_RED);
           tScheduleService.updateLabel(ts);
         }
-      }
-        else if (submitBtn.equals(OPA) && checkboxValue.length > 0) {
-          for (String id : checkboxValue) {
-            TestSchedule ts = this.tScheduleService.findById(Integer.parseInt(id));
-            ts.setIdlabel(COLOR_WHITE);
-            tScheduleService.updateLabel(ts);
-          }
+      } else if (submitBtn.equals(OPA) && checkboxValue.length > 0) {
+        for (String id : checkboxValue) {
+          TestSchedule ts = this.tScheduleService.findById(Integer.parseInt(id));
+          ts.setIdlabel(COLOR_WHITE);
+          tScheduleService.updateLabel(ts);
+        }
       }
 
     } catch (Exception e) {
@@ -191,5 +189,7 @@ public class TestScheduleController {
 
     return "redirect:/home";
   }
+
+  
 
 }
