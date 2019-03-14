@@ -33,8 +33,8 @@ public class TestSchedule {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idtest_schedule")
     private int id;
-    @Column(name = "OPA")
-    private String OPA;
+    @Column(name = "location")
+    private String location;
     @Column(name = "date")
     private Date date;
     @Column(name = "miss_test")
@@ -55,8 +55,8 @@ public class TestSchedule {
 
     }
 
-    public TestSchedule(String OPA, Date date, boolean completed, String comment, boolean notified, String idlabel, int miss_test) {
-        this.OPA = OPA;
+    public TestSchedule(String location, Date date, boolean completed, String comment, boolean notified, String idlabel, int miss_test) {
+        this.location = location;
         this.date = date;
         this.completed = completed;
         this.commet = comment;
@@ -75,12 +75,12 @@ public class TestSchedule {
         this.id = id;
     }
 
-    public String getOPA() {
-        return OPA;
+    public String getLocation() {
+        return location;
     }
 
-    public void setOPA(String OPA) {
-        this.OPA = OPA;
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public Date getDate() {
