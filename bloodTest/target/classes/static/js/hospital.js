@@ -75,7 +75,7 @@ function searchHospitalFunction() {
 function searchPatientLocation(){
     let input;
 
-    input = document.getElementById("name");
+    input = document.getElementById("patient_location");
     filter = input.value.toLowerCase();
 
     geocodeAddress(map, filter,"9400D3");
