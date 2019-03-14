@@ -143,6 +143,7 @@ CREATE TABLE IF NOT EXISTS `bloodtestdiary`.`test_schedule` (
   `completed` TINYINT(4) NULL DEFAULT 0,
   `commet` VARCHAR(100) NULL DEFAULT NULL,
   `notified` TINYINT(4) NULL DEFAULT '0',
+  `resultsent` TINYINT NULL DEFAULT '0',
   `idpatient` INT NULL,
   `idlabel` VARCHAR(100) NULL DEFAULT 'badge green',
   PRIMARY KEY (`idtest_schedule`),
@@ -161,6 +162,27 @@ CREATE TABLE IF NOT EXISTS `bloodtestdiary`.`test_schedule` (
     )
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `bloodtestdiary`.`previous_test`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `bloodtestdiary`.`previous_test` (
+  `idprevioustest` INT NOT NULL AUTO_INCREMENT,
+  `date` DATETIME NULL,
+  `location` VARCHAR(45) NULL,
+  `commet` VARCHAR(100) NULL,
+  `idpatient` INT NULL,
+  PRIMARY KEY (`idprevioustest`),
+  -- INDEX `idpatient_idx` (`idpatient` ASC),
+  -- CONSTRAINT `idpatient`
+    FOREIGN KEY (`idpatient`)
+    REFERENCES `bloodtestdiary`.`patients` (`idpatient`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
