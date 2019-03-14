@@ -45,6 +45,8 @@ public class TestSchedule {
     private String commet;
     @Column(name = "notified")
     private boolean notified;
+    @Column(name = "resultsent")
+    private boolean resultsent;    
     @ManyToOne
     @JoinColumn(name = "idpatient")
     private Patient patient;
@@ -121,6 +123,14 @@ public class TestSchedule {
 
     public void setNotified(boolean notified) {
         this.notified = notified;
+    }
+
+    public boolean isResultSent() {
+        return notified;
+    }
+
+    public void setResultSent(boolean resultsent) {
+        this.resultsent = resultsent;
     }
 
     public Patient getPatient() {
