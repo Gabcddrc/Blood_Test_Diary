@@ -40,11 +40,12 @@ function filterMissTest(fill) {
   filter = fill.toUpperCase();
   table = document.getElementById("testTable");
   tr = table.getElementsByTagName("tr");
-  if (filter != "") {
+
     for (i = 0; i < tr.length; i++) {
       td = tr[i].getElementsByTagName("td")[6];
       if (td) {
-        if(filter == "1" && td.innerHTML.toUpperCase() == "0")
+        if(filter == ""){tr[i].style.display = "";}
+        else if(filter == "1" && td.innerHTML.toUpperCase() == "0")
         {
           tr[i].style.display = "";
         } 
@@ -57,7 +58,7 @@ function filterMissTest(fill) {
       }
     }
   }
-}
+
 
 function searchTestFunction() {
   let input, filter, table, tr, td, i;

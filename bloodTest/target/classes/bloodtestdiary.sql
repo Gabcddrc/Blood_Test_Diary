@@ -57,6 +57,7 @@ CREATE TABLE IF NOT EXISTS `bloodtestdiary`.`test_carried_over` (
   `test_carried_overcol` VARCHAR(45) NULL,
   `date` DATETIME NULL,
   `next_schedule` DATETIME NULL DEFAULT NULL,
+
   `completed` TINYINT NULL DEFAULT 0,
   `commet` VARCHAR(100) NULL,
   `notified` TINYINT NULL DEFAULT 0,
@@ -136,7 +137,7 @@ DEFAULT CHARACTER SET = latin1;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `bloodtestdiary`.`test_schedule` (
   `idtest_schedule` INT NOT NULL AUTO_INCREMENT,
-  `OPA` VARCHAR(45) NULL DEFAULT NULL,
+  `location` VARCHAR(45) NULL DEFAULT NULL,
   `date` DATETIME NULL DEFAULT NULL,
   `miss_test` INT NULL DEFAULT 0,
   `completed` TINYINT(4) NULL DEFAULT 0,
