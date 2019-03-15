@@ -26,7 +26,6 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
- 
 @Entity
 @Table(name = "previous_test")
 @JsonIgnoreProperties({ "handler", "hibernateLazyInitializer" })
@@ -35,7 +34,7 @@ public class PreviousTest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idprevioustest")
-    private int idprevioustest;
+    private int id;
     @Column(name = "location")
     private String location;
     @Column(name = "date")
@@ -58,13 +57,13 @@ public class PreviousTest {
 
     /**
      * getters to retrieve scheduling information for patients
-     */ 
+     */
     public int getId() {
-        return idprevioustest;
+        return id;
     }
 
     public void setId(int id) {
-        this.idprevioustest = id;
+        this.id = id;
     }
 
     public String getLocation() {
@@ -91,7 +90,6 @@ public class PreviousTest {
         this.commet = comment;
     }
 
-    
     public Patient getPatient() {
         return patient;
     }
