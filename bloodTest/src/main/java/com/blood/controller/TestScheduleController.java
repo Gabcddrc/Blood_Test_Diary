@@ -48,7 +48,9 @@ public class TestScheduleController {
     dateString = dateArr[0] + "T" + dateArr2[0] + ":" + dateArr2[1];
     return dateString;
   }
-
+/*
+  Retrieve Edit Test page, and id for the test
+*/
   @RequestMapping(value = "/editTest/{id}", method = RequestMethod.GET)
   public String getTestsById(@PathVariable("id") String id, Model model) {
     TestSchedule testSchedule = this.tScheduleService.findById(Integer.parseInt(id));
@@ -59,13 +61,15 @@ public class TestScheduleController {
 
     return "editTest";
   }
-
+/*
+Edit Test function
+*/
   @RequestMapping(value = "/editTest", method = RequestMethod.POST)
   public String editTest(@ModelAttribute("patient") Patient patient, @ModelAttribute("testEdit") TestSchedule test,
       BindingResult bindingResult, Model model) throws ParseException {
     Patient thePatient = patientService.findById(patient.getId());
 
-    TestSchedule newTest = new TestSchedule(test.getOPA(), formatDate(patient.getDOB()), test.isCompleted(),
+    TestSchedule newTest = new TestSchedule(test.getLocation(), formatDate(patient.getDOB()), test.isCompleted(),
         test.getCommet(), test.isNotified(), test.getIdlabel(), test.getMissTest());
     newTest.setPatient(thePatient);
     newTest.setId(test.getId());
@@ -109,7 +113,7 @@ public class TestScheduleController {
 
     Patient thePatient = patientService.findById(patient.getId());
 
-    TestSchedule newTest = new TestSchedule(test.getOPA(), formatDate(patient.getDOB()), test.isCompleted(),
+    TestSchedule newTest = new TestSchedule(test.getLocation(), formatDate(patient.getDOB()), test.isCompleted(),
         test.getCommet(), test.isNotified(), test.getIdlabel(), 0);
     newTest.setPatient(thePatient);
     // if (tScheduleService.findByPatient(thePatient) != null) {

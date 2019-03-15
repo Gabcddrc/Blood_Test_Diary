@@ -1,6 +1,7 @@
 package com.blood.service;
 
 import com.blood.pojo.Patient;
+import com.blood.pojo.PreviousTest;
 import com.blood.pojo.TestSchedule;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,6 +40,9 @@ public class MailService {
     private TemplateEngine templateEngine;
     @Autowired
     private TestScheduleService testScheduleService;
+    @Autowired
+    private PreviousTestService previousTestService;
+
     @Value("${spring.mail.username}") // change in application.properties
     private String from;
 
@@ -90,7 +94,7 @@ public class MailService {
         context.setVariable("firstName", patient.getForename());
         context.setVariable("lastName", patient.getSurname());
         context.setVariable("testTime", test.getDate());
-        context.setVariable("location", "location");
+        context.setVariable("location", test.getLocation());
         String emailContent = templateEngine.process("sendAutomatedEmailTest", context);
         try {
             String email = patient.getEmail();
@@ -116,6 +120,12 @@ public class MailService {
                 // File permission problems are caught here.
                 System.err.println(x);
             }
+            test.setResultSent(true);
+            testScheduleService.save(test);
+            //Keep record of this test
+            PreviousTest prevT = new PreviousTest(test.getLocation(), test.getDate(), test.getCommet());
+            prevT.setPatient(patient);
+            previousTestService.save(prevT);
             logger.info("Send Successful");
 
             return true;
