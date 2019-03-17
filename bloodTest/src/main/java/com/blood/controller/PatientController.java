@@ -28,7 +28,6 @@ public class PatientController {
     public PatientController(PatientService patientService) {
         super();
         this.patientService = patientService;
-
     }
 
     @RequestMapping(value = "/AddPatient", method = RequestMethod.GET)

@@ -26,7 +26,7 @@
             <div class="card">
               <div class="card-image">
                 <img th:src="@{/images/pen.jpg}" />
-                <span class="card-title">Edit the Test Info</span>
+                <h2 class="card-title">Send Test Result</h2>
               </div>
               <div class="card-content">
 
@@ -36,7 +36,6 @@
                     class="col s12">
 
                     <div class="row">
-                      <h2>Send Result</h2>
                       <div class="row">
                         <div class="input-field col s4">
                           <input id="patientId" type="text" th:field="${patient.id}" placeholder="patient Id" readonly>
@@ -52,9 +51,7 @@
                           <li align='left'>Email Address: <span th:text="${patient.email}"></span></li>
                         </h5>
                         <h5>
-                          <li align="left">Test Date:
-                            <span th:text="${test.date}" type="text" class="datepicker white-text"> </span>
-                          </li>
+                            <li align='left'>Test Date: <span th:text="${test.date}"></span></li>
                         </h5>
                         <li>
 

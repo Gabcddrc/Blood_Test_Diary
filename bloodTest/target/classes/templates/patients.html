@@ -19,10 +19,31 @@
 
   <!-- Patient Table -->
   <section class="section section-login light-blue lighten-5 center">
+
+     <!-- SEARCH BAR -->
+     <div class="row">
+        <div class="container">
+          <div id="view-search-bar" class="active" style="display: block;">
+            <div class="row">
+              <div class="col s11">
+                <nav class="blue lighten-2">
+                  <div class="nav-wrapper">
+                    <div class="input-field">
+                      <input placeholder="Search By patient name" id="name" onkeyup="searchPatientFunction()" type="search">
+                      <label class="label-icon" for="search-example">
+                        <i class="material-icons">search</i>
+                      </label>
+                      <i class="material-icons">close</i>
+                    </div>
+                  </div>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
     <div class="row">
-      <div class="col s6">
-        <input placeholder="Search By patient name" id="name"  onkeyup="searchPatientFunction()" type="text" class="validate">
-      </div>
       <div class="col s12">
         <div class="card blue lighten-3">
           <table id = "patientTable" class="highlight">
