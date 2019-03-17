@@ -1,8 +1,8 @@
+<!-- Home Page for Users-->
+
 <!DOCTYPE html>
 <html>
-
 <head>
-  <!-- Mobile SideNav Icon DropDown -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
   <link rel="stylesheet" href="css/main.css">
@@ -14,7 +14,6 @@
 </head>
 
 <body>
-  <!-- Menu Bar -->
   <div th:replace="component/navbar.html"></div>
 
   <div th:replace="component/mnav.html"></div>
@@ -159,22 +158,13 @@
         </div>
       </div>
     </div>
-
-
-
   </section>
 
   <div th:replace="component/footer.html"></div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
-  <script>
-
-  </script>
   <script th:src="@{/js/home.js}"> </script>
   <script th:src="@{/js/nav.js}"> </script>
-
-
-
 </body>
 
 </html>
