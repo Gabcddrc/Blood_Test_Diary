@@ -41,6 +41,7 @@ public class HospitalService {
     public Hospital getByEmail(String email) {
         return hospitalDAO.findByEmail(email);
     }
+
     public Hospital findById(int id) {
         return hospitalDAO.findById(id);
     }
@@ -80,18 +81,21 @@ public class HospitalService {
         return hospital;
     }
 
-    public void updateHospital(Hospital hospital, int id, String name, String email,
-    String address, String phone) {
-                hospital.setId(id);
-                hospital.setName(name);
-                hospital.setEmail(email);
-                hospital.setAddress(address);
-                hospital.setPhone(phone);
-                hospitalDAO.save(hospital);
+    public void updateHospital(Hospital hospital, int id, String name, String email, String address, String phone) {
+        hospital.setId(id);
+        hospital.setName(name);
+        hospital.setEmail(email);
+        hospital.setAddress(address);
+        hospital.setPhone(phone);
+        hospitalDAO.save(hospital);
         // TODO:REST
     }
 
-    
+    public Hospital save(Hospital hospital) {
+        hospitalDAO.save(hospital);
+        return hospital;
+    }
+
     public List<Hospital> findAll() {
         return hospitalDAO.findAll();
     }

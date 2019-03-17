@@ -36,6 +36,7 @@
         <table class="highlight" id="hospitalTable" width="100%">
           <thead>
           <tr>
+            <th></th>
             <th>Name</th>
             <th>Address</th>
             <th>Email</th>
@@ -45,13 +46,13 @@
           <tbody>
           <tr>
           <tr th:each="hospital:${hospitals}">
+              <td><a href="/editHospital" th:href="@{editHospital/{id}(id=${hospital.id})}" class="waves-effect blue waves-light btn"> <i class="medium material-icons left">mode_edit</i> </td>
             <td th:text="${hospital.name}"></td>
             <td th:text="${hospital.address}"></td>
             <td th:text="${hospital.email}"></td>
             <td th:text="${hospital.phone}"></td>
             <td><a class="waves-effect blue waves-light btn" th:data-address="${hospital.address}"
-                   onclick="buttonHelper(this.getAttribute('data-address'))" >Show
-              on Google Map<i class="material-icons left">search</i></a></td>
+                   onclick="buttonHelper(this.getAttribute('data-address'))" >Show<i class="material-icons left">search</i></a></td>
             <!--Point: How to pass ${hospital.address} as a parameter for buttonHelper -->
           </tr>
           </tr>

@@ -69,15 +69,15 @@ public class PatientController {
         patient2.setForename(patient.getForename());
         patient2.setSurname(patient.getSurname());
         patient2.setAddress(patient.getAddress());
-        patient2.setComments(patient.getComments());
-        patient2.setEmail(patient.getEmail());
-        patient2.setDOB(patient.getDOB()); //change this later
-        patient2.setDiagnosis(patient.getDiagnosis());
-        patient2.setLocal_hospital(patient.getLocal_hospital());
         patient2.setSex(patient.getSex());
+        patient2.setDOB(patient.getDOB()); 
+        patient2.setDiagnosis(patient.getDiagnosis());
         patient2.setSurgery(patient.getSurgery());
         patient2.setTransplant(patient.getTransplant());
+        patient2.setLocal_hospital(patient.getLocal_hospital());
+        patient2.setEmail(patient.getEmail());
         patient2.setPhone(patient.getPhone());
+        patient2.setComments(patient.getComments());
         if (bindingResult.hasErrors()) {
             return "editPatients";
         }
