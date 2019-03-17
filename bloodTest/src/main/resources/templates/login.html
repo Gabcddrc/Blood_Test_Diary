@@ -1,3 +1,5 @@
+<!-- Main Login Page -->
+
 <!DOCTYPE html>
 <html>
 
@@ -5,13 +7,14 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
   <link rel="stylesheet" href="css/main.css">
-  <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl"
+  <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js"
+    integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl"
     crossorigin="anonymous"></script>
   <title>Blood Test Diary</title>
 </head>
 
 <body id="home" class="scrollspy">
-  <!-- Menu Bar -->
+
   <div class="navbar-fixed">
     <nav class="blue">
       <div class="container">
@@ -72,7 +75,6 @@
   </section>
 
   <!-- Login Section -->
-
   <section id="login" class="section section-login grey lighten-4 center scrollspy">
     <div class="container">
       <div class="card">
@@ -102,6 +104,7 @@
     </div>
   </section>
 
+  <!-- Request Access By Any User -->
   <section id="Request" class="section section-Request scrollspy">
     <div class="container">
       <div class="row">
@@ -126,10 +129,10 @@
   <div th:replace="component/footer.html"></div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <!-- JQuery for Sliding Images -->
   <script>
     const sideNav = document.querySelector('.sidenav');
     M.Sidenav.init(sideNav, {});
-
     const slider = document.querySelector('.slider');
     M.Slider.init(slider, {
       indicators: false,
@@ -137,14 +140,11 @@
       transition: 400,
       interval: 5000
     });
-
     const mb = document.querySelectorAll('.materialboxed');
     M.Materialbox.init(mb, {});
-
     const ss = document.querySelectorAll('.scrollspy');
     M.ScrollSpy.init(ss, {});
   </script>
-
 </body>
 
 </html>
