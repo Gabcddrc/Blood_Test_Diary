@@ -73,6 +73,13 @@
 
                     <div class="row">
                       <div class="input-field col s12">
+                          <input id="Surgery" th:field="*{surgery}" type="text" class="validate">
+                          <label for="Surgery">Surgery</label>
+                      </div>
+                     </div>
+
+                    <div class="row">
+                      <div class="input-field col s12">
                         <input id="transplant" type="text" th:field="*{transplant}" placeholder="transplant" class="validate">
                         <label for="transplant">Transplant</label>
                       </div>
@@ -110,9 +117,6 @@
                 </div>
 
 
-              </div>
-              <div class="card-action">
-                <a href="https://www.kch.nhs.uk/contact">Missing info?</a>
               </div>
             </div>
           </div>
