@@ -17,6 +17,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+/**
+ * This class will provide HTTP Response for the webpage for account
+ */
+
 @Controller
 public class AccountController {
 
@@ -29,6 +33,11 @@ public class AccountController {
     TestScheduleService testScheduleService;
     StaffValidator staffValidator;
 
+    /**
+     * login page
+     * @param error string
+     * @return 
+     */
     @RequestMapping(value = "/login")
     public String getLogin(Model model, String error) {
         if (error != null) {
@@ -40,6 +49,11 @@ public class AccountController {
         return "login";
     }
 
+    /**
+     * Load the register form
+     * @param model
+     * @return page after registration
+     */
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String registerForm(Model model) {
         model.addAttribute("staff", new Staff());
@@ -47,12 +61,22 @@ public class AccountController {
         return "registers";
     }
 
+    /**
+     * Encrypt the password
+     * @param password
+     * @return hased password
+     */
     public static String encryption(String password) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String hashed = passwordEncoder.encode(password);
         return hashed;
     }
 
+    /**
+     * Save the registration to database
+     * @param staff, bindingResult, model
+     * @return registration Page(if any error happened),else redirection To Homepage
+     */
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String saveRegister(@ModelAttribute("staff") Staff staff, BindingResult bindingResult, Model model) {
         // staffValidator.validate(staff, bindingResult);
@@ -67,6 +91,6 @@ public class AccountController {
             return "registers";
         }
 
-        return "redirect:/home";
+        return "redirect:/home"; //redirection to home page
     }
 }
