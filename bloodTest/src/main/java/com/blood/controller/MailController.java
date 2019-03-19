@@ -62,12 +62,15 @@ public class MailController<StandardMultipartFile> {
      * Convert MultipartFile into File
      */
     public File convert(MultipartFile file) throws IOException {
-        File convFile = new File(file.getOriginalFilename());
-        convFile.createNewFile();
-        FileOutputStream fos = new FileOutputStream(convFile);
-        fos.write(file.getBytes());
-        fos.close();
-        return convFile;
+        if (!file.equals(null)) {
+            File convFile = new File(file.getOriginalFilename());
+            convFile.createNewFile();
+            FileOutputStream fos = new FileOutputStream(convFile);
+            fos.write(file.getBytes());
+            fos.close();
+            return convFile;
+        }
+        return null;
     }
 
     public String dateToString(Date date) {
@@ -102,9 +105,6 @@ public class MailController<StandardMultipartFile> {
             @ModelAttribute("patient") Patient patient, @ModelAttribute("test") TestSchedule test,
             BindingResult bindingResult, Model model) {
         try {
-            System.out.println("Upload PDF" + file.getName());
-            System.out.println("Upload PDF" + file.getContentType());
-            System.out.println("Upload PDF" + file.getResource());
             System.out.println("Upload PDF" + file.getOriginalFilename());
             System.out.println(patient.getId() + " " + test.getId());
             // System.out.println("Upload PDF" +
@@ -116,9 +116,67 @@ public class MailController<StandardMultipartFile> {
 
         } catch (Exception e) {
             System.out.println("ERROR!!!!");
-            return "redirect:/sendTestResult";
+            return "redirect:/sendTestResult/" + test.getId();
         }
         return "redirect:/home";
+    }
+
+    /**
+     * Send Manual Notification with attachment
+     */
+    @RequestMapping(value = "/sendManualReminder/{id}", method = RequestMethod.GET)
+    public String manualNotificationById(@PathVariable("id") String id, Model model) {
+        // TestSchedule testSchedule =
+        // this.tScheduleService.findById(Integer.parseInt(id));
+        Patient patient = this.patientService.findById(Integer.parseInt(id));
+        // patient.setDOB(dateToString(testSchedule.getDate()));
+        // model.addAttribute("test", testSchedule);
+        model.addAttribute("patient", patient);
+
+        return "sendManualReminder";
+    }
+
+    @GetMapping("/sendManualReminder")
+    public String sendManualReminder(Model model) {
+        // model.addAttribute("tests", this.tScheduleService.getAllTestSchedule());
+        return "sendManualReminder";
+    }
+
+    @RequestMapping(value = "/sendManualReminder", method = RequestMethod.POST)
+    public String sendManualReminder(@RequestParam(value = "dateTime", required = false) String dateTime,
+            @RequestParam(value = "location", required = false) String location,
+            @RequestParam(value = "file", required = false) MultipartFile file,
+            @RequestParam(value = "comments", required = false) String comments,
+            @ModelAttribute("patient") Patient patient, BindingResult bindingResult, Model model) {
+        try {
+            // System.out.println("Upload PDF" + file.getOriginalFilename());
+
+            System.out.println(dateToString(formatDate(patient.getDOB())) + " " + location + " " + comments);
+            System.out.println(patient.getId());
+            // System.out.println("Upload PDF" +
+            // file.getResource().getFile().getAbsolutePath());
+            if (!file.equals(null)) {
+                File fl = convert(file);
+            }
+            // System.out.println(fl.getAbsolutePath());
+            // mailService.sendResult(fl.getAbsolutePath(),
+            // patientService.findById(patient.getId()),
+            // tScheduleService.findById(test.getId()));
+
+        } catch (Exception e) {
+            System.out.println(e);
+            return "redirect:/sendManualReminder/" + patient.getId();
+        }
+        return "redirect:/home";
+    }
+
+    public Date formatDate(String date) throws ParseException {
+        String[] dates = date.split("T");
+        date = dates[0] + " " + dates[1] + ":00";
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        // SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        Date datetime = formatter.parse(date);
+        return datetime;
     }
 
     /**

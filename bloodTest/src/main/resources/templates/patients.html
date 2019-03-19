@@ -56,6 +56,7 @@
                   <th>Transplant</th>
                   <th>Surgery</th>
                   <th>Comments</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -104,6 +105,10 @@
                   <td th:text="${patient.transplant}" placeholder="empty"></td>
                   <td th:text="${patient.surgery}" placeholder="empty"></td>
                   <td th:text="${patient.comments}" placeholder="empty"></td>
+                  <td>
+                    <a href="/sendManualReminder" th:href="@{sendManualReminder/{id}(id=${patient.id})}" class="btn"> Send
+                      Result </a>
+                  </td>
                 </tr>
               </tbody>
             </table>
