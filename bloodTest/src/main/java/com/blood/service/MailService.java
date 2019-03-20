@@ -87,7 +87,9 @@ public class MailService {
         return true;
     }
 
-    // TOBE MODIFED WTH PATIENT INFO ATTACHMENT
+    /**
+     * Sending Test Result with attachment
+     */
     public boolean sendResult(String filePath, Patient patient, TestSchedule test) {
         MimeMessage message = mailSender.createMimeMessage();
         Context context = new Context();

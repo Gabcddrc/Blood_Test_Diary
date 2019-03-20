@@ -26,63 +26,57 @@
             <div class="card">
               <div class="card-image">
                 <img th:src="@{/images/pen.jpg}" />
-                <span class="card-title">Edit the Test Info</span>
+                <span class="card-title">Send Manual Notification</span>
               </div>
               <div class="card-content">
 
 
                 <div class="row">
-                  <form th:action="@{/sendTestResult}"  method="POST" enctype="multipart/form-data"
-                    class="col s12">
+                  <form th:action="@{/sendManualReminder}" method="POST" enctype="multipart/form-data" class="col s12">
 
                     <div class="row">
-                      <h2>Send Result</h2>
+                      <h2>Send Notification</h2>
                       <div class="row">
                         <div class="input-field col s4">
                           <input id="patientId" type="text" th:field="${patient.id}" placeholder="Patient ID" readonly>
                           <label for="patientid">Patient ID: </label>
                         </div>
                       </div>
-                      <div class="row">
-                        <div class="input-field col s4">
-                          <input id="testTime" type="text" th:field="${patient.id}" placeholder="Time test will be taken" readonly>
-                          <label for="testTime">Time: </label>
+                      <div class="row" th:object="${patient}">
+                        <div class="col s6">
+                          <input id="date" name="dateTime" th:field="*{DOB}" type="datetime-local" class="validate">
+                          <label for="date">Date</label>
                         </div>
                       </div>
                     </div>
                     <div class="row">
-                      <div class="input-field col s4">
-                        <input id="testLocation" type="text" th:field="${patient.id}" placeholder="Location test will be taken" readonly>
-                        <label for="testLocation">Location: </label>
+                      <div class="col s6">
+                        <input id="location" name="location" type="text" class="validate">
+                        <label for="location">Test Location: </label>
                       </div>
                     </div>
-                      <ul>
-                        <h5>
-                          <li align='left'>Email to: <span th:text="${patient.forename}"></span> <span
-                              th:text="${patient.surname}"></span></li>
-                        </h5>
-                        <h5>
-                          <li align='left'>Email Address: <span th:text="${patient.email}"></span></li>
-                        </h5>
-                        <h5>
-                          <li align="left">Test Date:
-                            <span th:text="${test.date}" type="text" class="datepicker white-text"> </span>
-                          </li>
-                        </h5>
-                        <li>
+                    <ul>
+                      <h5>
+                        <li align='left'>Email to: <span th:text="${patient.forename}"></span> <span
+                            th:text="${patient.surname}"></span></li>
+                      </h5>
+                      <h5>
+                        <li align='left'>Email Address: <span th:text="${patient.email}"></span></li>
+                      </h5>
+                      <li>
 
-                          <div class="file-field input-field">
-                            <div class="btn">
-                              <span>Upload Report</span>
-                              <input type="file" name="file">
-                            </div>
-                            <div class="file-path-wrapper">
-                              <input class="file-path validate" type="text">
-                            </div>
+                        <div class="file-field input-field">
+                          <div class="btn">
+                            <span>Upload Report</span>
+                            <input type="file" name="file">
                           </div>
-                        </li>
+                          <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text">
+                          </div>
+                        </div>
+                      </li>
 
-                        <!--
+                      <!--
                       <h5 align="left">Send Emails:</h5>
                       <li>
                         <div class="row">
@@ -106,30 +100,23 @@
                       </li>
                      -->
 
-                        <h5 align="left">Comments:</h5>
-                        <li>
-                          <div class="row">
-                            <div class="input-field col s6">
-                              <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
-                              <label for="icon_prefix2" style="color: black;">Add any comment</label>
-                            </div>
+                      <h5 align="left">Comments:</h5>
+                      <li>
+                        <div class="row">
+                          <div class="input-field col s6">
+                            <textarea id="icon_prefix2" name="comments" class="materialize-textarea"></textarea>
+                            <label for="icon_prefix2" style="color: black;">Add any comment</label>
                           </div>
-                        </li>
+                        </div>
+                      </li>
 
-                      </ul>
-                    </div>
+                    </ul>
 
 
                     <span th:text="${patient.id}" style=" visibility: hidden;"></span>
-                    <span th:text="${test.id}" style=" visibility: hidden;"></span>
                     <input type="submit" value="Send Result" class=" waves-light btn blue waves-effect">
                   </form>
                 </div>
-
-
-              </div>
-              <div class="card-action">
-                <a href="https://www.kch.nhs.uk/contact">Missing info?</a>
               </div>
             </div>
           </div>
