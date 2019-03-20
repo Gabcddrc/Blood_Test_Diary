@@ -1,6 +1,7 @@
 <!-- Template Page for Editing Hospitals -->
 
 <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <html>
 
 <head>
@@ -30,6 +31,10 @@
               <div class="card-content">
                 <div class="row">
                   <form th:action="@{/editHospital}" th:object="${hospital}" method="POST" class="col s12">
+                    <div th:text="${hospital.id}" placeholder="empty"></div>
+                    <div class="row">
+                      <input type="text" th:field="*{id}" placeholder="Hospital Id" readonly>
+                    </div>
                     <div class="row">
                       <div class="input-field col s12">
                         <input id="name" type="text" th:field="*{name}" class="validate">
@@ -54,7 +59,15 @@
                         <label for="phone_number">Phone Number</label>
                       </div>
                     </div>
-                    <input type="submit" value="Edit Hospital" class=" waves-light btn blue waves-effect">
+                    <div class="row">
+                      <input type="submit" value="Save" class=" waves-light btn blue waves-effect">
+                    </div>
+                    <div class="row">
+                      <a href="/hospitals" th:href="@{deleteHospital/{id}(id=${hospital.id})}" class="red btn">
+                        delete hospital
+
+                      </a>
+                    </div>
                   </form>
                 </div>
               </div>
