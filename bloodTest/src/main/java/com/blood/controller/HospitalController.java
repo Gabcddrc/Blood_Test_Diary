@@ -57,6 +57,10 @@ public class HospitalController {
         return "redirect:/hospitals";
     }
 
+
+
+
+
     @RequestMapping(value = "/editHospital/{id}", method = RequestMethod.GET)
     public String gethospitalsById(@PathVariable("id") String id, Model model) {
         Hospital hospital = this.hospitalService.findById(Integer.parseInt(id));
@@ -82,6 +86,16 @@ public class HospitalController {
         } catch (Exception e) {
             return "editHospitals";
         }
+        return "redirect:/hospitals";
+    }
+    @RequestMapping(value = "editHospital/deleteHospital/{id}", method = RequestMethod.GET)
+    public String deleteHospital(@PathVariable("id") String id){
+        try{
+            hospitalService.deleteHospital(Integer.parseInt(id));
+        } catch (Exception e){
+            return "editHospital";
+        }
+
         return "redirect:/hospitals";
     }
 
