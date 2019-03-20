@@ -46,7 +46,7 @@
               <tr>
               <tr th:each="hospital:${hospitals}">
                 <td><a href="/editHospital" th:href="@{editHospital/{id}(id=${hospital.id})}"
-                    class="waves-effect blue waves-light btn"> <i class="medium material-icons left">mode_edit</i> </td>
+                    class="waves-effect blue waves-light btn"> <i class="medium material-icons">mode_edit</i> </td>
                 <td th:text="${hospital.name}"></td>
                 <td th:text="${hospital.address}"></td>
                 <td th:text="${hospital.email}"></td>
