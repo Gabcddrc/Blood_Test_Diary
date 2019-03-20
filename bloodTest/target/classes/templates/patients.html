@@ -23,6 +23,7 @@
       <div class="container">
         <div id="view-search-bar" class="active" style="display: block;">
           <div class="row">
+            <div class="col s1 left-align"><a href="/AddPatient" class="btn btn-floating"><i class="material-icons">add</i> </a></div>
             <div class="col s11">
               <nav class="blue lighten-2">
                 <div class="nav-wrapper">
@@ -46,7 +47,7 @@
             <table id="patientTable" class="highlight">
               <thead>
                 <tr>
-                  <th>Edit Patient</th>
+                  <th></th>
                   <th>Add Patient Test</th>
                   <th>Name & Surname</th>
                   <th>Gender</th>
@@ -106,8 +107,7 @@
                   <td th:text="${patient.surgery}" placeholder="empty"></td>
                   <td th:text="${patient.comments}" placeholder="empty"></td>
                   <td>
-                    <a href="/sendManualReminder" th:href="@{sendManualReminder/{id}(id=${patient.id})}" class="btn"> Send
-                      Result </a>
+                    <a href="/sendManualReminder" th:href="@{sendManualReminder/{id}(id=${patient.id})}" class="btn"> <i class="small material-icons">email</a> </a>
                   </td>
                 </tr>
               </tbody>
