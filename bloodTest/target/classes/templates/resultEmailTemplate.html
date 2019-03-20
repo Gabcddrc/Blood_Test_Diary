@@ -1480,25 +1480,21 @@
                                         <div class="text--inline">
                                             <h1 class="size-24"
                                                 style="font-size: 20px; line-height: 28px; text-align: left;"
-                                                lang="x-size-24"><span style="color:#8690a8">Blooding test result
-                                                    released</span></h1>
+                                                lang="x-size-24"><span style="color:#8690a8">Blood test result</span></h1>
                                             <p class="size-17" style="font-size: 17px; line-height: 26px;"
                                                 lang="x-size-17">Dear Patient:</p>
                                             <p class="size-17" style="font-size: 17px; line-height: 26px;"
                                                 lang="x-size-17">The document below is the report of your blooding test:
                                             </p>
                                             <p class="size-17" style="font-size: 17px; line-height: 26px;"
-                                                lang="x-size-17">Patient: sad</p>
+                                                lang="x-size-17">Patient:   <span th:text="${firstName}"> </span>&nbsp;<span
+                                                th:text="${lastName}"></span></p>
                                             <p class="size-17" style="font-size: 17px; line-height: 26px;"
-                                                lang="x-size-17">Test Date: 2019/2/3</p>
+                                                lang="x-size-17">Test Date:   <span th:text="${testTime}"></span></p>
                                             <p class="size-17" style="font-size: 17px; line-height: 26px;"
-                                                lang="x-size-17">Time: 12:00pm</p>
+                                                lang="x-size-17">Location:  <span th:text="${location}"></span></p>
                                             <p class="size-17" style="font-size: 17px; line-height: 26px;"
-                                                lang="x-size-17">Location:King's College Hospital</p>
-                                            <p class="size-17" style="font-size: 17px; line-height: 26px;"
-                                                lang="x-size-17">Comments: The result was good</p>
-                                            <p class="size-17" style="font-size: 17px; line-height: 26px;"
-                                                lang="x-size-17">&nbsp;</p>
+                                                lang="x-size-17">Comments:   <span th:text="${comment}"></span></p>
                                             <p class="size-17" style="font-size: 17px; line-height: 26px;"
                                                 lang="x-size-17">&nbsp;</p>
                                             <p class="size-17" style="font-size: 17px; line-height: 26px;"
@@ -1506,7 +1502,11 @@
                                             <p class="size-17" style="font-size: 17px; line-height: 26px;"
                                                 lang="x-size-17">&nbsp;</p>
                                             <p class="size-17" style="font-size: 17px; line-height: 26px;"
-                                                lang="x-size-17">Any further enquiring please contact you advisor.</p>
+                                                lang="x-size-17">&nbsp;</p>
+                                                <p class="size-17" style="font-size: 17px; line-height: 26px;"
+                                                lang="x-size-17">Please find below your blood test result.</p>
+                                            <p class="size-17" style="font-size: 17px; line-height: 26px;"
+                                                lang="x-size-17">Any further enquiry please contact you advisor.</p>
                                             <p class="size-17" style="font-size: 17px; line-height: 26px;"
                                                 lang="x-size-17">Please do not reply this email.</p>
                                             <p class="size-17" style="font-size: 17px; line-height: 26px;"
