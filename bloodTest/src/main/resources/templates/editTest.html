@@ -6,8 +6,9 @@
 <head>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
-    <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl"
-        crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js"
+        integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous">
+    </script>
     <title>Blood Test Diary</title>
 </head>
 
@@ -33,18 +34,20 @@
 
 
                                 <div class="row">
-                                    <form th:action="@{/editTest}" th:object="${testEdit}" method="POST" class="col s12">
+                                    <form th:action="@{/editTest}" th:object="${testEdit}" method="POST"
+                                        class="col s12">
                                         <div>Test id: <span th:text="${testEdit.id}" placeholder="empty"></span></div>
                                         <div class="row">
                                             <div class="input-field col s6" th:object="${patient}">
-                                                <input id="patientId" type="text" th:field="*{id}" placeholder="patient Id"
-                                                    readonly>
+                                                <input id="patientId" type="text" th:field="*{id}"
+                                                    placeholder="patient Id" readonly>
                                                 <label for="patientid">Patient_id</label>
                                             </div>
                                         </div>
                                         <div class="row" th:object="${patient}">
                                             <div class="col s6">
-                                                <input id="date" th:field="*{DOB}" type="datetime-local" class="validate">
+                                                <input id="date" th:field="*{DOB}" type="datetime-local"
+                                                    class="validate">
                                                 <label for="date">Date</label>
                                             </div>
                                         </div>
@@ -65,7 +68,8 @@
                                         </div>
                                         <div class="row">
                                             <div class="col s6">
-                                                <input id="location" th:field="*{location}" type="text" class="validate">
+                                                <input id="location" th:field="*{location}" type="text"
+                                                    class="validate">
                                                 <label for="location">Test_Location</label>
                                             </div>
                                         </div>
@@ -84,20 +88,24 @@
                                         <div class="row">
 
                                             <div class="col s1">
-                                                <input id="miss_test" th:field="*{missTest}" type="number" class="validate">
+                                                <input id="miss_test" th:field="*{missTest}" type="number"
+                                                    class="validate">
                                                 <label for="miss_test">Missed Tests</label>
                                             </div>
                                             <div class="input-field col s11">
-                                                <input id="Comments" type="text" th:field="*{commet}" placeholder="comment"
-                                                    class="validate">
+                                                <input id="Comments" type="text" th:field="*{commet}"
+                                                    placeholder="comment" class="validate">
                                                 <label for="Comments">Comments</label>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <input type="submit" value="Edit Test" class=" waves-light btn blue waves-effect">
+                                            <button type="submit" style="font-weight: bold; font-size:15px"
+                                                class="btn-medium waves-light btn blue lighten-2 waves-effect">Save
+                                            </button>
                                         </div>
                                         <div class="row">
-                                            <a href="/home" th:href="@{deleteTest/{id}(id=${testEdit.id})}" class="red btn">
+                                            <a href="/home" th:href="@{deleteTest/{id}(id=${testEdit.id})}"
+                                                class="red btn">
                                                 delete Test </a>
                                         </div>
                                     </form>
