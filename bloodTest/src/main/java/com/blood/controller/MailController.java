@@ -54,6 +54,9 @@ public class MailController<StandardMultipartFile> {
 
     /**
      * Convert MultipartFile into File
+     * 
+     * @param MultipartFile file
+     * @return File
      */
     public File convert(MultipartFile file) {
         try {
@@ -88,7 +91,9 @@ public class MailController<StandardMultipartFile> {
 
     @RequestMapping(value = "/sendTestResult", method = RequestMethod.POST)
     public String editLabel(@RequestParam(value = "file", required = false) MultipartFile file,
-            @ModelAttribute("patient") Patient patient, @ModelAttribute("test") TestSchedule test,
+            @ModelAttribute("patient") Patient patient, 
+            @ModelAttribute("test") TestSchedule test,
+            @RequestParam(value = "comments", required = false) String comments,
             BindingResult bindingResult, Model model) {
         try {
             // System.out.println("Upload PDF" + file.getOriginalFilename());
@@ -98,7 +103,7 @@ public class MailController<StandardMultipartFile> {
             File fl = convert(file);
             // System.out.println(fl.getAbsolutePath());
             mailService.sendResult(fl.getAbsolutePath(), patientService.findById(patient.getId()),
-                    tScheduleService.findById(test.getId()));
+                    tScheduleService.findById(test.getId()),comments  );
 
         } catch (Exception e) {
             System.out.println(e);
@@ -109,6 +114,10 @@ public class MailController<StandardMultipartFile> {
 
     /**
      * Send Manual Notification with attachment
+     * 
+     * @param String id
+     * @param Model  model
+     * @return String
      */
     @RequestMapping(value = "/sendManualReminder/{id}", method = RequestMethod.GET)
     public String manualNotificationById(@PathVariable("id") String id, Model model) {
@@ -128,8 +137,15 @@ public class MailController<StandardMultipartFile> {
         return "sendManualReminder";
     }
 
-     /**
+    /**
      * Send Manual Notification with attachment
+     * 
+     * @param String  dateTime
+     * @param String  location
+     * @param String  comments
+     * @param Patient patient, BindingResult bindingResult, Model model
+     * 
+     * @return String
      */
     @RequestMapping(value = "/sendManualReminder", method = RequestMethod.POST)
     public String sendManualReminder(@RequestParam(value = "dateTime", required = false) String dateTime,
@@ -142,7 +158,8 @@ public class MailController<StandardMultipartFile> {
             System.out.println(dateToString(formatDate(patient.getDOB())) + " " + location + " " + comments);
             System.out.println(patient.getId());
 
-            mailService.sendManualReminder(patient, dateToString(formatDate(patient.getDOB())), location, comments);
+            mailService.sendManualReminder(this.patientService.findById(patient.getId()),
+                    dateToString(formatDate(patient.getDOB())), location, comments);
 
         } catch (Exception e) {
             System.out.println(e);
@@ -150,9 +167,10 @@ public class MailController<StandardMultipartFile> {
         }
         return "redirect:/home";
     }
-    
+
     /**
-     * Format the date of a string 
+     * Format the date of a string
+     * 
      * @param: String date
      * @return Date
      */
@@ -166,7 +184,8 @@ public class MailController<StandardMultipartFile> {
     }
 
     /**
-     * Convert Date to String  
+     * Convert Date to String
+     * 
      * @param: Date date
      * @return String
      */

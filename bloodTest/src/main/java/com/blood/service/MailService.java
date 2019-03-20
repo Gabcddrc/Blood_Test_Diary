@@ -47,7 +47,7 @@ public class MailService {
     private String from;
 
     /**
-     * Send automated notification
+     * Send automated notification to the Patient
      * 
      * @return boolean true if successful
      */
@@ -102,11 +102,11 @@ public class MailService {
         Context context = new Context();
         context.setVariable("firstName", patient.getForename());
         context.setVariable("lastName", patient.getSurname());
-        context.setVariable("testTime", testTime);
+        String formatTestTime = testTime.replace("T", " at ");
+        context.setVariable("testTime", formatTestTime);
         context.setVariable("location", location);
         context.setVariable("comment", comment);
         String emailContent = templateEngine.process("sendAutomatedEmailTest", context);
-
         try {
             MimeMessageHelper helper = new MimeMessageHelper(message, true);
             String email = patient.getEmail();
@@ -126,14 +126,15 @@ public class MailService {
      * 
      * @param String filePath, Patient patient, TestSchedule test
      */
-    public boolean sendResult(String filePath, Patient patient, TestSchedule test) {
+    public boolean sendResult(String filePath, Patient patient, TestSchedule test, String comment) {
         MimeMessage message = mailSender.createMimeMessage();
         Context context = new Context();
         context.setVariable("firstName", patient.getForename());
         context.setVariable("lastName", patient.getSurname());
         context.setVariable("testTime", test.getDate());
         context.setVariable("location", test.getLocation());
-        String emailContent = templateEngine.process("sendAutomatedEmailTest", context);
+        context.setVariable("comment", comment);
+        String emailContent = templateEngine.process("resultEmailTemplate", context);
         try {
             MimeMessageHelper helper = new MimeMessageHelper(message, true);
             String email = patient.getEmail();
