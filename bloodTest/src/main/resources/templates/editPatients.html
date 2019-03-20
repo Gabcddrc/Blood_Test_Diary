@@ -5,6 +5,7 @@
 
 <head>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="css/submit.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js"
         integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl"
@@ -115,11 +116,11 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <input type="submit" value="Save" class=" waves-light btn blue waves-effect">
+                                            <button type="submit" style="font-weight: bold; font-size:15px" class="btn-medium waves-light btn blue lighten-2 waves-effect">Save </button>
                                         </div>
                                         <div class="row">
-                                            <a href="/patients" th:href="@{deletePatient/{id}(id=${patient.id})}" class="red btn">
-                                                delete patient </a>
+                                            <a className="submit" href="/patients" style="font-weight: bold;" th:href="@{deletePatient/{id}(id=${patient.id})}" class="red lighten-2 btn">
+                                                Delete patient </a>
                                         </div>
                                     </form>
                                 </div>
