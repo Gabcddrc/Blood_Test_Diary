@@ -99,13 +99,15 @@ public class MailService {
         context.setVariable("location", test.getLocation());
         String emailContent = templateEngine.process("sendAutomatedEmailTest", context);
         try {
-            String email = patient.getEmail();
-            FileSystemResource file = new FileSystemResource(new File(filePath));
-            System.out.println(file.getPath());
             MimeMessageHelper helper = new MimeMessageHelper(message, true);
-            // String fileName = filePath.substring(filePath.lastIndexOf(File.separator));
-            String fileName = patient.getForename() + "_result.pdf";
-            helper.addAttachment(fileName, file);
+            String email = patient.getEmail();
+            if (filePath != null) {
+                FileSystemResource file = new FileSystemResource(new File(filePath));
+                System.out.println(file.getPath());         
+                // String fileName = filePath.substring(filePath.lastIndexOf(File.separator));
+                String fileName = patient.getForename() + "_result.pdf";
+                helper.addAttachment(fileName, file);
+            }
             helper.setFrom(from);
             helper.setTo(email);
             helper.setSubject("Liver Test Result");
@@ -124,7 +126,7 @@ public class MailService {
             }
             test.setResultSent(true);
             testScheduleService.save(test);
-            //Keep record of this test
+            // Keep record of this test
             PreviousTest prevT = new PreviousTest(test.getLocation(), test.getDate(), test.getCommet());
             prevT.setPatient(patient);
             previousTestService.save(prevT);
