@@ -3,6 +3,9 @@ package com.blood.service;
 import com.blood.dao.StaffDAO;
 import com.blood.pojo.Staff;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -21,6 +24,16 @@ public class StaffService {
     public void saveStaff(Staff staff) {
         staff.setPassword(encoder.encode(staff.getPassword()));
         staffDAO.save(staff);
+    }
+
+    public String getUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (!(authentication instanceof AnonymousAuthenticationToken)) {
+            String currentUserName = authentication.getName();
+            System.out.print(currentUserName);
+            return currentUserName;
+        }
+        return " ";
     }
 
     /*
@@ -47,15 +60,15 @@ public class StaffService {
         return staffDAO.findByUsername(username);
     }
 
-    public Staff createStaff(Staff staff){
-         staffDAO.save(staff);
-         return staff;
+    public Staff createStaff(Staff staff) {
+        staffDAO.save(staff);
+        return staff;
     }
-    
-     /*
-     data display template
+
+    /*
+     * data display template
      */
-    public List<Staff> getAllStaff(){
+    public List<Staff> getAllStaff() {
         List<Staff> staffs = new ArrayList<>();
         this.staffDAO.findAll().forEach(staffs::add);
         return staffs;
