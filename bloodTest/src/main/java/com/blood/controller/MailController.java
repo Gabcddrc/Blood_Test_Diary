@@ -52,34 +52,20 @@ public class MailController<StandardMultipartFile> {
         }
     }
 
-    /*
-     * @PostMapping("SendResult") public Object sendResult(Patient patient, String
-     * file) throws Exception { boolean res = mailService.sendResult(patient, file);
-     * if (res == true) { return 1; } else { return 0; } }
-     */
-
     /**
      * Convert MultipartFile into File
      */
-    public File convert(MultipartFile file) throws IOException {
-        if (!file.equals(null)) {
+    public File convert(MultipartFile file) {
+        try {
             File convFile = new File(file.getOriginalFilename());
             convFile.createNewFile();
             FileOutputStream fos = new FileOutputStream(convFile);
             fos.write(file.getBytes());
             fos.close();
             return convFile;
+        } catch (IOException e) {
+            return null;
         }
-        return null;
-    }
-
-    public String dateToString(Date date) {
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String dateString = formatter.format(date);
-        String[] dateArr = dateString.split(" ");
-        String[] dateArr2 = dateArr[1].split(":");
-        dateString = dateArr[0] + "T" + dateArr2[0] + ":" + dateArr2[1];
-        return dateString;
     }
 
     // Send Result (send attachment)
@@ -105,17 +91,17 @@ public class MailController<StandardMultipartFile> {
             @ModelAttribute("patient") Patient patient, @ModelAttribute("test") TestSchedule test,
             BindingResult bindingResult, Model model) {
         try {
-            System.out.println("Upload PDF" + file.getOriginalFilename());
-            System.out.println(patient.getId() + " " + test.getId());
+            // System.out.println("Upload PDF" + file.getOriginalFilename());
+            // System.out.println(patient.getId() + " " + test.getId());
             // System.out.println("Upload PDF" +
             // file.getResource().getFile().getAbsolutePath());
             File fl = convert(file);
-            System.out.println(fl.getAbsolutePath());
+            // System.out.println(fl.getAbsolutePath());
             mailService.sendResult(fl.getAbsolutePath(), patientService.findById(patient.getId()),
                     tScheduleService.findById(test.getId()));
 
         } catch (Exception e) {
-            System.out.println("ERROR!!!!");
+            System.out.println(e);
             return "redirect:/sendTestResult/" + test.getId();
         }
         return "redirect:/home";
@@ -142,10 +128,12 @@ public class MailController<StandardMultipartFile> {
         return "sendManualReminder";
     }
 
+     /**
+     * Send Manual Notification with attachment
+     */
     @RequestMapping(value = "/sendManualReminder", method = RequestMethod.POST)
     public String sendManualReminder(@RequestParam(value = "dateTime", required = false) String dateTime,
             @RequestParam(value = "location", required = false) String location,
-            @RequestParam(value = "file", required = false) MultipartFile file,
             @RequestParam(value = "comments", required = false) String comments,
             @ModelAttribute("patient") Patient patient, BindingResult bindingResult, Model model) {
         try {
@@ -153,15 +141,6 @@ public class MailController<StandardMultipartFile> {
 
             System.out.println(dateToString(formatDate(patient.getDOB())) + " " + location + " " + comments);
             System.out.println(patient.getId());
-            // System.out.println("Upload PDF" +
-            // file.getResource().getFile().getAbsolutePath());
-            if (!file.equals(null)) {
-                File fl = convert(file);
-            }
-            // System.out.println(fl.getAbsolutePath());
-            // mailService.sendResult(fl.getAbsolutePath(),
-            // patientService.findById(patient.getId()),
-            // tScheduleService.findById(test.getId()));
 
         } catch (Exception e) {
             System.out.println(e);
@@ -169,7 +148,12 @@ public class MailController<StandardMultipartFile> {
         }
         return "redirect:/home";
     }
-
+    
+    /**
+     * Format the date of a string 
+     * @param: String date
+     * @return Date
+     */
     public Date formatDate(String date) throws ParseException {
         String[] dates = date.split("T");
         date = dates[0] + " " + dates[1] + ":00";
@@ -180,15 +164,17 @@ public class MailController<StandardMultipartFile> {
     }
 
     /**
-     * @RequestMapping(value = "/sendTestResult", method = RequestMethod.POST)
-     *                       public String sendResult(@ModelAttribute("patient")
-     *                       Patient patient, @ModelAttribute("result") TestSchedule
-     *                       result, BindingResult bindingResult, Model model)
-     *                       throws ParseException {
-     * 
-     *                       Patient thePatient =
-     *                       patientService.findById(patient.getId()); return
-     *                       "redirect:/home"; }
+     * Convert Date to String  
+     * @param: Date date
+     * @return String
      */
+    public String dateToString(Date date) {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String dateString = formatter.format(date);
+        String[] dateArr = dateString.split(" ");
+        String[] dateArr2 = dateArr[1].split(":");
+        dateString = dateArr[0] + "T" + dateArr2[0] + ":" + dateArr2[1];
+        return dateString;
+    }
 
 }
