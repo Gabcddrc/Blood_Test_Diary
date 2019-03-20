@@ -61,7 +61,7 @@
               </thead>
               <tbody>
                 <tr th:each="patient:${patients}">
-                  <td><a href="/editPatient" th:href="@{editPatient/{id}(id=${patient.id})}" class="btn"> Edit </td>
+                  <td><a href="/editPatient" th:href="@{editPatient/{id}(id=${patient.id})}" class="btn"><i class="medium material-icons">mode_edit</i>  </td>
                   <td><a href="/addTest" th:href="@{addTest/{id}(id=${patient.id})}" class="btn"> AddTest </td>
 
                   <td>
