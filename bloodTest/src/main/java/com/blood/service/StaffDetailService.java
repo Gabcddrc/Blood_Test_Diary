@@ -11,13 +11,21 @@ import java.util.Set;
 import java.util.HashSet;
 
 import com.blood.dao.StaffDAO;
-import com.blood.pojo.Staff;;
+import com.blood.pojo.Staff;
 
+/**
+ * This class provide the backend logic for staff details
+ */
 @Service
 public class StaffDetailService implements UserDetailsService {
     @Autowired
     private StaffDAO staffDAO;
 
+    /**
+     * Load the user by username
+     * @param username -- username of staff
+     * @return staff details
+     */
     @Override
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

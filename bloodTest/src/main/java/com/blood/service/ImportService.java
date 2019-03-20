@@ -1,22 +1,13 @@
 /**
  * Spreadsheet import service
  *
- * @Autho Yilei Liang
+ * @Author Yilei Liang
  */
 
-/***
- Write the following Dependencies to pom.xml
-    
- <dependency>
-    <groupId>org.apache.poi</groupId>
-     <artifactId>poi-ooxml</artifactId>
-     <version>3.15</version>
- </dependency>
 
- ***/
 
 /**
- * IMPORTANT NOTICE: This Service will not work properly if the speradsheet is not well-defined!!!
+ * IMPORTANT NOTICE: This Service will not work properly if the speradsheet is not well-defined!!! (As shown in example spreadsheet file)
  * Therefore in order to test it, delete the third workbook in Shared Care DB!!
  *
  *
@@ -36,10 +27,15 @@ import com.blood.pojo.Patient;
 public class ImportService{
     private PatientService patientService;
 
+    /**
+     * Load the spreadsheet to database
+     * @param fileLocation -- URL of the spreadsheet
+     */
     public void load(String fileLocation) {
         try {
             FileInputStream file = new FileInputStream(new File(fileLocation));
             Workbook workbook = new XSSWorkbook(file);
+            //For each sheet (as some spreadsheet contains multiple sheet)
             for (Sheet sheet : workbook) {
                 Iterator<Row> rowIterator = datatypeSheet.iterator();
                 Row curRow = iterator.next(); //Skip the first row

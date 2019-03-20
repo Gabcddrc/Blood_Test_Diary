@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
+/**
+ * This class provide the HTTP response service for the previous test of the patient
+ */
 @Controller
 public class PreviousTestController {
     @Autowired
@@ -28,6 +31,12 @@ public class PreviousTestController {
         this.previousTestService = previousTestService;
     }
 
+    /**
+     * Get all test schedule
+     * @param model
+     * 
+     * @return url of previousTest page
+     */
     @GetMapping("/previousTests")
     public String getAllTestSchedule(Model model) {
         model.addAttribute("previousTests", this.previousTestService.getAllPreviousTest());

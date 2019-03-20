@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
+/**
+ * This class provides HTTP response for patient
+ */
 @Controller
 public class PatientController {
     @Autowired
@@ -30,13 +32,24 @@ public class PatientController {
         this.patientService = patientService;
     }
 
+    /**
+     * Get the registration form for adding a patient
+     * @param model
+     * @return url to AddPatient
+     */
     @RequestMapping(value = "/AddPatient", method = RequestMethod.GET)
     public String registerForm(Model model) {
         model.addAttribute("patient", new Patient());
         return "AddPatient";
     }
 
-
+    /**
+     * Save the registration for patient to Database
+     * @param patient -- patient to be added to DB
+     * @param bindingResult
+     * @param model
+     * @return url to addPatient page if any error occured, else redirect to page showing all patients
+     */
     @RequestMapping(value = "/addPatient", method = RequestMethod.POST)
     public String saveRegister(@ModelAttribute("patient") Patient patient, BindingResult bindingResult, Model model) {
         // patientValidator.validate(patient, bindingResult);
@@ -55,6 +68,12 @@ public class PatientController {
         return "redirect:/patients";
     }
 
+    /**
+     * Get the patients by referencing the id of patient in url
+     * @param id
+     * @param model
+     * @return url to editPatients page
+     */
     @RequestMapping(value = "/editPatient/{id}", method = RequestMethod.GET)
     public String getPatientsById(@PathVariable("id") String id, Model model) {
         Patient patient = this.patientService.findById(Integer.parseInt(id));
@@ -62,6 +81,14 @@ public class PatientController {
         return "editPatients";
     }
 
+    /**
+     * Applied the changes for the patient and save it to DB
+     * @param patient -- edited patient
+     * @param bindingResult
+     * @param model
+     * 
+     * @return url to editPatients page if any error occured, else redirect to page showing all patients
+     */
     @RequestMapping(value = "/editPatient", method = RequestMethod.POST)
     public String saveEditPatient(@ModelAttribute("patient") Patient patient, BindingResult bindingResult,Model model) {
         Patient patient2 = new Patient();
@@ -89,6 +116,12 @@ public class PatientController {
         return "redirect:/patients";
     }
 
+    /**
+     * Delete the specific patient by referencing the ID
+     * @param id -- The id of the patient to be deleted
+     * 
+     * @return editPatient page if any error occured, else redirect to page showing all patients
+     */
     @RequestMapping(value = "editPatient/deletePatient/{id}", method = RequestMethod.GET)
     public String deletePatient(@PathVariable("id") String id){
         try{
@@ -100,6 +133,13 @@ public class PatientController {
         return "redirect:/patients";
     }
 
+
+    /**
+     * Get all the patients
+     * @param model
+     * 
+     * @return Page containing all the patients
+     */
     @GetMapping("/patients")
     public String getAllPatients(Model model){
         model.addAttribute("patients", this.patientService.getAllPatients());

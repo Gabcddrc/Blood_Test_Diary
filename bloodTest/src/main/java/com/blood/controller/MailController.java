@@ -28,6 +28,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+/**
+ * This class provides the HTTP Response for mail service
+ */
+
 @Controller
 public class MailController<StandardMultipartFile> {
     @Autowired
@@ -37,11 +41,18 @@ public class MailController<StandardMultipartFile> {
     @Autowired
     private MailService mailService;
 
+
+    /**
+     * Send the notification to the patient
+     */
     @PostMapping("SendNotification")
     public void send() throws Exception {
         mailService.sendNotification();
     }
 
+    /**
+     * 
+     */
     @PostMapping("sendDeleteEmail")
     public Object sendDelete(Patient patient) throws Exception {
         boolean res = mailService.sendDeleteResult(patient);
@@ -60,6 +71,8 @@ public class MailController<StandardMultipartFile> {
 
     /**
      * Convert MultipartFile into File
+     * @param file -- file to be converted
+     * @return convFile -- converted file
      */
     public File convert(MultipartFile file) throws IOException {
         File convFile = new File(file.getOriginalFilename());
@@ -70,6 +83,11 @@ public class MailController<StandardMultipartFile> {
         return convFile;
     }
 
+    /**
+     * Convert date to String
+     * @param date -- date to be converted
+     * @return dateString -- converted String
+     */
     public String dateToString(Date date) {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String dateString = formatter.format(date);
@@ -79,7 +97,12 @@ public class MailController<StandardMultipartFile> {
         return dateString;
     }
 
-    // Send Result (send attachment)
+    /** 
+     * Send Result (send attachment)
+     * @param id
+     * @param model
+     * @return 
+     */
     @RequestMapping(value = "/sendTestResult/{id}", method = RequestMethod.GET)
     public String sendResultById(@PathVariable("id") String id, Model model) {
         TestSchedule testSchedule = this.tScheduleService.findById(Integer.parseInt(id));
@@ -91,12 +114,26 @@ public class MailController<StandardMultipartFile> {
         return "sendTestResult";
     }
 
+    /**
+     * @param model
+     * @return 
+     */
     @GetMapping("/sendTestResult")
     public String getResult(Model model) {
         // model.addAttribute("tests", this.tScheduleService.getAllTestSchedule());
         return "sendTestResult";
     }
 
+    /**
+     * Send the result file
+     * @param file -- The result file
+     * @param patient
+     * @param test
+     * @param bindingResult
+     * @param model 
+     * 
+     * @return redirection to current page if any error occured, else redirct to home page
+     */
     @RequestMapping(value = "/sendTestResult", method = RequestMethod.POST)
     public String editLabel(@RequestParam(value = "file", required = false) MultipartFile file,
             @ModelAttribute("patient") Patient patient, @ModelAttribute("test") TestSchedule test,

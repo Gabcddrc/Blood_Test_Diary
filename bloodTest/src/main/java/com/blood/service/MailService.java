@@ -29,6 +29,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * This class processes the mail service of the web application, providing email sending for notification, test result and delete result
+ */
+
 @Service("mailService")
 public class MailService {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -46,6 +50,10 @@ public class MailService {
     @Value("${spring.mail.username}") // change in application.properties
     private String from;
 
+    /**
+     * Send the notification email to patient for informing the schedule of test
+     * @return true if there is any test schedule, else false
+     */
     public boolean sendNotification() {
         List<TestSchedule> testSchedules = testScheduleService.findAll();
         for (TestSchedule testSchedule : testSchedules) {
@@ -88,6 +96,13 @@ public class MailService {
     }
 
     // TOBE MODIFED WTH PATIENT INFO ATTACHMENT
+    /**
+     * Send the test result to patient
+     * @param filePath -- the file path of the test result
+     * @param patient -- the patient of this result
+     * @param test -- the blood test
+     * @return true if the result sent successfully, else false
+     */
     public boolean sendResult(String filePath, Patient patient, TestSchedule test) {
         MimeMessage message = mailSender.createMimeMessage();
         Context context = new Context();
@@ -135,6 +150,11 @@ public class MailService {
         }
     }
 
+    /**
+     * Send the test delete email
+     * @param patient -- the patient who should receive this email
+     * @return true is email sent successfully, else false
+     */
     public boolean sendDeleteResult(Patient patient) {
         MimeMessage message = mailSender.createMimeMessage();
         Context context = new Context();

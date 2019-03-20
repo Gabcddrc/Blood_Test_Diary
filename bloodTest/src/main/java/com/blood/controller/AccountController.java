@@ -36,7 +36,7 @@ public class AccountController {
     /**
      * login page
      * @param error string
-     * @return 
+     * @return url of the login page
      */
     @RequestMapping(value = "/login")
     public String getLogin(Model model, String error) {
