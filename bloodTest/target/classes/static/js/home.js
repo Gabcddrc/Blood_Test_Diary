@@ -104,3 +104,24 @@ $(document).ready(function () {
     });
   });
 });
+
+function formateDate(v){
+  let date = v.split(" ")
+  let dateArray = date[0].split("-")
+  console.log(dateArray);
+  return (dateArray[0]+dateArray[1]+dateArray[2])
+}
+
+function sortByDate(){
+  
+  var tbody = document.querySelector("#testTable tbody")
+  var rows = [].slice.call(tbody.querySelectorAll("tr"));
+
+  rows.sort(function(a,b) {
+    return formateDate(a.cells[3].innerHTML) - formateDate(b.cells[3].innerHTML)
+  })
+
+  rows.forEach(function(c) {
+      tbody.appendChild(c)
+  })
+}
