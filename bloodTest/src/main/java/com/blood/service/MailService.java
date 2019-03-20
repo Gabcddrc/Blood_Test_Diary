@@ -46,6 +46,11 @@ public class MailService {
     @Value("${spring.mail.username}") // change in application.properties
     private String from;
 
+    /**
+     * Send automated notification
+     * 
+     * @return boolean true if successful
+     */
     public boolean sendNotification() {
         List<TestSchedule> testSchedules = testScheduleService.findAll();
         for (TestSchedule testSchedule : testSchedules) {
@@ -88,7 +93,38 @@ public class MailService {
     }
 
     /**
+     * Send manual notification to the patient
+     * 
+     * @param Patient patient, String testTime, String location, String comment
+     */
+    public void sendManualReminder(Patient patient, String testTime, String location, String comment) {
+        MimeMessage message = mailSender.createMimeMessage();
+        Context context = new Context();
+        context.setVariable("firstName", patient.getForename());
+        context.setVariable("lastName", patient.getSurname());
+        context.setVariable("testTime", testTime);
+        context.setVariable("location", location);
+        context.setVariable("comment", comment);
+        String emailContent = templateEngine.process("sendAutomatedEmailTest", context);
+
+        try {
+            MimeMessageHelper helper = new MimeMessageHelper(message, true);
+            String email = patient.getEmail();
+            helper.setFrom(from);
+            helper.setTo(email);
+            helper.setSubject("Liver Test Result");
+            helper.setText(emailContent, true);
+            mailSender.send(message);
+            logger.info("Send Manual notification Successful");
+        } catch (MessagingException e) {
+            logger.error("Send Failed！", e);
+        }
+    }
+
+    /**
      * Sending Test Result with attachment
+     * 
+     * @param String filePath, Patient patient, TestSchedule test
      */
     public boolean sendResult(String filePath, Patient patient, TestSchedule test) {
         MimeMessage message = mailSender.createMimeMessage();
@@ -103,7 +139,7 @@ public class MailService {
             String email = patient.getEmail();
             if (filePath != null) {
                 FileSystemResource file = new FileSystemResource(new File(filePath));
-                System.out.println(file.getPath());         
+                System.out.println(file.getPath());
                 // String fileName = filePath.substring(filePath.lastIndexOf(File.separator));
                 String fileName = patient.getForename() + "_result.pdf";
                 helper.addAttachment(fileName, file);
@@ -139,6 +175,12 @@ public class MailService {
         }
     }
 
+    /**
+     * Deleted patient been notified
+     * 
+     * @param Patient patient
+     * @return boolean
+     */
     public boolean sendDeleteResult(Patient patient) {
         MimeMessage message = mailSender.createMimeMessage();
         Context context = new Context();
@@ -160,4 +202,5 @@ public class MailService {
             return false;
         }
     }
+
 }

@@ -142,6 +142,8 @@ public class MailController<StandardMultipartFile> {
             System.out.println(dateToString(formatDate(patient.getDOB())) + " " + location + " " + comments);
             System.out.println(patient.getId());
 
+            mailService.sendManualReminder(patient, dateToString(formatDate(patient.getDOB())), location, comments);
+
         } catch (Exception e) {
             System.out.println(e);
             return "redirect:/sendManualReminder/" + patient.getId();
