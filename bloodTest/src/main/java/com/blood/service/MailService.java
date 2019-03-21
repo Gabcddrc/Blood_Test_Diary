@@ -29,6 +29,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * This class processes the mail service of the web application, providing email sending for notification, test result and delete result
+ */
+
 @Service("mailService")
 public class MailService {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -47,9 +51,8 @@ public class MailService {
     private String from;
 
     /**
-     * Send automated notification to the Patient
-     * 
-     * @return boolean true if successful
+     * Send the notification email to patient for informing the schedule of test
+     * @return true if there is any test schedule, else false
      */
     public boolean sendNotification() {
         List<TestSchedule> testSchedules = testScheduleService.findAll();
@@ -92,6 +95,7 @@ public class MailService {
         return true;
     }
 
+
     /**
      * Send manual notification to the patient
      * 
@@ -122,9 +126,12 @@ public class MailService {
     }
 
     /**
-     * Sending Test Result with attachment
-     * 
-     * @param String filePath, Patient patient, TestSchedule test
+     * Send the test result to patient
+     * @param filePath -- the file path of the test result
+     * @param patient -- the patient of this result
+     * @param test -- the blood test
+     * @param comment - any comment message
+     * @return true if the result sent successfully, else false
      */
     public boolean sendResult(String filePath, Patient patient, TestSchedule test, String comment) {
         MimeMessage message = mailSender.createMimeMessage();
@@ -177,10 +184,9 @@ public class MailService {
     }
 
     /**
-     * Deleted patient been notified
-     * 
-     * @param Patient patient
-     * @return boolean
+     * Send the test delete email
+     * @param patient -- the patient who should receive this email
+     * @return true is email sent successfully, else false
      */
     public boolean sendDeleteResult(Patient patient) {
         MimeMessage message = mailSender.createMimeMessage();

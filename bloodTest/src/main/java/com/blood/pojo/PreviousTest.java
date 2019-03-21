@@ -56,44 +56,81 @@ public class PreviousTest {
     }
 
     /**
-     * getters to retrieve scheduling information for patients
+     * accessor method of retrieving scheduling information for patients
+     * @return id -- id of the previous test
      */
     public int getId() {
         return id;
     }
 
+    /**
+     * Set the new test Id
+     * @param id -- id to be set
+     */
     public void setId(int id) {
         this.id = id;
     }
 
+    /** 
+     * Get the test location
+     * @return location -- location of the test
+     */
     public String getLocation() {
         return location;
     }
 
+    /**
+     * Set the test location
+     * @param location -- location of the test
+     */
     public void setLocation(String location) {
         this.location = location;
     }
 
+    /**
+     * Get the date of the test
+     * @return date -- date of the test
+     */
     public Date getDate() {
         return date;
     }
 
+    /**
+     * Set the date of the test
+     * @param date -- date to be set
+     */
     public void setDate(Date date) {
         this.date = date;
     }
 
+    /**
+     * Get the commet
+     * @return commet
+     */
     public String getCommet() {
         return commet;
     }
 
+    /**
+     * Set the commet
+     * @param commet
+     */
     public void setCommet(String comment) {
         this.commet = comment;
     }
 
+    /**
+     * Get the patient of this test
+     * @return patient -- patient of this test
+     */
     public Patient getPatient() {
         return patient;
     }
 
+    /**
+     * Assign a patient to this test
+     * @param patient -- patient of this test
+     */
     public void setPatient(Patient patient) {
         this.patient = patient;
     }

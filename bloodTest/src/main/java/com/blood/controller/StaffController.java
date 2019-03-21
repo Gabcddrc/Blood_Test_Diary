@@ -14,17 +14,32 @@ import org.springframework.ui.Model;
 
 import javax.servlet.http.HttpSession;
 
+/**
+ * This class provide the HTTP service for staff management
+ */
 @Controller
 public class StaffController {
     @Autowired
     StaffService staffService;
 
+    /**
+     * Get all the staffs
+     * @param model
+     * 
+     * @return url of the staff page
+     */
     @GetMapping("/staffs")
     public String getAllStaffs(Model model){
         model.addAttribute("staffs", this.staffService.getAllStaff());
         return "staffs";
     }
 
+    /**
+     * Get the user 
+     * @param session -- 
+     * 
+     * @return staff -- 
+     */
     @GetMapping("getUser")
     public Staff get(HttpSession session) throws Exception {
         Staff staff =(Staff)  session.getAttribute("staff");
