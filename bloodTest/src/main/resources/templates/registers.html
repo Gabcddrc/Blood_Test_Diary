@@ -23,12 +23,14 @@
                         <div th:if="${error != null}" th:utext="${error}" class="error">...</div>
                         <form th:action="@{/register}" th:object="${staff}" method="POST">
                             <div class="input-field">
-                                <input type="text" th:field="*{username}" placeholder="username"  class="validate"/>
+                                <input type="text" th:field="*{username}" placeholder="username"  class="validate" required/>
                                 <span th:if="${#fields.hasErrors('username')}" th:errors="*{userName}">..</span>
                             </div>
                             <div class="input-field">
-                                <input type="password" th:field="*{password}"  placeholder="Password"  class="validate"/>
-                                <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}">..</span>
+                                <input id ="password" type="password" th:field="*{password}"  placeholder="Password"  class="validate" required/>
+                            </div>
+                            <div class="input-field">
+                                <input id = "confirm_password"  data-error="Password not match" type="password" placeholder="confirm password" class="validate" required/>
                             </div>
                             <div class="input-field">
                                 <input id="email" type="email" th:field="*{email}" placeholder="Email" class="validate"/>
@@ -56,6 +58,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
     <script th:src="@{/js/nav.js}"> </script>
+    <script th:src="@{/js/register.js}"> </script>
 </body>
 
 </html>

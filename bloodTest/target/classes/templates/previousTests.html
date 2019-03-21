@@ -1,8 +1,9 @@
+<!-- Previous test page for previous tests of patients -->
+
 <!DOCTYPE html>
 <html>
 
 <head>
-    <!-- Mobile SideNav Icon DropDown -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
     <link rel="stylesheet" href="css/main.css">
@@ -15,9 +16,7 @@
 
 <body>
 
-    <!-- Menu Bar -->
     <div th:replace="component/navbar.html"></div>
-
     <div th:replace="component/mnav.html"></div>
 
     <!-- SEARCH BAR -->
@@ -30,8 +29,8 @@
                             <nav class="blue lighten-2">
                                 <div class="nav-wrapper">
                                     <div class="input-field">
-                                        <input placeholder="Search By Patient" id="name" onkeyup="searchPreviousTestFunction()"
-                                            type="search">
+                                        <input placeholder="Search By Patient" id="name"
+                                            onkeyup="searchPreviousTestFunction()" type="search">
                                         <label class="label-icon" for="search-example">
                                             <i class="material-icons">search</i>
                                         </label>
@@ -61,11 +60,10 @@
                         <tbody>
                             <tr th:each="testSchedule:${previousTests}">
                                 <td>
-                                    <!-- Modal Trigger -->
+                                    <!-- Modal Trigger for pop-up on click-->
                                     <a th:attr="href='#modal' + ${testSchedule.id}"
                                         class="waves-effect waves-light btn modal-trigger"> <span
                                             th:text="${testSchedule.patient.forename} +' ' +${testSchedule.patient.surname}"></span></a>
-                                    <!-- Modal Structure -->
                                     <div th:attr="id = 'modal' + ${testSchedule.id}" class="modal modal-fixed-footer">
                                         <div class="modal-content">
 
@@ -76,14 +74,12 @@
                                             </blockquote>
 
                                             <div class="row">
-                                                <!-- Place -->
                                                 <div class="col s8 place mt-4 p-0">
                                                     <div class="col s8"><i class="material-icons"> place </i> <span
-                                                            th:text="*{address}"></span></div>
+                                                            th:text="${testSchedule.patient.address}"></span></div>
                                                 </div>
                                                 <br />
                                                 <br />
-                                                <!-- Phone -->
                                                 <div class="col s8 phone mt-4 p-0">
                                                     <div class="col s8"><i class="material-icons"> call
                                                         </i>&nbsp;<span th:text="${testSchedule.patient.phone}"></span>
@@ -91,7 +87,6 @@
                                                 </div>
                                                 <br />
                                                 <br />
-                                                <!-- Mail -->
                                                 <div class="col s8 mail mt-4 p-0">
                                                     <div class="col s8"><i class="material-icons"> mail_outline </i>
                                                         &nbsp;<span th:text="${testSchedule.patient.email}"></span>
@@ -114,16 +109,10 @@
                 </div>
             </div>
     </section>
-
     <div th:replace="component/footer.html"></div>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
-    <script>
-
-    </script>
     <script th:src="@{/js/home.js}"> </script>
     <script th:src="@{/js/nav.js}"> </script>
-
 </body>
 
 </html>

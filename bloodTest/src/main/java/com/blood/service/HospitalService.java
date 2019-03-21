@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * This class provides all the backend logic of the web application for hospitals
- * @author Swapnil Paul
+ *
  */
 @Service
 public class HospitalService {
@@ -70,6 +70,7 @@ public class HospitalService {
     public Hospital getByEmail(String email) {
         return hospitalDAO.findByEmail(email);
     }
+
 
     /**
      * Get the specific hosptial by its id 
@@ -167,10 +168,12 @@ public class HospitalService {
         // TODO:REST
     }
 
-    /**
-     * Find all hospital
-     * @return list of all hospital
-     */
+
+    public Hospital save(Hospital hospital) {
+        hospitalDAO.save(hospital);
+        return hospital;
+    }
+  
     public List<Hospital> findAll() {
         return hospitalDAO.findAll();
     }

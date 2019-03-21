@@ -1,3 +1,5 @@
+<!-- Template Page for Adding Tests -->
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
@@ -14,12 +16,10 @@
 
     <div th:replace="component/mnav.html"></div>
 
-
+<!-- AddTest Form -->
     <section class="section section-login grey lighten-3 center">
         <div class="row">
             <div class="col s10 push-s1">
-
-
                 <div class="row">
                     <div class="col s12 s7">
                         <div class="card">
@@ -28,8 +28,6 @@
                                 <span class="card-title">Fill In Test Info</span>
                             </div>
                             <div class="card-content">
-
-
                                 <div class="row">
                                     <form th:action="@{/addTest}" th:object="${test}" method="POST" class="col s12">
                                         <div class="row">
@@ -45,7 +43,6 @@
                                                 <label for="date">Date</label>
                                             </div>
                                         </div>
-
                                         <div class="row">
                                             <div class="col s6">
                                                 <select th:field="*{completed}" class="browser-default">
@@ -60,27 +57,22 @@
                                                 </select>
                                             </div>
                                         </div>
-
                                         <div class="row">
                                             <div class="col s6">
                                                 <input id="location" th:field="*{location}" type="text" class="validate">
                                                 <label for="location">Test_Location</label>
                                             </div>
                                         </div>
-
-
                                         <div class="row">
                                             <div class="input-field col s12">
                                                 <select th:field="*{idlabel}" class="browser-default">
+                                                    <option value="badge green">Monitor</option>
                                                     <option value="badge red">Critical</option>
                                                     <option value="badge orange">Urgent</option>
-                                                    <option value="badge green">Monitor</option>
                                                     <option value="badge white">OPA</option>
                                                 </select>
-
                                             </div>
                                         </div>
-
                                         <div class="row">
                                             <div class="input-field col s12">
                                                 <input id="Comments" type="text" th:field="*{commet}" placeholder="comment"
@@ -88,12 +80,11 @@
                                                 <label for="Comments">Comments</label>
                                             </div>
                                         </div>
-
-                                        <input type="submit" value="Add Test" class=" waves-light btn blue waves-effect">
+                                        <div class="row">
+                                            <button type="submit" style="font-weight: bold; font-size:15px" class="btn-medium waves-light btn blue lighten-2 waves-effect">Submit </button>
+                                        </div>
                                     </form>
                                 </div>
-
-
                             </div>
                             <div class="card-action">
                                 <a href="https://www.kch.nhs.uk/contact">Missing info?</a>
@@ -101,8 +92,6 @@
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </div>
 
@@ -128,8 +117,6 @@
             $('.datepicker').datepicker();
         });
     </script>
-
-
 
 </body>
 

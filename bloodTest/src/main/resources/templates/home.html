@@ -1,8 +1,8 @@
+<!-- Home Page for Users-->
+
 <!DOCTYPE html>
 <html>
-
 <head>
-  <!-- Mobile SideNav Icon DropDown -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
   <link rel="stylesheet" href="css/main.css">
@@ -14,7 +14,6 @@
 </head>
 
 <body>
-  <!-- Menu Bar -->
   <div th:replace="component/navbar.html"></div>
 
   <div th:replace="component/mnav.html"></div>
@@ -53,7 +52,7 @@
                   <th></th>
                   <th></th>
                   <th>NAME & SURNAME</th>
-                  <th>CURRENT TEST</th>
+                  <th >CURRENT TEST &nbsp;<a href="#"><i onclick="sortByDate()" class="tiny black-text material-icons">sort</i></a></th>
                   <th>NOTIFIED</th>
                   <th><select id="completed" onchange="filterComplete(this.value)"
                       class="blue lighten-3 browser-default">
@@ -87,7 +86,7 @@
                         type="checkbox" /><span></span></label></td>
                   <!-- edit test modal -->
                   <td>
-                    <a href="/editTests" th:href="@{editTest/{id}(id=${testSchedule.id})}" class="btn"> edit
+                    <a href="/editTests" th:href="@{editTest/{id}(id=${testSchedule.id})}" class="btn "> <i class="medium material-icons">mode_edit</i> 
                   </td>
 
                   <td>
@@ -105,7 +104,7 @@
                         <div class="row">
                           <!-- Place -->
                           <div class="col s8 place mt-4 p-0">
-                            <div class="col s8"><i class="material-icons"> place </i> <span th:text="*{address}"></span>
+                            <div class="col s8"><i class="material-icons"> place </i> <span th:text="${testSchedule.patient.address}"></span>
                             </div>
                           </div>
                           <br />
@@ -137,8 +136,8 @@
                   <td th:text="${testSchedule.location}"></td>
                   <td th:text="${testSchedule.commet}"></td>
                   <td>
-                    <a href="/sendTestResults" th:href="@{sendTestResult/{id}(id=${testSchedule.id})}" class="btn"> Send
-                      Result </a>
+                    <a href="/sendTestResults" th:href="@{sendTestResult/{id}(id=${testSchedule.id})}" class ="btn">
+                      <i class="small material-icons">email</a>
                   </td>
                 </tr>
 
@@ -159,22 +158,13 @@
         </div>
       </div>
     </div>
-
-
-
   </section>
 
   <div th:replace="component/footer.html"></div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
-  <script>
-
-  </script>
   <script th:src="@{/js/home.js}"> </script>
   <script th:src="@{/js/nav.js}"> </script>
-
-
-
 </body>
 
 </html>

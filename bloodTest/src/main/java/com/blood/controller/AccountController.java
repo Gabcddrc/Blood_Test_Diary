@@ -93,4 +93,21 @@ public class AccountController {
 
         return "redirect:/home"; //redirection to home page
     }
+
+    @RequestMapping(value = "/changePassword", method = RequestMethod.GET)
+    public String changePasswordForm(Model model){
+        
+        model.addAttribute("staff", new Staff());
+
+        return "changePassword";
+    }
+
+    @RequestMapping(value = "/changePassword", method = RequestMethod.POST)
+    public String changePassword(@ModelAttribute("staff") Staff staff, BindingResult bindingResult, Model model){
+        Staff oldStaff =  staffService.getByUsername(staffService.getUser());
+        oldStaff.setPassword(encryption(staff.getPassword()));
+        System.out.println(oldStaff.getId());
+        staffService.createStaff(oldStaff);
+        return "redirect:/home";
+    }
 }

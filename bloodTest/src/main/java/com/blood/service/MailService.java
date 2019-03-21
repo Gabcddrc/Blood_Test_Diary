@@ -95,30 +95,63 @@ public class MailService {
         return true;
     }
 
-    // TOBE MODIFED WTH PATIENT INFO ATTACHMENT
+
+    /**
+     * Send manual notification to the patient
+     * 
+     * @param Patient patient, String testTime, String location, String comment
+     */
+    public void sendManualReminder(Patient patient, String testTime, String location, String comment) {
+        MimeMessage message = mailSender.createMimeMessage();
+        Context context = new Context();
+        context.setVariable("firstName", patient.getForename());
+        context.setVariable("lastName", patient.getSurname());
+        String formatTestTime = testTime.replace("T", " at ");
+        context.setVariable("testTime", formatTestTime);
+        context.setVariable("location", location);
+        context.setVariable("comment", comment);
+        String emailContent = templateEngine.process("sendAutomatedEmailTest", context);
+        try {
+            MimeMessageHelper helper = new MimeMessageHelper(message, true);
+            String email = patient.getEmail();
+            helper.setFrom(from);
+            helper.setTo(email);
+            helper.setSubject("Liver Test Result");
+            helper.setText(emailContent, true);
+            mailSender.send(message);
+            logger.info("Send Manual notification Successful");
+        } catch (MessagingException e) {
+            logger.error("Send Failed！", e);
+        }
+    }
+
     /**
      * Send the test result to patient
      * @param filePath -- the file path of the test result
      * @param patient -- the patient of this result
      * @param test -- the blood test
+     * @param comment - any comment message
      * @return true if the result sent successfully, else false
      */
-    public boolean sendResult(String filePath, Patient patient, TestSchedule test) {
+    public boolean sendResult(String filePath, Patient patient, TestSchedule test, String comment) {
         MimeMessage message = mailSender.createMimeMessage();
         Context context = new Context();
         context.setVariable("firstName", patient.getForename());
         context.setVariable("lastName", patient.getSurname());
         context.setVariable("testTime", test.getDate());
         context.setVariable("location", test.getLocation());
-        String emailContent = templateEngine.process("sendAutomatedEmailTest", context);
+        context.setVariable("comment", comment);
+        String emailContent = templateEngine.process("resultEmailTemplate", context);
         try {
-            String email = patient.getEmail();
-            FileSystemResource file = new FileSystemResource(new File(filePath));
-            System.out.println(file.getPath());
             MimeMessageHelper helper = new MimeMessageHelper(message, true);
-            // String fileName = filePath.substring(filePath.lastIndexOf(File.separator));
-            String fileName = patient.getForename() + "_result.pdf";
-            helper.addAttachment(fileName, file);
+            String email = patient.getEmail();
+            if (filePath != null) {
+                FileSystemResource file = new FileSystemResource(new File(filePath));
+                System.out.println(file.getPath());
+                // String fileName = filePath.substring(filePath.lastIndexOf(File.separator));
+                String fileName = patient.getForename() + "_result.pdf";
+                helper.addAttachment(fileName, file);
+            }
             helper.setFrom(from);
             helper.setTo(email);
             helper.setSubject("Liver Test Result");
@@ -137,7 +170,7 @@ public class MailService {
             }
             test.setResultSent(true);
             testScheduleService.save(test);
-            //Keep record of this test
+            // Keep record of this test
             PreviousTest prevT = new PreviousTest(test.getLocation(), test.getDate(), test.getCommet());
             prevT.setPatient(patient);
             previousTestService.save(prevT);
@@ -176,4 +209,5 @@ public class MailService {
             return false;
         }
     }
+
 }
