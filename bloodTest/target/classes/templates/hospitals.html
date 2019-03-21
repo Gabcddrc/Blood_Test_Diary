@@ -9,8 +9,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
   <link rel="stylesheet" href="css/main.css">
   <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js"
-    integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl"
-    crossorigin="anonymous"></script>
+    integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous">
+  </script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <title>Blood Test Diary</title>
 
@@ -25,11 +25,26 @@
   <!-- HOSPITAL Table -->
   <section class="section section-login light-blue lighten-5 center">
     <div class="row">
-      
+
       <div class="col s12 m6 ">
-        <div class="input-field" style="background-color: transparent">
-          <input placeholder="Search By Hospital name" id="name" onkeyup="searchHospitalFunction()" type="search">
-          <i class="material-icons">search</i>
+        <div class="row">
+
+          <div class="col s12 m2">
+
+
+
+
+            <!--jeff，这里是你要的button,搞完记得删掉这一行-->
+            <a href="/AddHospital" class="waves-effect blue btn-floating waves-light btn" ><i
+                class="material-icons">add</i> </a></a>
+          </div>
+          <div class="col s12 m10">
+            <div class="input-field" style="background-color: transparent">
+              <input placeholder="Search By Hospital name" id="name" onkeyup="searchHospitalFunction()" type="search">
+              <i class="material-icons" style="padding: 5px">search</i>
+            </div>
+          </div>
+
         </div>
 
         <div class="card blue lighten-3">
