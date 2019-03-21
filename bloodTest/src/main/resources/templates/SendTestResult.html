@@ -1,3 +1,5 @@
+<!-- Template Page for Sending test results to Patients -->
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
@@ -26,17 +28,15 @@
             <div class="card">
               <div class="card-image">
                 <img th:src="@{/images/pen.jpg}" />
-                <span class="card-title">Edit the Test Info</span>
+                <h2 class="card-title">Send Test Result</h2>
               </div>
               <div class="card-content">
 
 
                 <div class="row">
-                  <form th:action="@{/sendTestResult}"  method="POST" enctype="multipart/form-data"
-                    class="col s12">
+                  <form th:action="@{/sendTestResult}" method="POST" enctype="multipart/form-data" class="col s12">
 
                     <div class="row">
-                      <h2>Send Result</h2>
                       <div class="row">
                         <div class="input-field col s4">
                           <input id="patientId" type="text" th:field="${patient.id}" placeholder="patient Id" readonly>
@@ -52,9 +52,7 @@
                           <li align='left'>Email Address: <span th:text="${patient.email}"></span></li>
                         </h5>
                         <h5>
-                          <li align="left">Test Date:
-                            <span th:text="${test.date}" type="text" class="datepicker white-text"> </span>
-                          </li>
+                          <li align='left'>Test Date: <span th:text="${test.date}"></span></li>
                         </h5>
                         <li>
 
@@ -98,7 +96,7 @@
                           <div class="row">
                             <div class="input-field col s6">
                               <i class="material-icons prefix">mode_edit</i>
-                              <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
+                              <textarea id="icon_prefix2"  name="comments" class="materialize-textarea"></textarea>
                               <label for="icon_prefix2" style="color: black;">Add any comment</label>
                             </div>
                           </div>
@@ -107,7 +105,7 @@
                       </ul>
                     </div>
 
-                    
+
                     <span th:text="${patient.id}" style=" visibility: hidden;"></span>
                     <span th:text="${test.id}" style=" visibility: hidden;"></span>
                     <input type="submit" value="Send Result" class=" waves-light btn blue waves-effect">
@@ -115,9 +113,6 @@
                 </div>
 
 
-              </div>
-              <div class="card-action">
-                <a href="https://www.kch.nhs.uk/contact">Missing info?</a>
               </div>
             </div>
           </div>
@@ -172,9 +167,6 @@
       $('.datepicker').datepicker();
     });
   </script>
-
-
-
 </body>
 
 </html>

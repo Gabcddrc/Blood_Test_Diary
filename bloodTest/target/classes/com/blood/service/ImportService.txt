@@ -82,4 +82,58 @@ public class ImportService{
             e.printStackTrace();
         }
     }
+
+
+    /**
+     * Load the spreadsheet to database
+     * @param fileLocation -- URL of the spreadsheet
+     
+    public void load2(String fileLocation) {
+        try {
+            FileInputStream file = new FileInputStream(new File(fileLocation));
+            Workbook workbook = new XSSWorkbook(file);
+            //For each sheet (as some spreadsheet contains multiple sheet)
+            for (Sheet sheet : workbook) {
+                Iterator<Row> rowIterator = datatypeSheet.iterator();
+                Row curRow = iterator.next(); //Skip the first row
+                while (iterator.hasNext()){
+                    curRow = iterator.next();
+                    Iterator<Cell> cellIterator = currentRow.iterator();
+                    //Process the data import here
+                    //Format: SN, FN, HOSPITAL, DOB, AGE, SEX, DIAG, TRANSP, LOCAL_HO/SURG/, CONTACT NO,  COMMENT
+                    Patient patient = new Patient();
+                    Cell curCell = cellIterator.next(); //SURNAME
+                    patient.setSuername(curCell.getStringCellValue());
+                    curCell = cellIterator.next();//Forename
+                    patient.setForename(curCell.getStringCellValue());
+                    curCell = cellIterator.next(); //Hospital No
+                    //Insert any Data here?
+                    curCell = cellIterator.next(); //DOB: Need to use the date today & DOB to calculate
+                    patient.setDOB(curCell.getStringCellValue());
+                    curCell = cellIterator.next(); //Age
+                    curCell = cellIterator.next(); //Sex
+                    patient.setSex(curCell.getStringCellValue());
+                    curCell = cellIterator.next(); //Diagnosis
+                    patient.setDiagnosis(curCell.getStringCellValue());
+                    curCell = cellIterator.next(); //Transplant
+                    patient.setTransplant(curCell.getStringCellValue());
+                    curCell = cellIterator.next();//Local Hospital/Surgery
+                    patient.setLocal_hospital(curCell.getStringCellValue());
+                    curCell = cellIterator.next(); //Contact No for bloods
+                    //Something here?
+                    curCell = cellIterator.next(); //Comments
+                    patient.setComments(curCell.getStringCellValue);
+                    curCell = cellIterator.next();//TAC
+                    patientService.add(patient); //Add the patient to DB
+                }
+            }
+        }
+        catch (FileNotFoundException e){
+            e.printStackTrace();
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+    */
 }

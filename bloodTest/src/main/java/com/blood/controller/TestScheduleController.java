@@ -21,6 +21,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+/**
+ * This class provides the HTTP Response service for test schedule of patients
+ * And test scheduling for patients
+ */
 @Controller
 public class TestScheduleController {
   @Autowired
@@ -31,6 +35,13 @@ public class TestScheduleController {
   @Autowired
   private MailService mailService;
 
+  /**
+   * Get the test of the specific patient with that ID
+   * @param id
+   * @param model 
+   * 
+   * @return url of the current page
+   */
   @RequestMapping(value = "/addTest/{id}", method = RequestMethod.GET)
   public String getAddTest(@PathVariable("id") String id, Model model) {
     Patient patient = this.patientService.findById(Integer.parseInt(id));
@@ -40,6 +51,12 @@ public class TestScheduleController {
     return "addTest";
   }
 
+  /**
+   * Convert the date to String
+   * @param date -- date to be converted
+   * 
+   * @return dateString -- converted data in String
+   */
   public String dateToString(Date date) {
     SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     String dateString = formatter.format(date);
@@ -49,6 +66,10 @@ public class TestScheduleController {
     return dateString;
   }
 
+  /** 
+   * Retrieve Edit Test page, and id for the test
+   * @return url of editTest
+   */
   @RequestMapping(value = "/editTest/{id}", method = RequestMethod.GET)
   public String getTestsById(@PathVariable("id") String id, Model model) {
     TestSchedule testSchedule = this.tScheduleService.findById(Integer.parseInt(id));
@@ -59,13 +80,22 @@ public class TestScheduleController {
 
     return "editTest";
   }
-
+   /**
+    * Edit test function
+    *
+    * @param patient
+    * @param test
+    * @param bindingResult
+    * @param model
+    *
+    * @return URL -- current page if any error occured, else redirect to home page
+    */
   @RequestMapping(value = "/editTest", method = RequestMethod.POST)
   public String editTest(@ModelAttribute("patient") Patient patient, @ModelAttribute("testEdit") TestSchedule test,
       BindingResult bindingResult, Model model) throws ParseException {
     Patient thePatient = patientService.findById(patient.getId());
 
-    TestSchedule newTest = new TestSchedule(test.getOPA(), formatDate(patient.getDOB()), test.isCompleted(),
+    TestSchedule newTest = new TestSchedule(test.getLocation(), formatDate(patient.getDOB()), test.isCompleted(),
         test.getCommet(), test.isNotified(), test.getIdlabel(), test.getMissTest());
     newTest.setPatient(thePatient);
     newTest.setId(test.getId());
@@ -83,6 +113,13 @@ public class TestScheduleController {
     return "redirect:/home";
   }
 
+  /**
+   * Delete the test of a patient with specified ID
+   * 
+   * @param id -- id of the patient
+   * 
+   * @return url -- to current page if any error occured, else redirect to home page
+   */
   @RequestMapping(value = "editTest/deleteTest/{id}", method = RequestMethod.GET)
   public String deletePatient(@PathVariable("id") String id) {
     try {
@@ -94,6 +131,11 @@ public class TestScheduleController {
     return "redirect:/home";
   }
 
+  /**
+   * Format the date to yyyy-MM-dd HH:mm:ss
+   * @param date -- date to be formated
+   * @return datetime -- formated date 
+   */
   public Date formatDate(String date) throws ParseException {
     String[] dates = date.split("T");
     date = dates[0] + " " + dates[1] + ":00";
@@ -103,13 +145,21 @@ public class TestScheduleController {
     return datetime;
   }
 
+  /**
+   * Add the test of a patient
+   * @param patient -- the patient with this test
+   * @param test -- the test of the patient
+   * @param bindingResult
+   * @param model
+   * @return URL String -- current page if any error occured, else redirect to home page 
+   */
   @RequestMapping(value = "/addTest", method = RequestMethod.POST)
   public String addTest(@ModelAttribute("patient") Patient patient, @ModelAttribute("test") TestSchedule test,
       BindingResult bindingResult, Model model) throws ParseException {
 
     Patient thePatient = patientService.findById(patient.getId());
 
-    TestSchedule newTest = new TestSchedule(test.getOPA(), formatDate(patient.getDOB()), test.isCompleted(),
+    TestSchedule newTest = new TestSchedule(test.getLocation(), formatDate(patient.getDOB()), test.isCompleted(),
         test.getCommet(), test.isNotified(), test.getIdlabel(), 0);
     newTest.setPatient(thePatient);
     // if (tScheduleService.findByPatient(thePatient) != null) {
@@ -137,6 +187,13 @@ public class TestScheduleController {
   private final String CRITICAL = "Mark Critical";
   private final String OPA = "Mark OPA";
 
+
+  /**
+   * Get all the test schedule
+   * @param model
+   * 
+   * @return URL String of home page
+   */
   @GetMapping("/home")
   public String getAllTestSchedule(Model model) {
     model.addAttribute("testSchedules", this.tScheduleService.getAllTestSchedule());
@@ -147,34 +204,51 @@ public class TestScheduleController {
     return "home";
   }
 
+  /**
+   * Edit the test schedule email
+   * @param model
+   * @return url of the current page
+   */
   @GetMapping("/email")
   public String getEmailTest(Model model) {
     model.addAttribute("tests", this.tScheduleService.getAllTestSchedule());
     return "email";
   }
 
+  /**
+   * Edit the label of the patient by the urgent level of the patient
+   * @param checkboxValue --
+   * @param submitBtn -- 
+   * @param model -- 
+   * 
+   * @return URL String -- redirect to home page
+   */
   @RequestMapping(value = "/editLabel", method = RequestMethod.POST)
   public String editLabel(@RequestParam(value = "checkboxName", required = false) String[] checkboxValue,
       @RequestParam(value = "submitBtn", required = false) String submitBtn, Model model) {
     try {
+      //If the urgent level is urgent, mark it to orange
       if (submitBtn.equals(URGENT) && checkboxValue.length > 0) {
         for (String id : checkboxValue) {
           TestSchedule ts = this.tScheduleService.findById(Integer.parseInt(id));
           ts.setIdlabel(COLOR_ORANGE);
           tScheduleService.updateLabel(ts);
         }
+        //If the urgent level is monitor, mark it to green
       } else if (submitBtn.equals(MONITOR) && checkboxValue.length > 0) {
         for (String id : checkboxValue) {
           TestSchedule ts = this.tScheduleService.findById(Integer.parseInt(id));
           ts.setIdlabel(COLOR_GREEN);
           tScheduleService.updateLabel(ts);
         }
+        //If the urgent level is critical, mark it to red
       } else if (submitBtn.equals(CRITICAL) && checkboxValue.length > 0) {
         for (String id : checkboxValue) {
           TestSchedule ts = this.tScheduleService.findById(Integer.parseInt(id));
           ts.setIdlabel(COLOR_RED);
           tScheduleService.updateLabel(ts);
         }
+        //For all other urgent level, mark it to white
       } else if (submitBtn.equals(OPA) && checkboxValue.length > 0) {
         for (String id : checkboxValue) {
           TestSchedule ts = this.tScheduleService.findById(Integer.parseInt(id));

@@ -23,7 +23,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "hospitals")
-@JsonIgnoreProperties({"handler", "hibernateLazyInitializer"})
+@JsonIgnoreProperties({ "handler", "hibernateLazyInitializer" })
 public class Hospital {
 
     @Id
@@ -39,11 +39,11 @@ public class Hospital {
     @Column(name = "phone")
     private String phone;
 
-    public Hospital(){
+    public Hospital() {
         super();
     }
 
-    public Hospital(String name,String address,String email,String phone){
+    public Hospital(String name, String address, String email, String phone) {
         super();
         this.name = name;
         this.address = address;
@@ -51,10 +51,10 @@ public class Hospital {
         this.phone = phone;
     }
 
-    //getters to get hospital information
+    // getters to get hospital information
 
-    public int getIdhospital() {
-        return id;
+    public int getId() {
+        return this.id;
     }
 
     public void setId(int idhospital) {

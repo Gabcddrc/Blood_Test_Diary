@@ -5,7 +5,7 @@ function searchHospitalFunction() {
     table = document.getElementById("hospitalTable");
     tr = table.getElementsByTagName("tr");
     for (i = 0; i < tr.length; i++) {
-      td = tr[i].getElementsByTagName("td")[0];
+      td = tr[i].getElementsByTagName("td")[1];
       if (td) {
         if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
           tr[i].style.display = "";
@@ -33,21 +33,21 @@ function searchHospitalFunction() {
   }
 
   function buttonHelper(address) {
-    geocodeAddress(map, address, "FE7569");
+    geocodeAddress(map, address, "red");
   }
 
 
 
 
 
-  function geocodeAddress(resultsMap, address, pinColor) {
-      //Set Color of marker
-      var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor,
-          new google.maps.Size(18, 34),
-          new google.maps.Point(0,0),
-          new google.maps.Point(10, 34));
 
-    var geocoder = new google.maps.Geocoder(); //Test
+  function geocodeAddress(resultsMap, address, color) {
+
+      new google.maps.Size(18, 34),
+          new google.maps.Point(0,0),
+          new google.maps.Point(10, 34);
+
+    var geocoder = new google.maps.Geocoder();
     geocoder.geocode({
       'address': address
     }, function (results, status) {
@@ -56,7 +56,9 @@ function searchHospitalFunction() {
         var marker = new google.maps.Marker({
           map: resultsMap,
           position: results[0].geometry.location,
-            icon: pinImage
+            icon: {
+                url: "http://maps.google.com/mapfiles/ms/icons/"+color+"-dot.png"
+            }
 
         });
         resultsMap.setZoom(15);
@@ -75,10 +77,10 @@ function searchHospitalFunction() {
 function searchPatientLocation(){
     let input;
 
-    input = document.getElementById("name");
+    input = document.getElementById("patient_location");
     filter = input.value.toLowerCase();
 
-    geocodeAddress(map, filter,"9400D3");
+    geocodeAddress(map, filter,"blue");
   }
 
 
