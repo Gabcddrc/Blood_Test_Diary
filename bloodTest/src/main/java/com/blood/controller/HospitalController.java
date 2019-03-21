@@ -81,7 +81,7 @@ public class HospitalController {
              return "AddHospital"; 
          }
 
-         return "redirect:/home";
+         return "redirect:/hospitals";
      }
     
 
