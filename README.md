@@ -1,5 +1,5 @@
 ## TEAM Lyrebird 
-# Mayjot_Project Project 1: Blood Test Diary
+# Mayjor_Project Project 1: Blood Test Diary
 
 
 ### Commit Commenting
