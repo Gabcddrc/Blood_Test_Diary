@@ -1,3 +1,7 @@
+/**
+ *
+ * @param fill
+ */
 function filterFlag(fill) {
   var input, filter, table, tr, td, i;
   input = document.getElementById("flag");
@@ -59,7 +63,9 @@ function filterMissTest(fill) {
     }
   }
 
-
+/**
+ * Search the test from home page
+ */
 function searchTestFunction() {
   let input, filter, table, tr, td, i;
   input = document.getElementById("name");
@@ -78,7 +84,9 @@ function searchTestFunction() {
   }
 }
 
-
+/**
+ * Search the previous test of a patient
+ */
 function searchPreviousTestFunction() {
   let input, filter, table, tr, td, i;
   input = document.getElementById("name");
@@ -97,6 +105,9 @@ function searchPreviousTestFunction() {
   }
 }
 
+/**
+ * 
+ */
 $(document).ready(function () {
   $("#1").click(function () {
     $("#red").click(function () {
@@ -112,6 +123,9 @@ function formateDate(v){
   return (dateArray[0]+dateArray[1]+dateArray[2])
 }
 
+/**
+ * Sort test by date
+ */
 function sortByDate(){
   
   var tbody = document.querySelector("#testTable tbody")
