@@ -1,3 +1,6 @@
+/**
+ * Search hostpital in the hospital table
+ */
 function searchHospitalFunction() {
     let input, filter, table, tr, td, i;
     input = document.getElementById("name");
@@ -16,8 +19,12 @@ function searchHospitalFunction() {
     }
   }
 
+
   var map;
 
+/**
+ * initialize google map, define the initial point
+ */
   function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
       center: {
@@ -32,16 +39,22 @@ function searchHospitalFunction() {
     //});
   }
 
-  function buttonHelper(address) {
+/**
+ * Plot hospital locaiton in the map
+ * @param address address of hospital
+ */
+function buttonHelper(address) {
     geocodeAddress(map, address, "red");
   }
 
 
-
-
-
-
-  function geocodeAddress(resultsMap, address, color) {
+/**
+ * Plot an address in the google map with a specific color
+ * @param resultsMap the map
+ * @param address define the address of marker
+ * @param color define color of marker
+ */
+function geocodeAddress(resultsMap, address, color) {
 
       new google.maps.Size(18, 34),
           new google.maps.Point(0,0),
@@ -69,11 +82,9 @@ function searchHospitalFunction() {
   }
 
 
-
-
-
-
-
+/**
+ * Plot patient location in the map
+ */
 function searchPatientLocation(){
     let input;
 

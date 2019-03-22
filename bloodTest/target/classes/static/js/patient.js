@@ -1,3 +1,6 @@
+/**
+ * Search funcrion of the patient name
+ */
 function searchPatientFunction() {
     let input, filter, table, tr, td, i;
     input = document.getElementById("name");

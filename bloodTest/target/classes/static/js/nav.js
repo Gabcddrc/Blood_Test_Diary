@@ -1,3 +1,7 @@
+/**
+ * define the nav bar
+ *
+ */
 const sideNav = document.querySelector('.sidenav');
 M.Sidenav.init(sideNav, {});
 //Modal
