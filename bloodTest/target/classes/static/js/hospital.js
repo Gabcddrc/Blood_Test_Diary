@@ -83,7 +83,7 @@ function geocodeAddress(resultsMap, address, color) {
 
 
 /**
- * plot patient location in the map
+ * Plot patient location in the map
  */
 function searchPatientLocation(){
     let input;
