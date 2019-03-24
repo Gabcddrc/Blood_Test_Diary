@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.blood.DemoApplicationTests" time="14.368" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.blood.ContactsTest" time="0.044" tests="9" errors="0" skipped="0" failures="0">
   <properties>
     <property name="sun.desktop" value="windows"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
@@ -60,5 +60,13 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="52.0"/>
   </properties>
-  <testcase name="contextLoads" classname="com.blood.DemoApplicationTests" time="0.095"/>
+  <testcase name="testgetType" classname="com.blood.ContactsTest" time="0.001"/>
+  <testcase name="testSetContactNum" classname="com.blood.ContactsTest" time="0"/>
+  <testcase name="testgetNotes" classname="com.blood.ContactsTest" time="0.001"/>
+  <testcase name="testEmptyContacts" classname="com.blood.ContactsTest" time="0"/>
+  <testcase name="testgetIdcontact" classname="com.blood.ContactsTest" time="0"/>
+  <testcase name="testSetIdcontact" classname="com.blood.ContactsTest" time="0"/>
+  <testcase name="testgetContactNum" classname="com.blood.ContactsTest" time="0"/>
+  <testcase name="testSetType" classname="com.blood.ContactsTest" time="0"/>
+  <testcase name="testSetNotes" classname="com.blood.ContactsTest" time="0"/>
 </testsuite>
