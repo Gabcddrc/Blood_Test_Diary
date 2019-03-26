@@ -82,4 +82,23 @@ public class PreviousTestTests {
         assertEquals(patient, test.getPatient());
     }
 
+    @Test
+    public void testsetPatient2(){
+        PreviousTest test = new PreviousTest();
+        Patient patient = new Patient();
+        patient.setComments("123");
+        test.setPatient(patient);
+        assertEquals("123", test.getPatient().getComments());
+    }
+
+    @Test
+    public void testEmptyDetails() {
+        PreviousTest test = new PreviousTest();
+        assertEquals(test.getId(), 0);
+        assertEquals(test.getLocation(), null);
+        assertEquals(test.getCommet(), null);
+        assertEquals(test.getDate(), null);
+        assertEquals(test.getPatient(), null);
+    }
+
 }
