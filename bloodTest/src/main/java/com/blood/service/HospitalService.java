@@ -97,7 +97,7 @@ public class HospitalService {
      * @param phone -- phone to be set
      */
     public void changePhone(Hospital hospital, String phone) {
-        hospital.setName(phone);
+        hospital.setPhone(phone);
         hospitalDAO.save(hospital);
     }
 
@@ -107,7 +107,7 @@ public class HospitalService {
      * @param address -- address to be set
      */
     public void changeAddress(Hospital hospital, String address) {
-        hospital.setName(address);
+        hospital.setAddress(address);
         hospitalDAO.save(hospital);
     }
 
@@ -117,7 +117,7 @@ public class HospitalService {
      * @param email -- email to be set
      */
     public void changeEmail(Hospital hospital, String email) {
-        hospital.setName(email);
+        hospital.setEmail(email);
         hospitalDAO.save(hospital);
     }
 
