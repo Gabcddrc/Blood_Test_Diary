@@ -31,5 +31,6 @@ public class PreviousTestServiceTest{
         PreviousTest dummy2 = previousTestService.findById(dummy.getId());
         assertEquals(dummy.getLocation(),dummy2.getLocation());
         assertEquals(dummy.getCommet(),dummy2.getCommet());
+        previousTestService.deletePreviousTest(dummy.getId());
     }
 }
