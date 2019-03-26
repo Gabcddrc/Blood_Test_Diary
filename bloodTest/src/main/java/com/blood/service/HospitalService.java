@@ -18,13 +18,6 @@ public class HospitalService {
     @Autowired
     HospitalDAO hospitalDAO;
 
-    /**
-     * Save the hospital to databse
-     * @param hospital -- hospital to be saved
-     */
-    public void saveHospital(Hospital hospital) {
-        hospitalDAO.save(hospital);
-    }
 
     /**
      * Get the specific hospital by its ID
@@ -149,33 +142,9 @@ public class HospitalService {
         return hospital;
     }
 
-    /**
-     * Edit the information of the hospital
-     * @param hospital -- hospital to be edited
-     * @param id -- id of the hospital
-     * @param name -- name of the hospital
-     * @param address -- address of the hospital
-     * @param phone -- phone of the hospital
-     */
-    public void updateHospital(Hospital hospital, int id, String name, String email,
-    String address, String phone) {
-                hospital.setId(id);
-                hospital.setName(name);
-                hospital.setEmail(email);
-                hospital.setAddress(address);
-                hospital.setPhone(phone);
-                hospitalDAO.save(hospital);
-        // TODO:REST
-    }
 
-
-    public Hospital save(Hospital hospital) {
-        hospitalDAO.save(hospital);
-        return hospital;
-    }
+    
   
-    public List<Hospital> findAll() {
-        return hospitalDAO.findAll();
-    }
+    
 
 }
