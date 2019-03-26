@@ -51,4 +51,8 @@ public class PreviousTestService {
         return previousTestDAO.findAll();
     }
 
+    public void deletePreviousTest(int id){
+        previousTestDAO.delete(previousTestDAO.findById(id));
+    }
+
 }
