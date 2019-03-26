@@ -109,6 +109,72 @@ public class PatientTests {
     }
 
     @Test
+    public void testgetLocal_hospital(){
+        Patient patient = new Patient();
+        assertEquals(null, patient.getLocal_hospital());
+    }
+
+    @Test
+    public void testsetLocal_hospital(){
+        Patient patient = new Patient();
+        patient.setLocal_hospital("kcl");
+        assertEquals("kcl", patient.getLocal_hospital());
+    }
+
+    
+    @Test
+    public void testgetPhone(){
+        Patient patient = new Patient();
+        assertEquals(null, patient.getPhone());
+    }
+
+    @Test
+    public void testsetPhone(){
+        Patient patient = new Patient();
+        patient.setPhone("1234567890");
+        assertEquals("1234567890", patient.getPhone());
+    }
+
+    @Test
+    public void testgetDOB(){
+        Patient patient = new Patient();
+        assertEquals(null, patient.getDOB());
+    }
+
+    @Test
+    public void testsetDOB(){
+        Patient patient = new Patient();
+        patient.setDOB("2019-1-1");
+        assertEquals("2019-1-1", patient.getDOB());
+    }
+
+    @Test
+    public void testgetSex(){
+        Patient patient = new Patient();
+        assertEquals(null, patient.getSex());
+    }
+
+    @Test
+    public void testsetSex(){
+        Patient patient = new Patient();
+        patient.setSex('M');
+        assertEquals('M', patient.getSex());
+    }
+
+    @Test
+    public void testgetTransplant(){
+        Patient patient = new Patient();
+        assertEquals(null, patient.getTransplant());
+    }
+
+    @Test
+    public void testsetTransplant(){
+        Patient patient = new Patient();
+        patient.setTransplant("abc");
+        assertEquals("abc", patient.getTransplant());
+    }
+
+    @Test
     public void testEmptyDetails() {   
         Patient patient = new Patient();
         assertEquals(patient.getEmail(), null);
