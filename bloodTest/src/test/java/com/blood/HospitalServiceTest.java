@@ -69,6 +69,47 @@ public class HospitalServiceTest{
         assertEquals(dummy.getPhone(),dummy2.getPhone());
         hospitalService.deleteHospital(dummy.getId());
     }
+
+    @Test
+    public void testChangeName(){
+        Hospital dummy = new Hospital("DummyName","DummyAddress","dummy@dummy.com","44123456");
+        hospitalService.createHospital(dummy);
+        hospitalService.changeName(dummy,"dn");
+        Hospital after = hospitalService.getById(dummy.getId());
+        assertEquals(after.getName(),"dn");
+        hospitalService.deleteHospital(dummy.getId());
+    }
+    
+    @Test
+    public void testChangeEmail(){
+        Hospital dummy = new Hospital("DummyName","DummyAddress","dummy@dummy.com","44123456");
+        hospitalService.createHospital(dummy);
+        hospitalService.changeEmail(dummy,"dn@dummy.com");
+        Hospital after = hospitalService.getById(dummy.getId());
+        assertEquals(after.getEmail(),"dn@dummy.com");
+        hospitalService.deleteHospital(dummy.getId());
+    }
+
+    @Test
+    public void testChangePhone(){
+        Hospital dummy = new Hospital("DummyName","DummyAddress","dummy@dummy.com","44123456");
+        hospitalService.createHospital(dummy);
+        hospitalService.changePhone(dummy,"12345");
+        Hospital after = hospitalService.getById(dummy.getId());
+        assertEquals(after.getPhone(),"12345");
+        hospitalService.deleteHospital(dummy.getId());
+    }
+
+    @Test
+    public void testChangeAddress(){
+        Hospital dummy = new Hospital("DummyName","DummyAddress","dummy@dummy.com","44123456");
+        hospitalService.createHospital(dummy);
+        hospitalService.changeAddress(dummy,"dnAddress");
+        Hospital after = hospitalService.findById(dummy.getId());
+        assertEquals(after.getAddress(),"dnAddress");
+        hospitalService.deleteHospital(dummy.getId());
+    }
+    
 }
 
 
