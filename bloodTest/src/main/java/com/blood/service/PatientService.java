@@ -32,13 +32,7 @@ public class PatientService {
         return patientDAO.findByEmail(email);
     }
     
-    /**
-     * Add a new patient
-     * @param patient -- patient to be added to DB
-     */
-    public void add(Patient patient) {
-        patientDAO.save(patient);
-    }
+    
     
     /**
      * Add a new patient and return it
@@ -58,20 +52,7 @@ public class PatientService {
         patientDAO.delete(patientDAO.findById(id));
     }
 
-    /**
-     * Get all patient that should be notified
-     * @return List of patient that should be notified
-     */
-    public List<Patient> listNotificationPatients() {
-        List<Patient> patients = patientDAO.findAll();
-        List<Patient> patients1 = new ArrayList<Patient>();
-        // for (Patient patient:patients){
-        // if(patient.getOverTime()==true){
-        // patients1.add(patient);
-        // }
-        // }
-        return patients1;
-    }
+    
 
     /** 
      * retrive all patient
@@ -83,30 +64,6 @@ public class PatientService {
         return patients;
     }
 
-    /**
-     * Edit the patient
-     * @param patient -- patient to be added
-     * @param id, forename, surname. DOB, email, sex, address, diagnosis, transplant, local_hospital, surgery, comments, overTime
-     */
-    public void updatePatient(Patient patient, int id, String forename, String surname, String DOB, String email,
-            char sex, String address, String diagnosis, String transplant, String local_hospital, String surgery,
-            String comments, Boolean overTime) {
-        patient.setId(id);
-        patient.setForename(forename);
-        patient.setSurname(surname);
-        patient.setDOB(DOB);
-        patient.setEmail(email);
-        patient.setSex(sex);
-        patient.setAddress(address);
-        patient.setDiagnosis(diagnosis);
-        patient.setTransplant(transplant);
-        patient.setLocal_hospital(local_hospital);
-        patient.setSurgery(surgery);
-        patient.setComments(comments);
-        // patient.setOverTime(overTime);
-        patientDAO.save(patient);
-        // TODO:REST
-    }
 
     /**
      * Delete the patient
