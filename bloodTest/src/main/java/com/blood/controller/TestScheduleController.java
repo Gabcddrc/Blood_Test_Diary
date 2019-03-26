@@ -199,8 +199,7 @@ public class TestScheduleController {
     model.addAttribute("testSchedules", this.tScheduleService.getAllTestSchedule());
     model.addAttribute("testEdit", new TestSchedule());
     tScheduleService.timeShif();
-    // mailService.sendNotification(); // <-- TO BE ENABLE (when you enable say to
-    // the group)
+    mailService.sendNotification(); // <-- TO BE ENABLE (when you enable say tthe group)
     return "home";
   }
 

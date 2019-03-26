@@ -68,7 +68,7 @@
                 <td th:text="${hospital.email}"></td>
                 <td th:text="${hospital.phone}"></td>
                 <!--Plot hospital location in the google map-->
-                <td><a class="waves-effect blue waves-light btn" th:data-address="${hospital.address}"
+                <td><a class="waves-effect blue waves-light btn" th:data-address="${hospital.name}"
                     onclick="buttonHelper(this.getAttribute('data-address'))">Show<i
                       class="material-icons left">search</i></a></td>
                 <!--Point: How to pass ${hospital.address} as a parameter for buttonHelper -->

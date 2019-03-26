@@ -194,7 +194,10 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `bloodtestdiary`;
-INSERT INTO `bloodtestdiary`.`patients` (`forename`, `surname`, `sex`, `DOB`, `diagnosis`, `transplant`, `local_hospital`, `surgery`, `comments`) VALUES ('joe', 'joe', 'M', '2019-12-12', 'AA', 'bb', 'hospital', 'John', 'working demo');
+INSERT INTO `bloodtestdiary`.`patients` (`forename`, `surname`, `sex`, `DOB`, `phone`, `email`, `address`, `diagnosis`, `transplant`, `local_hospital`, `surgery`, `comments`) VALUES ('Mario', 'Depp', 'M', '2000-12-12', '23132132', 'email@gmail.com', '201 Kensington, London', 'NA', 'NA', 'Kings College Hospital', 'NA', 'Normal patient');
+INSERT INTO `bloodtestdiary`.`patients` (`forename`, `surname`, `sex`, `DOB`, `phone`, `email`, `address`, `diagnosis`, `transplant`, `local_hospital`, `surgery`, `comments`) VALUES ('Elisa', 'Doe', 'F', '1998-12-12', '324545453', 'email8@gmail.com', '22 Kings William Street, London', 'NA', 'NA', 'Guys Hospital', 'NA', 'Normal patient');
+INSERT INTO `bloodtestdiary`.`hospitals` (`name`, `address`, `email`, `phone`) VALUES ('Kings College Hospital', 'Denmark Hill, Brixton, London SE5 9RS', 'kclhospital@nhs.co.uk', '124553332');
+INSERT INTO `bloodtestdiary`.`hospitals` (`name`, `address`, `email`, `phone`) VALUES ('Guys Hospital', 'Great Maze Pond, London SE1 9RT', 'guyshospital@nhs.co.uk', '42345532');
 INSERT INTO `bloodtestdiary`.`staff` (`username`, `password`) VALUES ('user', '$2a$10$Cvz59HMOzQz/aljdY6dRbuhKPbtuYeJbhKiseQBtelhJOnUoj7vP.');
 INSERT INTO `bloodtestdiary`.`label` (`idlabel`, `name`, `color`, `description`) VALUES (1, 'Black', 'black', 'Routine Bloods');
 INSERT INTO `bloodtestdiary`.`label` (`idlabel`, `name`, `color`, `description`) VALUES (2, 'Red', 'red', 'Urgent Bloods');
