@@ -30,4 +30,4 @@ The source code is released under a GNU General Public License (GPL), and it's d
  
 - Setup Mysql server, load bloodtestdiary.sql from “bloodTest/src/main/rescources”, in the application.properties, change the mysql information according to the server setup. - Install maven, go into the bloodTest directory, run “mvn clean package” - Using command line, inside the “bloodTest/target”, run “java -jar Lyrebird-0.0.1-SNAPSHOT.java” command line - On any browser(prefer chrome), go to ​http://localhost:8080​, default username is “user” with password “password” 
  
-Main settings of the application, such as: ● MySql database  ● Sender email address Can be found on ​/​bloodTest​/​src​/​main​/​resources​/application.properties
+- Main settings of the application, such as: ● MySql database  ● Sender email address Can be found on ​/​bloodTest​/​src​/​main​/​resources​/application.properties
